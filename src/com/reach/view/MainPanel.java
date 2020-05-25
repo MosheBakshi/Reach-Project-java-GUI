@@ -1,8 +1,6 @@
 package com.reach.view;
 
 import com.reach.controller.ButtonListener;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,12 +41,13 @@ public class MainPanel extends JFrame implements View {
         enterUserName = new JTextField("");
         enterUserName.setBounds(108, 241, 150, 20);
         add(enterUserName);
+        // go t
         JLabel password = new JLabel("password");
         password.setBounds(15, 220, 100, 100);
         password.setFont(david20);
         add(password);
-        forgetPassword = new JButton("forget a password");
-        forgetPassword.setBounds(258, 262, 115, 20);
+        forgetPassword = new JButton("Forgot password");
+        forgetPassword.setBounds(258, 262, 300, 20);
         forgetPassword.setBackground(Color.white);
         forgetPassword.setBorderPainted(false);
         forgetPassword.setFont(david10);

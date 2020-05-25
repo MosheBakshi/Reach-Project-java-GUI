@@ -8,7 +8,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
 public class ButtonListener implements ActionListener {
-
+    View currentView;
+    MyController forModel;
+    protected static String uname = " ";
+    protected static String choice = "Customer";
     private Window mainScreen;
 
     //Constructors
@@ -22,6 +25,10 @@ public class ButtonListener implements ActionListener {
 
     public ButtonListener(SignUpScreen signUpScreen) {
         this.mainScreen = signUpScreen;
+    }
+
+    public ButtonListener(ChooseDefineScreen chooseDefineScreen) {
+        this.mainScreen = chooseDefineScreen;
     }
 
     public void ButtonListener(Window mainScreen) {
@@ -39,6 +46,7 @@ public class ButtonListener implements ActionListener {
 
     public void actionPerformed(ActionEvent actionEvent) {
         String name;
+
         name = actionEvent.getActionCommand();
         if (name.equals("Log In")) {
             JTextField userName = MainPanel.getEnterUserName();
@@ -60,25 +68,35 @@ public class ButtonListener implements ActionListener {
                 MainScreenLogIn mainScreenLogIn = new MainScreenLogIn(userName.getText());
                 mainScreenLogIn.showScreen();
             } catch (Exception exc) {
-                JOptionPane.showMessageDialog(null, "Error");
+                JOptionPane.showMessageDialog(null, "Error Username or Password");
             }
         }
         if (name.equals("Sign Up Here")) {
             mainScreen.setVisible(false);
+            ChooseDefineScreen chooseDefineScreen = new ChooseDefineScreen();
+            chooseDefineScreen.showScreen();
+            choice = chooseDefineScreen.getChoice();
+        }
+        if (name.equals("Next")) {
+            mainScreen.setVisible(false);
             SignUpScreen signUpScreen = new SignUpScreen();
             signUpScreen.showScreen();
-
+            uname = signUpScreen.getUname();
         }
-        if (name.equals("forget a password")) {
+        if (name.equals("Forgot password")) {
             mainScreen.setVisible(false);
-            JOptionPane.showMessageDialog(null, "hsdfsfsdfello");
-
+            JOptionPane.showMessageDialog(null, "Set email adress:");
+            MainPanel v1 = new MainPanel();
+            v1.showScreen();
         }
-        if (name.equalsIgnoreCase("Next")) {
+        if (name.equalsIgnoreCase("Done")) {
             mainScreen.setVisible(false);
+            forModel = new MyController(choice,uname);
             JOptionPane.showMessageDialog(null, "Sign up successfully");
             //Contorller -> Model
-            mainScreen.dispatchEvent(new WindowEvent(mainScreen, WindowEvent.WINDOW_CLOSING));
+            MainPanel v1 = new MainPanel();
+            v1.showScreen();
+          //  mainScreen.dispatchEvent(new WindowEvent(mainScreen, WindowEvent.WINDOW_CLOSING));
 
         }
         if (name.equalsIgnoreCase("search")) {

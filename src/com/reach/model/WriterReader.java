@@ -47,14 +47,14 @@ public class WriterReader {
             while (file.length()>4)
             {
                 user1=(User)oi.readObject();
-                if(user1.name.equals(newuser.name))
+                if(user1.username.equals(newuser.username))
                 {
                     System.out.println("User name exists.");
                     return;
                 }
             }
             o.writeObject(newuser);
-            System.out.println("Saved "+newuser.getName());
+            System.out.println("Saved "+newuser.getUsername());
             count++;
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
@@ -73,9 +73,9 @@ public class WriterReader {
             while (file.length()>4)
             {
                 user1=(User)oi.readObject();
-                if (user1.name.equals(name))
+                if (user1.username.equals(name))
                 {
-                    System.out.println("Loaded "+user1.getName());
+                    System.out.println("Loaded "+user1.getUsername());
                     return user1;
                 }
             }
@@ -92,13 +92,13 @@ public class WriterReader {
     }
 
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+   /* public static void main(String[] args) throws IOException, ClassNotFoundException {
         WriterReader writer = new WriterReader();
         User user1 = new Customer(userT.customer);
         User user2;
-        user1.setName();
+        user1.setUsername();
         writer.save(user1);
         writer.save(user1);
-        user2=writer.load(user1.getName());
-    }
+        user2=writer.load(user1.getUsername());
+    }*/
 }

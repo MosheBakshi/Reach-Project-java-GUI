@@ -3,9 +3,11 @@ package com.reach.model;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class User {
+public abstract class User  implements Model{
     public User() {}
-    protected String name;
+    protected String username;
+    protected String password;
+    protected String fname;
     protected String lname;
     protected userT userType;
     protected int userId;
@@ -17,59 +19,23 @@ public abstract class User {
     protected ArrayList<Review> review;
     // add setter and getters for rating and review list
     // Setters
-    public void setName() {
-        Scanner userchoice = new Scanner(System.in);
-        System.out.println("Enter your first name please: ");
-        String str= userchoice.nextLine();
-        name = str;
-        System.out.println("Enter your last name please: ");
-        str= userchoice.nextLine();
-        lname = str;
-        System.out.println("You entered: " + name + " " + lname);
+    public void setUsername(String userN) {
+       username = userN;
     }
-    public userT setType() {
-        Scanner userchoice = new Scanner(System.in);
-        System.out.println("Please choose you user type: ");
-        System.out.println("                             1) Customer ");
-        System.out.println("                             2) Freelancer ");
-        System.out.println("                             3) Contractor ");
-        int i = userchoice.nextInt();
-        switch(i) {
-            case 1:
-                this.userType = userT.customer;
-                break;
-            case 2:
-                this.userType = userT.freelancer;
-                break;
-            case 3:
-                this.userType = userT.contractor;
-                break;
-        }
-        System.out.println("Your choice is: "
-                + this.userType.toString().toUpperCase().charAt(0)
-                +  this.userType.toString().substring(1));
-        return userType;
+    public void setType() {
+      // not initialized yet
     }
-    public void setId() {
-        Scanner userchoice = new Scanner(System.in);
-        System.out.println("Enter your ID please: ");
-        int str= userchoice.nextInt();
-        this.userId = str;
-        System.out.println("Your ID is: " + userId);
+    public void setId(int id) {
+       userId = id;
     }
-    public void setCell() {
-        Scanner userchoice = new Scanner(System.in);
-        System.out.println("Enter your Cellphone number please: ");
-        int str= userchoice.nextInt();
-        this.userCell = str;
-        System.out.println("Your ID is: " + userCell);
+    public void setCell(int cell) {
+        userCell = cell;
     }
-    public void setCity() {
-        Scanner userchoice = new Scanner(System.in);
-        System.out.println("Enter your city please: ");
-        String str= userchoice.nextLine();
-        this.userCity = str;
-        System.out.println("Your city is: " + userCity);
+    public void setCity(String city) {
+    userCity = city;
+    }
+    public void setPassword(String pass) {
+        password = pass;
     }
     // getters
     public void addJob(int customerID){
@@ -137,9 +103,11 @@ public abstract class User {
         return lname;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
+
+    public String getPassword() { return password; }
 
     public String getUserCity() {
         return userCity;
