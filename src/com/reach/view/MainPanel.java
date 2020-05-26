@@ -47,7 +47,7 @@ public class MainPanel extends JFrame implements View {
         password.setFont(david20);
         add(password);
         forgetPassword = new JButton("Forgot password");
-        forgetPassword.setBounds(258, 262, 300, 20);
+        forgetPassword.setBounds(140, 315, 150, 15);
         forgetPassword.setBackground(Color.white);
         forgetPassword.setBorderPainted(false);
         forgetPassword.setFont(david10);

@@ -8,10 +8,19 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SignUpScreen extends JFrame implements View {
-    protected String selection;
-    protected String uname;
-    @Override
+    protected static JTextField enterUserName;
+    protected static JTextField enterPrivateName;
+    protected static JTextField enterLastName;
+    protected static JPasswordField enterPassword;
+    protected static JPasswordField enterConfirmedPassword;
 
+    protected static ButtonModel selection;
+
+    public JTextField getUsername(){
+        return enterUserName;
+    }
+
+    @Override
     public void showScreen() {
         setSize(750, 750);
         setLayout(null);
@@ -24,76 +33,106 @@ public class SignUpScreen extends JFrame implements View {
         Font david25 = new Font("David", Font.BOLD, 25);
 
         //Label ang Buttons
-        JLabel reach = new JLabel("REACH");
-        reach.setBounds(15, 15, 250, 100);
-        reach.setFont(david25);
-        add(reach);
+
         JLabel create_reach_account = new JLabel("Create REACH account");
-        create_reach_account.setBounds(15, 60, 450, 100);
+        create_reach_account.setBounds(15, 10, 450, 100);
         create_reach_account.setFont(david30);
         add(create_reach_account);
         // for JLabel - not the var of the string
         JLabel firstName = new JLabel("First Name");
-        firstName.setBounds(15, 150, 100, 100);
+        firstName.setBounds(15, 100, 100, 100);
         firstName.setFont(david15);
         add(firstName);
         // for JTextField - var to pass into controller
-        JTextField enterPrivateName = new JTextField("");
-        enterPrivateName.setBounds(108, 191, 150, 20);
+        enterPrivateName = new JTextField("");
+        enterPrivateName.setBounds(108, 145, 150, 20);
         add(enterPrivateName);
         // for Jlabel - not var of the string
         JLabel lastName = new JLabel("Last Name");
-        lastName.setBounds(308, 150, 100, 100);
+        lastName.setBounds(308, 100, 100, 100);
         lastName.setFont(david15);
         add(lastName);
         // for JTextField - var to pass into controller
-        JTextField enterLastName = new JTextField("");
-        enterLastName.setBounds(385, 191, 150, 20);
+        enterLastName = new JTextField("");
+        enterLastName.setBounds(385, 145, 150, 20);
         add(enterLastName);
 
         // for Jlabel - not var to pass
         JLabel userName = new JLabel("User Name");
-        userName.setBounds(15, 179, 100, 100);
+        userName.setBounds(15, 140, 100, 100);
         userName.setFont(david15);
         add(userName);
 
         // for JTextField - var to pass into controller
-        JTextField enterUserName = new JTextField("");
-        enterUserName.setBounds(108, 220, 150, 20);
+        enterUserName = new JTextField("");
+        enterUserName.setBounds(108, 181, 150, 20);
         add(enterUserName);
-        uname = enterUserName.getText();
-        JOptionPane.showMessageDialog(null, uname);
-
 
         // for Jlabel - not var to pass
         JLabel password = new JLabel("Password");
-        password.setBounds(15, 210, 100, 100);
+        password.setBounds(15, 174, 100, 100);
         password.setFont(david15);
         add(password);
         // for JTextField - var to pass into controller
-        JPasswordField enterPassword = new JPasswordField("");
-        enterPassword.setBounds(95, 251, 150, 20);
+        enterPassword = new JPasswordField("");
+        enterPassword.setBounds(108, 215, 150, 20);
         add(enterPassword);
         // for Jlabel - not var to pass
         JLabel confirmedPassword = new JLabel("Confirm Password");
-        confirmedPassword.setBounds(260, 210, 130, 100);
+        confirmedPassword.setBounds(260, 174, 130, 100);
         confirmedPassword.setFont(david15);
         add(confirmedPassword);
         // for JTextField - var to pass into controller
-        JPasswordField enterConfirmedPassword = new JPasswordField("");
-        enterConfirmedPassword.setBounds(385, 251, 150, 20);
+        enterConfirmedPassword = new JPasswordField("");
+        enterConfirmedPassword.setBounds(385, 215, 150, 20);
         add(enterConfirmedPassword);
         // for Jlabel - not var to pass
         JLabel useLettersNumbers = new JLabel("Use with letters and numbers");
-        useLettersNumbers.setBounds(90, 230, 200, 100);
+        useLettersNumbers.setBounds(105, 190, 200, 100);
         useLettersNumbers.setFont(david12);
         add(useLettersNumbers);
         //
         JButton done = new JButton("Done");
-        done.setBounds(400, 350, 100, 30);
+        done.setBounds(635, 670, 100, 30);
         done.addActionListener(new ButtonListener(this));
         add(done);
 
+        // create radio buttons and labels
+        JLabel tChoice = new JLabel("User type define:");
+        tChoice.setBounds(15,250,450,100 );
+        tChoice.setFont(david30);
+
+        JRadioButton consumer = new JRadioButton("Consumer");
+        consumer.setActionCommand("Consumer");
+        consumer.setBackground(Color.white);
+        consumer.setBounds(270,340 ,100 ,20 );
+        consumer.setSelected(true);
+
+        JRadioButton freelancer = new JRadioButton("Freelancer");
+        freelancer.setActionCommand("Freelancer");
+        freelancer.setBackground(Color.white);
+        freelancer.setBounds(270,370,100,20 );
+
+        JRadioButton contractor = new JRadioButton("Contractor");
+        contractor.setActionCommand("Contractor");
+        contractor.setBackground(Color.white);
+        contractor.setBounds(270,400,100,20 );
+
+        // create radio group
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(consumer);
+        group.add(freelancer);
+        group.add(contractor);
+
+
+        add(consumer);
+        add(freelancer);
+        add(contractor);
+        add(tChoice);
+
+
+        selection = group.getSelection();
 
         //Bg
         ImageIcon background_image = new ImageIcon("securityBg1.png");
@@ -105,8 +144,10 @@ public class SignUpScreen extends JFrame implements View {
         add(background);
 
         setVisible(true);
+
     }
-    public String getUname(){
-        return uname;
+
+    public String getSelection() {
+        return selection.getActionCommand().toString();
     }
 }

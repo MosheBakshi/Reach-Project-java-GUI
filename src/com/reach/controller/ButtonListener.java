@@ -5,12 +5,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 
 public class ButtonListener implements ActionListener {
     View currentView;
     MyController forModel;
-    protected static String uname = " ";
+    protected static String usname = " ";
     protected static String choice = "Customer";
     private Window mainScreen;
 
@@ -25,10 +24,6 @@ public class ButtonListener implements ActionListener {
 
     public ButtonListener(SignUpScreen signUpScreen) {
         this.mainScreen = signUpScreen;
-    }
-
-    public ButtonListener(ChooseDefineScreen chooseDefineScreen) {
-        this.mainScreen = chooseDefineScreen;
     }
 
     public void ButtonListener(Window mainScreen) {
@@ -73,16 +68,12 @@ public class ButtonListener implements ActionListener {
         }
         if (name.equals("Sign Up Here")) {
             mainScreen.setVisible(false);
-            ChooseDefineScreen chooseDefineScreen = new ChooseDefineScreen();
-            chooseDefineScreen.showScreen();
-            choice = chooseDefineScreen.getChoice();
-        }
-        if (name.equals("Next")) {
-            mainScreen.setVisible(false);
             SignUpScreen signUpScreen = new SignUpScreen();
             signUpScreen.showScreen();
-            uname = signUpScreen.getUname();
+            choice = signUpScreen.getSelection();
+            usname = signUpScreen.getUsername().getText();
         }
+
         if (name.equals("Forgot password")) {
             mainScreen.setVisible(false);
             JOptionPane.showMessageDialog(null, "Set email adress:");
@@ -91,7 +82,8 @@ public class ButtonListener implements ActionListener {
         }
         if (name.equalsIgnoreCase("Done")) {
             mainScreen.setVisible(false);
-            forModel = new MyController(choice,uname);
+            JOptionPane.showMessageDialog(null, usname);
+            forModel = new MyController(choice, usname);
             JOptionPane.showMessageDialog(null, "Sign up successfully");
             //Contorller -> Model
             MainPanel v1 = new MainPanel();

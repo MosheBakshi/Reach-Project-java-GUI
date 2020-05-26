@@ -1,9 +1,10 @@
 package com.reach.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class User  implements Model{
+public abstract class User implements Serializable {
     public User() {}
     protected String username;
     protected String password;

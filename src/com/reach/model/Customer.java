@@ -8,4 +8,7 @@ public class Customer extends User{
         setUsername(uname);
         setObject.save(this);
     }
+
+    public Customer(userT customer) {
+    }
 }
