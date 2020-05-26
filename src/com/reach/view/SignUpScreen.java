@@ -16,7 +16,7 @@ public class SignUpScreen extends JFrame implements View {
 
     protected static ButtonModel selection;
 
-    public JTextField getUsername(){
+    public static JTextField getUsername(){
         return enterUserName;
     }
 

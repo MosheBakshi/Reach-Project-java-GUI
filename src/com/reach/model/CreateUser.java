@@ -5,11 +5,11 @@ import javax.swing.*;
 public class CreateUser {
     public CreateUser(){
     }
-    public User createUser(String choice,String uname){
+    public User createUser(String choice,JTextField uname){
         switch (choice){
             case "Consumer":
           //      JOptionPane.showMessageDialog(null, uname);
-                return new Customer(userT.customer,uname);
+                return new Customer(userT.customer,uname.getText());
             case "Contractor":
                 return new Contractor(userT.contractor);
             case "Freelancer":

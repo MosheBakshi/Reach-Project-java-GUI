@@ -20,10 +20,10 @@ public class MyController {
     private User newone;
     private WriterReader setObject = new WriterReader();
 
-    public MyController(String choice,String uname){
+    public MyController(String choice,JTextField uname){
        newone = using.createUser(choice,uname);
        setObject.save(newone);
-        JOptionPane.showMessageDialog(null, setObject.load("").getUsername());
+//        JOptionPane.showMessageDialog(null, setObject.load("").getUsername());
     }
     public MyController(View view, Model model) {
         this.view = view;

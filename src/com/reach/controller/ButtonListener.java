@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class ButtonListener implements ActionListener {
     View currentView;
     MyController forModel;
-    protected static String usname = " ";
+    protected static JTextField usname;
     protected static String choice = "Customer";
     private Window mainScreen;
 
@@ -71,11 +71,12 @@ public class ButtonListener implements ActionListener {
             SignUpScreen signUpScreen = new SignUpScreen();
             signUpScreen.showScreen();
             choice = signUpScreen.getSelection();
-            usname = signUpScreen.getUsername().getText();
+            usname = signUpScreen.getUsername();
         }
 
         if (name.equals("Forgot password")) {
             mainScreen.setVisible(false);
+
             JOptionPane.showMessageDialog(null, "Set email adress:");
             MainPanel v1 = new MainPanel();
             v1.showScreen();
