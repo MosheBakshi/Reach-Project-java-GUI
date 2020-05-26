@@ -23,6 +23,7 @@ public class MyController {
     public MyController(String choice,String uname){
        newone = using.createUser(choice,uname);
        setObject.save(newone);
+        JOptionPane.showMessageDialog(null, setObject.load("").getUsername());
     }
     public MyController(View view, Model model) {
         this.view = view;

@@ -91,15 +91,17 @@ public class WriterReader {
         }
         return null;
     }
-}
 
-/*    public static void main(String[] args) throws IOException, ClassNotFoundException {
+
+ /*   public static void main(String[] args) throws IOException, ClassNotFoundException {
         WriterReader writer = new WriterReader();
         User user1 = new Customer(userT.customer);
         User user2;
         user1.setUsername("aaa");
+        user1.setCell("0521111111");
         writer.save(user1);
         writer.save(user1);
         user2=writer.load(user1.getUsername());
-    }
-*/
+        System.out.print(user2.getUserCell());
+    }*/
+}

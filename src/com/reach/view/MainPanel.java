@@ -56,7 +56,7 @@ public class MainPanel extends JFrame implements View {
         enterPassword = new JPasswordField("");
         enterPassword.setBounds(108, 261, 150, 20);
         add(enterPassword);
-        JLabel notAMember = new JLabel("Not a member ?");
+        JLabel notAMember = new JLabel("Not a member?");
         notAMember.setBounds(15, 350, 200, 100);
         notAMember.setFont(david20);
         add(notAMember);

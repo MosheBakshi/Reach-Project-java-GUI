@@ -8,7 +8,7 @@ public class CreateUser {
     public User createUser(String choice,String uname){
         switch (choice){
             case "Consumer":
-                JOptionPane.showMessageDialog(null, uname);
+          //      JOptionPane.showMessageDialog(null, uname);
                 return new Customer(userT.customer,uname);
             case "Contractor":
                 return new Contractor(userT.contractor);

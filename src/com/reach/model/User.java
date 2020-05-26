@@ -12,7 +12,7 @@ public abstract class User implements Serializable {
     protected String lname;
     protected userT userType;
     protected int userId;
-    protected int userCell;
+    protected String userCell;
     protected String userCity;
     protected ArrayList<Job> jobs;
     protected ArrayList<Job> jobsHistory;
@@ -29,7 +29,7 @@ public abstract class User implements Serializable {
     public void setId(int id) {
        userId = id;
     }
-    public void setCell(int cell) {
+    public void setCell(String cell) {
         userCell = cell;
     }
     public void setCity(String city) {
@@ -96,7 +96,7 @@ public abstract class User implements Serializable {
         return userId;
     }
 
-    public int getUserCell() {
+    public String getUserCell() {
         return userCell;
     }
 
