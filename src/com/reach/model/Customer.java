@@ -3,11 +3,13 @@ package com.reach.model;
 public class Customer extends User{
 
     // inherence from User class
-    public Customer(userT choice,String uname) {
+    public Customer(UserType choice, String userName) {
         this.userType = choice;
-        setUsername(uname);
+        setUserName(userName);
     }
 
-    public Customer(userT customer) {
+    @Override
+    public UserType getUserType() {
+        return UserType.customer;
     }
 }

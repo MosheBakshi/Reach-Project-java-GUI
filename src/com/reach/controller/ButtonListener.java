@@ -7,11 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ButtonListener implements ActionListener {
-    View currentView;
-    MyController forModel;
-    protected static JTextField usname;
+    protected static JTextField userName;
     protected static String choice = "Customer";
     private Window mainScreen;
+
 
     //Constructors
     public ButtonListener(MainPanel mainPanel) {
@@ -43,35 +42,12 @@ public class ButtonListener implements ActionListener {
         String name;
 
         name = actionEvent.getActionCommand();
-        if (name.equals("Log In")) {
-            JTextField userName = MainPanel.getEnterUserName();
-            JPasswordField Password = MainPanel.getEnterPassword();
-            try {
-                if (userName.getText().equals("")) {
-                    throw new Exception("err");
-                }
-                JOptionPane.showMessageDialog(null, "Log in successful");
-                System.out.println(userName.getText());
-                System.out.println(Password.getPassword());
-                mainScreen.setVisible(false);
-
-                //פונקציה שמחזירה האם השם משתמש והסיסמא הם פרילנסר קליינט או בעל מקצוע
-                //Here -> Controller -> Model
-                //Model -> controller -> view
-
-
-                MainScreenLogIn mainScreenLogIn = new MainScreenLogIn(userName.getText());
-                mainScreenLogIn.showScreen();
-            } catch (Exception exc) {
-                JOptionPane.showMessageDialog(null, "Error Username or Password");
-            }
-        }
         if (name.equals("Sign Up Here")) {
             mainScreen.setVisible(false);
             SignUpScreen signUpScreen = new SignUpScreen();
             signUpScreen.showScreen();
             choice = signUpScreen.getSelection();
-            usname = signUpScreen.getUsername();
+            userName = signUpScreen.getUsername();
         }
 
         if (name.equals("Forgot password")) {
@@ -80,16 +56,6 @@ public class ButtonListener implements ActionListener {
             JOptionPane.showMessageDialog(null, "Set email adress:");
             MainPanel v1 = new MainPanel();
             v1.showScreen();
-        }
-        if (name.equalsIgnoreCase("Done")) {
-            mainScreen.setVisible(false);
-            forModel = new MyController(choice, usname);
-            JOptionPane.showMessageDialog(null, "Sign up successfully");
-            //Contorller -> Model
-            MainPanel v1 = new MainPanel();
-            v1.showScreen();
-          //  mainScreen.dispatchEvent(new WindowEvent(mainScreen, WindowEvent.WINDOW_CLOSING));
-
         }
         if (name.equalsIgnoreCase("search")) {
             try {

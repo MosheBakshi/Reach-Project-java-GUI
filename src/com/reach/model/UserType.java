@@ -1,5 +1,5 @@
 package com.reach.model;
 
-public enum userT {
+public enum UserType {
     customer,freelancer,contractor;
 }

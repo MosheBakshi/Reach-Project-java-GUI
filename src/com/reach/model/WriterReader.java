@@ -1,6 +1,5 @@
 package com.reach.model;
 import java.io.*;
-import java.util.Set;
 
 public class WriterReader {
     static int count = 0;
@@ -45,7 +44,7 @@ public class WriterReader {
         }
     }
 
-    public void save(User newuser) {
+    public void save(User newUser) {
         User user1;
         try {
             FileInputStream fi = new FileInputStream(file);
@@ -53,13 +52,13 @@ public class WriterReader {
             //check if user name exists
             while (file.length() > 4) {
                 user1 = (User) oi.readObject();
-                if (user1.username.equals(newuser.username)) {
+                if (user1.userName.equals(newUser.userName)) {
                     System.out.println("User name exists.");
                     return;
                 }
             }
-            o.writeObject(newuser);
-            System.out.println("Saved " + newuser.getUsername());
+            o.writeObject(newUser);
+            System.out.println("Saved " + newUser.getUserName() +" "+ newUser.getUserType());
             count++;
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
@@ -76,8 +75,8 @@ public class WriterReader {
             // Read objects
             while (file.length() > 4) {
                 user1 = (User) oi.readObject();
-                if (user1.username.equals(name)) {
-                    System.out.println("Loaded " + user1.getUsername());
+                if (user1.userName.equals(name)) {
+                    System.out.println("Loaded " + user1.getUserName());
                     return user1;
                 }
             }

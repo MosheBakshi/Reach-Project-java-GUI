@@ -6,6 +6,8 @@ import com.reach.model.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SignUpScreen extends JFrame implements View {
     protected static JTextField enterUserName;
@@ -13,8 +15,8 @@ public class SignUpScreen extends JFrame implements View {
     protected static JTextField enterLastName;
     protected static JPasswordField enterPassword;
     protected static JPasswordField enterConfirmedPassword;
-
     protected static ButtonModel selection;
+    protected static ButtonGroup group;
 
     public static JTextField getUsername(){
         return enterUserName;
@@ -94,7 +96,16 @@ public class SignUpScreen extends JFrame implements View {
         //
         JButton done = new JButton("Done");
         done.setBounds(635, 670, 100, 30);
-        done.addActionListener(new ButtonListener(this));
+        done.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                MyController.getInstance().createUser(getSelection(), enterUserName.getText());
+                JOptionPane.showMessageDialog(null, "Sign up successfully");
+                MainPanel v1 = new MainPanel();
+                v1.showScreen();
+            }
+        });
         add(done);
 
         // create radio buttons and labels
@@ -119,19 +130,14 @@ public class SignUpScreen extends JFrame implements View {
         contractor.setBounds(270,400,100,20 );
 
         // create radio group
-
-        ButtonGroup group = new ButtonGroup();
+        group = new ButtonGroup();
         group.add(consumer);
         group.add(freelancer);
         group.add(contractor);
-
-
         add(consumer);
         add(freelancer);
         add(contractor);
         add(tChoice);
-
-
         selection = group.getSelection();
 
         //Bg
@@ -148,6 +154,6 @@ public class SignUpScreen extends JFrame implements View {
     }
 
     public String getSelection() {
-        return selection.getActionCommand().toString();
+        return group.getSelection().getActionCommand();
     }
 }

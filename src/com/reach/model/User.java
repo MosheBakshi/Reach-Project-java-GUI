@@ -5,12 +5,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class User implements Serializable {
-    public User() {}
-    protected String username;
+    protected String userName;
     protected String password;
     protected String fname;
     protected String lname;
-    protected userT userType;
+    protected UserType userType;
     protected int userId;
     protected String userCell;
     protected String userCity;
@@ -18,10 +17,15 @@ public abstract class User implements Serializable {
     protected ArrayList<Job> jobsHistory;
     protected Rating rating;
     protected ArrayList<Review> review;
+
+
+
+    public User() {}
+
     // add setter and getters for rating and review list
     // Setters
-    public void setUsername(String userN) {
-       username = userN;
+    public void setUserName(String userName) {
+       this.userName = userName;
     }
     public void setType() {
       // not initialized yet
@@ -104,8 +108,8 @@ public abstract class User implements Serializable {
         return lname;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
     public String getPassword() { return password; }
@@ -114,7 +118,7 @@ public abstract class User implements Serializable {
         return userCity;
     }
 
-    public userT getUserType() {
+    public UserType getUserType() {
         return userType;
     }
 }

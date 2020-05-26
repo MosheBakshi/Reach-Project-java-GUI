@@ -1,19 +1,16 @@
 package com.reach.model;
 
-import javax.swing.*;
-
 public class CreateUser {
     public CreateUser(){
     }
-    public User createUser(String choice,JTextField uname){
+    public User createUser(String choice,String userName){
         switch (choice){
             case "Consumer":
-          //      JOptionPane.showMessageDialog(null, uname);
-                return new Customer(userT.customer,uname.getText());
+                return new Customer(UserType.customer,userName);
             case "Contractor":
-                return new Contractor(userT.contractor);
+                return new Contractor(UserType.contractor,userName);
             case "Freelancer":
-                return new Freelancer(userT.contractor);
+                return new Freelancer(UserType.freelancer,userName);
         }
         return null;
     }
