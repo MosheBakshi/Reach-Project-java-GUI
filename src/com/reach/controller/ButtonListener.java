@@ -82,7 +82,6 @@ public class ButtonListener implements ActionListener {
         }
         if (name.equalsIgnoreCase("Done")) {
             mainScreen.setVisible(false);
-            JOptionPane.showMessageDialog(null, usname);
             forModel = new MyController(choice, usname);
             JOptionPane.showMessageDialog(null, "Sign up successfully");
             //Contorller -> Model
