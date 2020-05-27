@@ -2,7 +2,7 @@ package com.reach.model;
 
 import java.util.Scanner;
 
-public class TeamMember {
+public class TeamMember implements Model{
 
     protected String firstName;
     protected String lastName;

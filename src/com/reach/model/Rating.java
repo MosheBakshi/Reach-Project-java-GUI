@@ -2,7 +2,7 @@ package com.reach.model;
 
 import java.util.ArrayList;
 
-public class Rating {
+public class Rating implements Model{
 
     protected double avgRate;
     protected double avgRateCost;

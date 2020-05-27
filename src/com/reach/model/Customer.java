@@ -1,6 +1,6 @@
 package com.reach.model;
 
-public class Customer extends User{
+public class Customer extends User implements Model{
 
     // inherence from User class
     public Customer(UserType choice, String userName) {

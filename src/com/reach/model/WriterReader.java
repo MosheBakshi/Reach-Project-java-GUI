@@ -1,7 +1,7 @@
 package com.reach.model;
 import java.io.*;
 
-public class WriterReader {
+public class WriterReader implements Model{
     static int count = 0;
     static File file = new File("myObjects.txt");
     static FileOutputStream f;

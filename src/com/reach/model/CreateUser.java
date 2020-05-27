@@ -1,6 +1,6 @@
 package com.reach.model;
 
-public class CreateUser {
+public class CreateUser implements Model{
     public CreateUser(){
     }
     public User createUser(String choice,String userName){

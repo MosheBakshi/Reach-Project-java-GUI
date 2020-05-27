@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class User implements Serializable {
+public abstract class User implements Serializable,Model {
     protected String userName;
     protected String password;
     protected String fname;

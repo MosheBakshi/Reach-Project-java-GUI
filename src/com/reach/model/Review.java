@@ -2,7 +2,7 @@ package com.reach.model;
 
 import java.util.Scanner;
 
-public class Review {
+public class Review implements Model{
     protected String review;
     protected int user_id;
     protected double rateCost;
