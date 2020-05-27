@@ -93,9 +93,9 @@ public class SignUpScreen extends JFrame implements View {
         useLettersNumbers.setBounds(105, 190, 200, 100);
         useLettersNumbers.setFont(david12);
         add(useLettersNumbers);
-        //
+        //-----------------------------------------------------------------------------------------//
         JButton done = new JButton("Done");
-        done.setBounds(635, 670, 100, 30);
+        done.setBounds(635, 670, 100, 30);//on clicking pass relevent values and return to main panel
         done.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -107,7 +107,7 @@ public class SignUpScreen extends JFrame implements View {
             }
         });
         add(done);
-
+//-----------------------------------------------------------------------------------------------------//
         // create radio buttons and labels
         JLabel tChoice = new JLabel("User type define:");
         tChoice.setBounds(15,250,450,100 );

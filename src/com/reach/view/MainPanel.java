@@ -55,6 +55,16 @@ public class MainPanel extends JFrame implements View {
         forgetPassword.setBorderPainted(false);
         forgetPassword.setFont(david10);
         forgetPassword.addActionListener(new ButtonListener(this));
+        forgetPassword.addActionListener(new ActionListener() {
+                                             @Override
+                                             public void actionPerformed(ActionEvent e) {
+                                                 setVisible(false);
+                                                 JOptionPane.showMessageDialog(null, "Set email adress:");
+                                                 MainPanel v1 = new MainPanel();
+                                                 v1.showScreen();
+                                             }
+
+                                         });
         add(forgetPassword);
         enterPassword = new JPasswordField("");
         enterPassword.setBounds(108, 261, 150, 20);
@@ -66,12 +76,21 @@ public class MainPanel extends JFrame implements View {
         signUp = new JButton("Sign Up Here");
         signUp.setBounds(150, 384, 110, 30);
         signUp.addActionListener(new ButtonListener(this));
+        signUp.addActionListener(new ActionListener() {
+                                       @Override
+                                       public void actionPerformed(ActionEvent e){
+                                           setVisible(false);
+                                           SignUpScreen signUpScreen = new SignUpScreen();
+                                           signUpScreen.showScreen();
+                                       }
+                                       });
         add(signUp);
         logIn = new JButton("Log In");
         logIn.setBounds(157, 281, 100, 30);
         logIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String name;
                 try {
                     if (enterUserName.getText().equals("")) {
                         throw new Exception("err");
@@ -92,6 +111,7 @@ public class MainPanel extends JFrame implements View {
                 } catch (Exception exc) {
                     JOptionPane.showMessageDialog(null, "Error Username or Password");
                 }
+
             }
         });
         add(logIn);

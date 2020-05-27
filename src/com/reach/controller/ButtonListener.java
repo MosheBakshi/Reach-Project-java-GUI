@@ -7,8 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ButtonListener implements ActionListener {
-    protected static JTextField userName;
-    protected static String choice = "Customer";
+
     private Window mainScreen;
 
 
@@ -19,10 +18,6 @@ public class ButtonListener implements ActionListener {
 
     public ButtonListener(MainScreenLogIn mainScreenLogIn) {
         this.mainScreen = mainScreenLogIn;
-    }
-
-    public ButtonListener(SignUpScreen signUpScreen) {
-        this.mainScreen = signUpScreen;
     }
 
     public void ButtonListener(Window mainScreen) {
@@ -42,21 +37,7 @@ public class ButtonListener implements ActionListener {
         String name;
 
         name = actionEvent.getActionCommand();
-        if (name.equals("Sign Up Here")) {
-            mainScreen.setVisible(false);
-            SignUpScreen signUpScreen = new SignUpScreen();
-            signUpScreen.showScreen();
-            choice = signUpScreen.getSelection();
-            userName = signUpScreen.getUsername();
-        }
 
-        if (name.equals("Forgot password")) {
-            mainScreen.setVisible(false);
-
-            JOptionPane.showMessageDialog(null, "Set email adress:");
-            MainPanel v1 = new MainPanel();
-            v1.showScreen();
-        }
         if (name.equalsIgnoreCase("search")) {
             try {
                 String choosePro = MainScreenLogIn.getProfessional();
