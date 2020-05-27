@@ -1,8 +1,6 @@
 package com.reach.view;
 
 import com.reach.controller.ButtonListener;
-import com.reach.driver.Main;
-import javafx.scene.control.ComboBox;
 
 import javax.swing.*;
 import java.awt.*;
@@ -79,9 +77,4 @@ public class MainScreenLogIn extends JFrame implements  View{
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        MainScreenLogIn n = new MainScreenLogIn("orel");
-        n.showScreen();
-
-    }
 }

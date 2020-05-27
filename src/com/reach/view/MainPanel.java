@@ -1,11 +1,12 @@
 package com.reach.view;
 
 import com.reach.controller.ButtonListener;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
+import com.reach.controller.MyController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class MainPanel extends JFrame implements View {
@@ -43,12 +44,13 @@ public class MainPanel extends JFrame implements View {
         enterUserName = new JTextField("");
         enterUserName.setBounds(108, 241, 150, 20);
         add(enterUserName);
+        // go t
         JLabel password = new JLabel("password");
         password.setBounds(15, 220, 100, 100);
         password.setFont(david20);
         add(password);
-        forgetPassword = new JButton("forget a password");
-        forgetPassword.setBounds(258, 262, 115, 20);
+        forgetPassword = new JButton("Forgot password");
+        forgetPassword.setBounds(140, 315, 150, 15);
         forgetPassword.setBackground(Color.white);
         forgetPassword.setBorderPainted(false);
         forgetPassword.setFont(david10);
@@ -57,7 +59,7 @@ public class MainPanel extends JFrame implements View {
         enterPassword = new JPasswordField("");
         enterPassword.setBounds(108, 261, 150, 20);
         add(enterPassword);
-        JLabel notAMember = new JLabel("Not a member ?");
+        JLabel notAMember = new JLabel("Not a member?");
         notAMember.setBounds(15, 350, 200, 100);
         notAMember.setFont(david20);
         add(notAMember);
@@ -67,7 +69,31 @@ public class MainPanel extends JFrame implements View {
         add(signUp);
         logIn = new JButton("Log In");
         logIn.setBounds(157, 281, 100, 30);
-        logIn.addActionListener(new ButtonListener(this));
+        logIn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (enterUserName.getText().equals("")) {
+                        throw new Exception("err");
+                    }
+                    JOptionPane.showMessageDialog(null, "Log in successful");
+                    System.out.println(enterUserName.getText());
+                    System.out.println(enterPassword.getPassword());
+                    setVisible(false);
+                    boolean verify=MyController.getInstance().verifyUserNameAndPassword(enterUserName.getText(),new String(enterPassword.getPassword()));
+                    if(verify == true){
+                        MainScreenLogIn mainScreenLogIn = new MainScreenLogIn(enterUserName.getText());
+                        mainScreenLogIn.showScreen();
+                    }///// check for wrong in password (add if else)
+                    else{
+                        JOptionPane.showMessageDialog(null, "You are not a member");
+                    }
+
+                } catch (Exception exc) {
+                    JOptionPane.showMessageDialog(null, "Error Username or Password");
+                }
+            }
+        });
         add(logIn);
 
 

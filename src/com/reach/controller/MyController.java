@@ -1,23 +1,36 @@
 package com.reach.controller;
-
-import com.reach.model.Model;
-import com.reach.view.*;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-
+import com.reach.model.CreateUser;
+import com.reach.model.User;
+import com.reach.model.WriterReader;
 
 public class MyController {
-    private View view;
-    private Model model;
+    private static final MyController instance=new MyController();
+    private CreateUser using = new CreateUser();
+    private WriterReader setObject = new WriterReader();
 
-    public MyController(View view, Model model) {
-        this.view = view;
-        this.model = model;
+    //constructor for singelton
+    private MyController(){}
+
+    //Method for return the instance of singelton
+    public static MyController getInstance(){return instance;}
+
+    //Method for create user
+    public User createUser(String choice,String userName){
+       User newOne = using.createUser(choice,userName);
+       setObject.save(newOne);
+       return newOne;
     }
 
+    //Method for verify the user name and password
+    public boolean verifyUserNameAndPassword(String userName,String password){
+
+
+        //model call for read file
+
+               // return false;
+
+                return true;
+    }
 }
+
 

@@ -5,11 +5,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 
 public class ButtonListener implements ActionListener {
-
+    protected static JTextField userName;
+    protected static String choice = "Customer";
     private Window mainScreen;
+
 
     //Constructors
     public ButtonListener(MainPanel mainPanel) {
@@ -39,47 +40,22 @@ public class ButtonListener implements ActionListener {
 
     public void actionPerformed(ActionEvent actionEvent) {
         String name;
+
         name = actionEvent.getActionCommand();
-        if (name.equals("Log In")) {
-            JTextField userName = MainPanel.getEnterUserName();
-            JPasswordField Password = MainPanel.getEnterPassword();
-            try {
-                if (userName.getText().equals("")) {
-                    throw new Exception("err");
-                }
-                JOptionPane.showMessageDialog(null, "Log in successful");
-                System.out.println(userName.getText());
-                System.out.println(Password.getPassword());
-                mainScreen.setVisible(false);
-
-                //פונקציה שמחזירה האם השם משתמש והסיסמא הם פרילנסר קליינט או בעל מקצוע
-                //Here -> Controller -> Model
-                //Model -> controller -> view
-
-
-                MainScreenLogIn mainScreenLogIn = new MainScreenLogIn(userName.getText());
-                mainScreenLogIn.showScreen();
-            } catch (Exception exc) {
-                JOptionPane.showMessageDialog(null, "Error");
-            }
-        }
         if (name.equals("Sign Up Here")) {
             mainScreen.setVisible(false);
             SignUpScreen signUpScreen = new SignUpScreen();
             signUpScreen.showScreen();
-
+            choice = signUpScreen.getSelection();
+            userName = signUpScreen.getUsername();
         }
-        if (name.equals("forget a password")) {
-            mainScreen.setVisible(false);
-            JOptionPane.showMessageDialog(null, "hsdfsfsdfello");
 
-        }
-        if (name.equalsIgnoreCase("Next")) {
+        if (name.equals("Forgot password")) {
             mainScreen.setVisible(false);
-            JOptionPane.showMessageDialog(null, "Sign up successfully");
-            //Contorller -> Model
-            mainScreen.dispatchEvent(new WindowEvent(mainScreen, WindowEvent.WINDOW_CLOSING));
 
+            JOptionPane.showMessageDialog(null, "Set email adress:");
+            MainPanel v1 = new MainPanel();
+            v1.showScreen();
         }
         if (name.equalsIgnoreCase("search")) {
             try {
