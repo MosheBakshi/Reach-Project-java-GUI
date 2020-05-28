@@ -1,7 +1,7 @@
 package com.reach.model;
 import java.io.*;
 
-public class WriterReader {
+public class WriterReader implements  Model{
     static int count = 0;
     static File file = new File("MyObjects.txt");
     //add if file exits
@@ -93,7 +93,7 @@ public class WriterReader {
         }
         return null;
     }
-
+/*
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         WriterReader writer = new WriterReader();
         User user1 = new Customer(UserType.customer,"aaa");
@@ -109,5 +109,5 @@ public class WriterReader {
         System.out.print(user4.getUserCell());
         user4=writer.load(user3.getUserName());
         System.out.print(user4.getUserCell());
-    }
+    }*/
 }

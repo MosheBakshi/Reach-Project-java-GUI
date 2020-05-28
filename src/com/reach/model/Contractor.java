@@ -1,6 +1,6 @@
 package com.reach.model;
 
-public class Contractor extends User {
+public class Contractor extends User implements  Model{
 
     protected String field;
     protected String subfield;

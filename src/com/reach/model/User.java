@@ -3,7 +3,7 @@ package com.reach.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class User implements Serializable {
+public abstract class User implements Serializable,Model {
 
     public User() {}
     protected String userName;

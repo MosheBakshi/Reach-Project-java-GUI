@@ -1,6 +1,6 @@
 package com.reach.model;
 
-public class Freelancer extends User {
+public class Freelancer extends User implements  Model{
 
     protected String field;
     protected String subfield;

@@ -1,6 +1,6 @@
 package com.reach.model;
 
-public class TeamMember {
+public class TeamMember implements  Model{
 
     protected String firstName;
     protected String lastName;

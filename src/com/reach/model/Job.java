@@ -3,7 +3,7 @@ package com.reach.model;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Job {
+public class Job implements  Model{
     protected int id;
     protected String description;
     protected String customerName;

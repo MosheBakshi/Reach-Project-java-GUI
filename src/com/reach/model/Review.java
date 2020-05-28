@@ -1,6 +1,6 @@
 package com.reach.model;
 
-public class Review {
+public class Review implements  Model{
 
     protected String review;
     protected int user_id;
