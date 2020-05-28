@@ -1,9 +1,10 @@
 package com.reach.model;
 
-public class CreateUser implements Model{
+public class CreateUser {
     public CreateUser(){
     }
-    public User createUser(String choice,String userName){
+    public User createUser(String choice,String userName)
+    {
         switch (choice){
             case "Consumer":
                 return new Customer(UserType.customer,userName);

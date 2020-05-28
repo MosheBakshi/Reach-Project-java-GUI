@@ -1,10 +1,13 @@
 package com.reach.model;
 
-public class Contractor extends User implements Model {
+public class Contractor extends User {
+
     protected String field;
+    protected String subfield;
     protected int yearsOfexperience;
     protected String area; // can be as the enum in the User file.
     protected String availability;
+
     public Contractor(UserType choice,String userName) {
         this.userType = choice; System.out.println(" constructor called ! user type: " + this.userType);
         setUserName(userName);
@@ -14,5 +17,4 @@ public class Contractor extends User implements Model {
     public UserType getUserType() {
         return UserType.contractor;
     }
-
 }

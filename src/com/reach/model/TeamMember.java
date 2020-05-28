@@ -1,8 +1,6 @@
 package com.reach.model;
 
-import java.util.Scanner;
-
-public class TeamMember implements Model{
+public class TeamMember {
 
     protected String firstName;
     protected String lastName;
@@ -32,7 +30,8 @@ public class TeamMember implements Model{
         return lastName;
     }
 
-    public TeamMember setMember(){
+}
+/* public TeamMember setMember(){
         TeamMember member = new TeamMember();
         Scanner n = new Scanner(System.in);
 
@@ -49,5 +48,4 @@ public class TeamMember implements Model{
         member.setId(Integer.parseInt(n.toString()));
 
         return member;
-    }
-}
+    }*/

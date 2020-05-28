@@ -26,8 +26,8 @@ public class Rating implements Model{
         this.avgRateQuality = avgRateQuality;
     }
 
-    public void setReviews(ArrayList<Review> reviews) {
-        this.reviews = reviews;
+    public void setReview(Review reviews) {
+        this.reviews.add(reviews);
     }
 
     public ArrayList<Review> getReviews() {
