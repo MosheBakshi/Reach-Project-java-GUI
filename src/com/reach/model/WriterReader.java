@@ -69,7 +69,7 @@ public class WriterReader implements  Model{
         }
     }
 
-    public User load(String name){
+    public static User load(String name){
         User user1;
         try {
             FileInputStream fi = new FileInputStream(file);
@@ -93,6 +93,23 @@ public class WriterReader implements  Model{
         }
         return null;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj)
+            return true;
+        else
+            return false;
+    }
+
+    public static boolean verify(String userName, String password) {
+        User user = WriterReader.load(userName);
+        if(user.getPassword().equals(password))
+            return true;
+        else
+            return false;
+    }
+
 /*
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         WriterReader writer = new WriterReader();

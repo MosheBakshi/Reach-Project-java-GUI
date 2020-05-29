@@ -111,7 +111,7 @@ public class SignUpScreen extends JFrame implements View {
                 setVisible(false);
                 SignUpController.getInstance().createUser(getSelection(), enterUserName.getText(),
                         enterPrivateName.getText(), enterLastName.getText(),
-                        enterPassword.getSelectedText());
+                        enterPassword.getText());
                 JOptionPane.showMessageDialog(null, "Sign up successfully");
                 MainPanel v1 = new MainPanel();
                 v1.showScreen();

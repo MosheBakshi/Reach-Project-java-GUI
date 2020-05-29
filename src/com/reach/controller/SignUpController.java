@@ -8,7 +8,7 @@ import com.reach.view.View;
 
 public class SignUpController {
     private static final SignUpController instance = new SignUpController();
-   // SingleTone implementation //
+    // SingleTone implementation //
     private SignUpController(){}
     public static SignUpController getInstance(){return instance;}
 

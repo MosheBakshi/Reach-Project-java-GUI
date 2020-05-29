@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.invoke.StringConcatException;
 
 
 public class MainPanel extends JFrame implements View {
@@ -24,6 +25,16 @@ public class MainPanel extends JFrame implements View {
     public static JPasswordField getEnterPassword() {
         return enterPassword;
     }
+
+
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj)
+            return true;
+        else
+            return false;
+    }
+
 
     @Override
     public void showScreen() {
@@ -92,25 +103,23 @@ public class MainPanel extends JFrame implements View {
             public void actionPerformed(ActionEvent e) {
                 String name;
                 try {
-                    if (enterUserName.getText().equals("")) {
-                        throw new Exception("err");
-                    }
-                    JOptionPane.showMessageDialog(null, "Log in successful");
-                    System.out.println(enterUserName.getText());
-                    System.out.println(enterPassword.getPassword());
-                    setVisible(false);
-                    boolean verify=MyController.getInstance().verifyUserNameAndPassword(enterUserName.getText(),new String(enterPassword.getPassword()));
-                    if(verify == true){
+                    if (enterUserName.getText().equals("") || enterPassword.getText().equals("")) {
+                        throw new MyException("One field is empty");
+                    }//checking for the user name write the right password
+                    else if( MyController.getInstance().verifyUserNameAndPassword(enterUserName.getText(),new String(enterPassword.getPassword()))){
+                        setVisible(false);
+                        JOptionPane.showMessageDialog(null, "Log in successful");
                         MainScreenLogIn mainScreenLogIn = new MainScreenLogIn(enterUserName.getText());
                         mainScreenLogIn.showScreen();
-                    }///// check for wrong in password (add if else)
-                    else{
-                        JOptionPane.showMessageDialog(null, "You are not a member");
-                    }
 
-                } catch (Exception exc) {
-                    JOptionPane.showMessageDialog(null, "Error Username or Password");
+                    }
+                    else{//wrong password
+                        throw new MyException("Wrong password");
+                    }
+                } catch (MyException exc) {
+                    exc.print();
                 }
+
 
             }
         });
