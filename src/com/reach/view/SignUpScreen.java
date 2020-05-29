@@ -2,6 +2,7 @@ package com.reach.view;
 
 import com.reach.controller.ButtonListener;
 import com.reach.controller.MyController;
+import com.reach.controller.SignUpController;
 import com.reach.model.User;
 
 import javax.swing.*;
@@ -17,6 +18,7 @@ public class SignUpScreen extends JFrame implements View {
     protected static JPasswordField enterConfirmedPassword;
     protected static ButtonModel selection;
     protected static ButtonGroup group;
+    protected static JLabel WrongPassword;
 
     public static JTextField getUsername(){
         return enterUserName;
@@ -24,6 +26,7 @@ public class SignUpScreen extends JFrame implements View {
 
     @Override
     public void showScreen() {
+
         setSize(750, 750);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -88,6 +91,12 @@ public class SignUpScreen extends JFrame implements View {
         enterConfirmedPassword = new JPasswordField("");
         enterConfirmedPassword.setBounds(385, 215, 150, 20);
         add(enterConfirmedPassword);
+
+        WrongPassword = new JLabel("Password are not the same");
+        WrongPassword.setBounds(15, 190, 200, 100);
+        WrongPassword.setFont(david15);
+        WrongPassword.setForeground(Color.red);
+
         // for Jlabel - not var to pass
         JLabel useLettersNumbers = new JLabel("Use with letters and numbers");
         useLettersNumbers.setBounds(105, 190, 200, 100);
@@ -100,10 +109,13 @@ public class SignUpScreen extends JFrame implements View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                MyController.getInstance().createUser(getSelection(), enterUserName.getText());
+                SignUpController.getInstance().createUser(getSelection(), enterUserName.getText(),
+                        enterPrivateName.getText(), enterLastName.getText(),
+                        enterPassword.getSelectedText());
                 JOptionPane.showMessageDialog(null, "Sign up successfully");
                 MainPanel v1 = new MainPanel();
                 v1.showScreen();
+
             }
         });
         add(done);
@@ -148,6 +160,7 @@ public class SignUpScreen extends JFrame implements View {
         JLabel background = new JLabel("", background_image, JLabel.CENTER);
         background.setBounds(0, 0, 750, 700);
         add(background);
+
 
         setVisible(true);
 

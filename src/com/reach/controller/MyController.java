@@ -15,11 +15,7 @@ public class MyController {
     public static MyController getInstance(){return instance;}
 
     //Method for create user
-    public User createUser(String choice,String userName){
-       User newOne = using.createUser(choice,userName);
-       setObject.save(newOne);
-       return newOne;
-    }
+
 
     //Method for verify the user name and password
     public boolean verifyUserNameAndPassword(String userName,String password){

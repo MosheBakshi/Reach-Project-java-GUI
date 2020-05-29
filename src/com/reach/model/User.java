@@ -7,8 +7,9 @@ public abstract class User implements Serializable,Model {
 
     public User() {}
     protected String userName;
-    protected String lname;
-    protected String fname;
+    protected String lastName;
+    protected String firstName;
+    private String Password;
     protected UserType userType;
     protected int userId;
     protected int userCell;
@@ -19,6 +20,11 @@ public abstract class User implements Serializable,Model {
     protected ArrayList<Review> review = new ArrayList<>();
 
     // Setters
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
     public void setReview(Review review) {
         this.review.add(review);
     }
@@ -35,12 +41,12 @@ public abstract class User implements Serializable,Model {
         this.jobsHistory = jobsHistory;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setRating(Rating rating) {
@@ -121,8 +127,8 @@ public abstract class User implements Serializable,Model {
         return jobsHistory;
     }
 
-    public String getFname() {
-        return fname;
+    public String getFirstName() {
+        return firstName;
     }
 
     public Rating getRating() {
@@ -137,8 +143,8 @@ public abstract class User implements Serializable,Model {
         return userCell;
     }
 
-    public String getLname() {
-        return lname;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getUserName() {
@@ -151,6 +157,10 @@ public abstract class User implements Serializable,Model {
 
     public UserType getUserType() {
         return userType;
+    }
+
+    public String getPassword() {
+        return Password;
     }
 }
 
