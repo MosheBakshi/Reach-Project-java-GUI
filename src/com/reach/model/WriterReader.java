@@ -1,9 +1,12 @@
 package com.reach.model;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-public class WriterReader implements  Model{
+public class WriterReader implements Model{
     static int count = 0;
     static File file = new File("MyObjects.txt");
+    public HashMap<String,User> UsersHM = new HashMap<>();
     //add if file exits
 
     static FileOutputStream f;
@@ -113,21 +116,48 @@ public class WriterReader implements  Model{
             return false;
     }
 
-/*
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        WriterReader writer = new WriterReader();
-        User user1 = new Customer(UserType.customer,"aaa");
-        User user2 = new Contractor(UserType.contractor,"bbb");
-        User user3 = new Freelancer(UserType.freelancer,"ccc");
-        writer.save(user1);
-        writer.save(user2);
-        writer.save(user3);
-        User user4;
-        user4=writer.load(user1.getUserName());
-        System.out.print(user2.getUserCell());
-        user4=writer.load(user2.getUserName());
-        System.out.print(user4.getUserCell());
-        user4=writer.load(user3.getUserName());
-        System.out.print(user4.getUserCell());
-    }*/
+    //on system close
+    public void saveAll()
+    {
+        User user1;
+        try {
+            FileInputStream fi = new FileInputStream(file);
+            ObjectInputStream oi = new ObjectInputStream(fi);
+            ArrayList<String> keys = new ArrayList<>(UsersHM.keySet());
+            int i = 0;
+            while (i<keys.size())
+            {
+                user1 = UsersHM.get(keys.get(i++));
+                o.writeObject(user1);
+            }
+            System.out.println("File empty or user name not found");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("Error initializing stream");
+        }
+    }
+
+    //on system open
+    public void loadAll()
+    {
+        User user1;
+        try {
+            FileInputStream fi = new FileInputStream(file);
+            ObjectInputStream oi = new ObjectInputStream(fi);
+            while (fi.available()>4)
+            {
+                user1 = (User)oi.readObject();
+                UsersHM.put(user1.userName,user1);
+            }
+            System.out.println("File empty or user name not found");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("Error initializing stream");
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }

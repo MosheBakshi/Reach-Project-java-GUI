@@ -1,6 +1,6 @@
 package com.reach.model;
 
-public class Review implements  Model{
+public class Review implements Model{
 
     protected String review;
     protected int user_id;
@@ -24,7 +24,7 @@ public class Review implements  Model{
         this.rateQuality = rateQuality;
     }
 
-    public void setReview(String review) {
+    public void setVerbalReview(String review) {
         this.review = review;
     }
 
@@ -48,6 +48,13 @@ public class Review implements  Model{
         return review;
     }
 
+    public Review(String review,int user_id,double cost,double deadline, double quality){
+        this.review=review;
+        this.rateCost=cost;
+        this.rateDeadline=deadline;
+        this.rateQuality=quality;
+        this.user_id=user_id;
+    }
 }
 
 

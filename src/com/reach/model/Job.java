@@ -1,41 +1,29 @@
 package com.reach.model;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
-public class Job implements  Model{
+public class Job implements Model{
     protected int id;
     protected String description;
-    protected String customerName;
-    protected String contractorName;
-    protected ArrayList<String> freelancers;
+    protected String customerUserName;
+    protected String workerUserName;
     protected String title;
     protected String date;
     protected String deadline;
     protected Price Price;
 
-    public void setContractorName(String name) {
-        this.contractorName = name;
+    public String getWorkerUserName() {
+        return workerUserName;
     }
 
-    public void setCustomerName(String name) {
-        this.customerName = name;
+    public void setWorkerUserName(String workerUserName) {
+        this.workerUserName = workerUserName;
     }
 
-    public void setFreelancers(String name) {
-        this.freelancers.add(name);
+    public void setCustomerUserName(String name) {
+        this.customerUserName = name;
     }
 
-    public ArrayList<String> getFreelancers() {
-        return freelancers;
-    }
-
-    public String getContractorName() {
-        return contractorName;
-    }
-
-    public String getCustomerName() {
-        return customerName;
+    public String getCustomerUserName() {
+        return customerUserName;
     }
 
     public int getId() {
@@ -86,14 +74,3 @@ public class Job implements  Model{
         this.title = title;
     }
 }
-
-/*public void setPrice() {
-        Price = new Price();
-        Scanner userChoice = new Scanner(System.in);
-        String iNside;
-        double price;
-        iNside = userChoice.next();
-        Price.setJobType(iNside); // job type set
-        price = userChoice.nextDouble();
-        Price.setJobCost(price);
-    }*/
