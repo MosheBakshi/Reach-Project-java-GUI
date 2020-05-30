@@ -9,6 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.util.Arrays;
 
 public class SignUpScreen extends JFrame implements View {
     protected static JTextField enterUserName;
@@ -19,9 +22,19 @@ public class SignUpScreen extends JFrame implements View {
     protected static ButtonModel selection;
     protected static ButtonGroup group;
     protected static JLabel WrongPassword;
-
+    protected static JLabel GoodPassword;
+    protected static String input = "";
+    protected static String  FirstInput = "";
+    protected static boolean DoneFlag = false;
     public static JTextField getUsername(){
         return enterUserName;
+    }
+
+    public void setDoneFlag(){
+        DoneFlag = !DoneFlag;
+    }
+    public boolean getDoneFlag(){
+        return DoneFlag;
     }
 
     @Override
@@ -31,6 +44,10 @@ public class SignUpScreen extends JFrame implements View {
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        JPanel jPan = new JPanel();
+        jPan.setBounds(410, 240, 200, 50);
+        jPan.setBackground(Color.white);
+        add(jPan);
         //Font
         Font david30 = new Font("David", Font.BOLD, 30);
         Font david15 = new Font("forget a password", Font.PLAIN, 15);
@@ -90,18 +107,65 @@ public class SignUpScreen extends JFrame implements View {
         // for JTextField - var to pass into controller
         enterConfirmedPassword = new JPasswordField("");
         enterConfirmedPassword.setBounds(385, 215, 150, 20);
-        add(enterConfirmedPassword);
 
-        WrongPassword = new JLabel("Password are not the same");
-        WrongPassword.setBounds(15, 190, 200, 100);
-        WrongPassword.setFont(david15);
-        WrongPassword.setForeground(Color.red);
+        enterConfirmedPassword.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                FirstInput = new String(enterPassword.getPassword()); // for comparing passwords
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                input = new String(enterConfirmedPassword.getPassword()); // for comparing passwords
+                System.out.println(input);
+                System.out.println(FirstInput);
+                try {
+                    if (!(FirstInput.equals(input)) && !(FirstInput.equalsIgnoreCase(""))) {
+                        System.out.println("not match throwing exception");
+                        throw new Exception("Bad password");
+                    } else if (FirstInput.equals(input) && !(FirstInput.equalsIgnoreCase(""))) {
+                        System.out.println("match throwing exception");
+                        throw new Exception("Passwords match");
+                    }
+                }
+                catch (Exception exc)
+                {
+                    if(exc.getMessage().equalsIgnoreCase("Bad password")){
+                        System.out.println("creating 'bad password' label");
+                        jPan.removeAll();
+                        jPan.add(WrongPassword);
+                        jPan.setVisible(true);
+                        jPan.repaint();
+                        jPan.revalidate();
+                    }
+                    if(exc.getMessage().equalsIgnoreCase("Passwords match")){
+                        System.out.println("creating 'passwords match' label");
+                        jPan.removeAll();
+                        jPan.add(GoodPassword);
+                        jPan.setVisible(true);
+                        jPan.repaint();
+                        jPan.revalidate();
+                    }
+                }
+            }
+        });
+        add(enterConfirmedPassword);
 
         // for Jlabel - not var to pass
         JLabel useLettersNumbers = new JLabel("Use with letters and numbers");
         useLettersNumbers.setBounds(105, 190, 200, 100);
         useLettersNumbers.setFont(david12);
         add(useLettersNumbers);
+
+        WrongPassword = new JLabel("Bad password");
+        WrongPassword.setBounds(410, 240, 200, 15);
+        WrongPassword.setFont(david15);
+        WrongPassword.setForeground(Color.red);
+
+        GoodPassword = new JLabel("Passwords match");
+        GoodPassword.setBounds(410, 240, 200, 15);
+        GoodPassword.setFont(david15);
+        GoodPassword.setForeground(Color.green);
         //-----------------------------------------------------------------------------------------//
         JButton done = new JButton("Done");
         done.setBounds(635, 670, 100, 30);//on clicking pass relevent values and return to main panel
@@ -111,7 +175,8 @@ public class SignUpScreen extends JFrame implements View {
                 setVisible(false);
                 SignUpController.getInstance().createUser(getSelection(), enterUserName.getText(),
                         enterPrivateName.getText(), enterLastName.getText(),
-                        enterPassword.getText());
+                        FirstInput);
+                //setDoneFlag();
                 JOptionPane.showMessageDialog(null, "Sign up successfully");
                 MainPanel v1 = new MainPanel();
                 v1.showScreen();
