@@ -7,6 +7,7 @@ public class WriterReader implements  Model{
     //add if file exits
 
     static FileOutputStream f;
+
     static {
         try {
             f = new FileOutputStream(file);
@@ -104,7 +105,9 @@ public class WriterReader implements  Model{
 
     public static boolean verify(String userName, String password) {
         User user = WriterReader.load(userName);
-        if(user.getPassword().equals(password))
+        if(user == null )
+            return false;
+        else if(user.getPassword().equals(password))
             return true;
         else
             return false;

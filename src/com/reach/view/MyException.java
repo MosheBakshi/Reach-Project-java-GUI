@@ -12,7 +12,7 @@ public class MyException extends Exception{
     public void print() {
         if(exc.equals("One field is empty"))
             JOptionPane.showMessageDialog(null, "One field is empty");
-        if(exc.equals("Wrong password"))
-            JOptionPane.showMessageDialog(null, "Wrong password");
+        if(exc.equals("The user or password are wrong"))
+            JOptionPane.showMessageDialog(null, "The user or password are wrong");
     }
 }
