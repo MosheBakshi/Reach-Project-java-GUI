@@ -6,8 +6,6 @@ import com.reach.model.WriterReader;
 
 public class MyController {
     private static final MyController instance=new MyController();
-    private CreateUser using = new CreateUser();
-    private WriterReader setObject = new WriterReader();
 
     //constructor for singelton
     private MyController(){}

@@ -1,10 +1,7 @@
 package com.reach.controller;
 
 import com.reach.model.CreateUser;
-import com.reach.model.Model;
 import com.reach.model.User;
-import com.reach.view.SignUpScreen;
-import com.reach.view.View;
 
 public class SignUpController {
     private static final SignUpController instance = new SignUpController();
