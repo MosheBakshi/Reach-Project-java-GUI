@@ -1,9 +1,6 @@
 package com.reach.view;
 
-import com.reach.controller.ButtonListener;
-import com.reach.controller.MyController;
 import com.reach.controller.SignUpController;
-import com.reach.model.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.Arrays;
 
 public class SignUpScreen extends JFrame implements View {
     protected static JTextField enterUserName;
@@ -21,10 +17,11 @@ public class SignUpScreen extends JFrame implements View {
     protected static JPasswordField enterConfirmedPassword;
     protected static ButtonModel selection;
     protected static ButtonGroup group;
-    protected static JLabel WrongPassword;
-    protected static JLabel GoodPassword;
-    protected static String input = "";
-    protected static String  FirstInput = "";
+    protected static JLabel passwordsNotMatch;
+    protected static JLabel passwordsMatch;
+    protected static String secondPassInputForValidation = "";
+    protected static String firstPassInputForValidation = "";
+    protected static JLabel useLettersNumbers;
     protected static boolean DoneFlag = false;
     public static JTextField getUsername(){
         return enterUserName;
@@ -36,6 +33,23 @@ public class SignUpScreen extends JFrame implements View {
     public boolean getDoneFlag(){
         return DoneFlag;
     }
+    public boolean ValidPassDigitAndInteger(String Pass){
+        char digit;
+        boolean boolDigit = false;
+        boolean boolAlpha = false;
+        for(int i=0;i < Pass.length() ;i++){
+            if(boolAlpha && boolDigit)
+            {return true;}
+            digit = Pass.charAt(i);
+            if(Character.isDigit(digit))
+            {boolDigit = true;}
+            else if(Character.isAlphabetic(digit))
+            {boolAlpha = true;}
+        }
+        if(boolAlpha && boolDigit)
+        {return true;}
+        return false;
+    }
 
     @Override
     public void showScreen() {
@@ -44,10 +58,11 @@ public class SignUpScreen extends JFrame implements View {
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        JPanel jPan = new JPanel();
-        jPan.setBounds(410, 240, 200, 50);
-        jPan.setBackground(Color.white);
-        add(jPan);
+        JPanel jPanelPasswordsCorrectness = new JPanel();
+        jPanelPasswordsCorrectness.setBounds(410, 240, 200, 50);
+        jPanelPasswordsCorrectness.setBackground(Color.white);
+        add(jPanelPasswordsCorrectness);
+
         //Font
         Font david30 = new Font("David", Font.BOLD, 30);
         Font david15 = new Font("forget a password", Font.PLAIN, 15);
@@ -97,7 +112,73 @@ public class SignUpScreen extends JFrame implements View {
         add(password);
         // for JTextField - var to pass into controller
         enterPassword = new JPasswordField("");
+        enterPassword.setText("At least 8 characters");
+        enterPassword.setEchoChar((char) 0);
+        enterPassword.setForeground(Color.gray);
         enterPassword.setBounds(108, 215, 150, 20);
+        enterPassword.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                firstPassInputForValidation = new String();
+                useLettersNumbers.setText("Use with letters and numbers");
+                useLettersNumbers.setForeground(Color.black);
+                setVisible(true);
+                repaint();
+                revalidate();
+                if(firstPassInputForValidation.length()==0) {
+                    enterPassword.setText("");
+                    enterPassword.setEchoChar('*');
+                }
+                enterConfirmedPassword.setText("");
+                jPanelPasswordsCorrectness.removeAll();
+                jPanelPasswordsCorrectness.setVisible(true);
+                jPanelPasswordsCorrectness.repaint();
+                jPanelPasswordsCorrectness.revalidate();
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                firstPassInputForValidation = new String(enterPassword.getPassword());
+                if(firstPassInputForValidation.length()==0){
+                    enterPassword.setText("At least 8 characters");
+                    enterPassword.setEchoChar((char) 0);
+                    enterPassword.setForeground(Color.gray);
+                }
+                try {
+                    if (!ValidPassDigitAndInteger(firstPassInputForValidation)) { throw new Exception("Not vaild"); }
+                    else if(ValidPassDigitAndInteger(firstPassInputForValidation) &&
+                            (firstPassInputForValidation.length()>7 || firstPassInputForValidation.length() == 0)
+                            ) { throw new Exception(("Vaild")); }
+                    else if(firstPassInputForValidation.length() <8 &&
+                            firstPassInputForValidation.length() > 0){throw new Exception("Short Password");}
+                }
+                catch (Exception exc)
+                {
+                    if(exc.getMessage().equalsIgnoreCase("Not vaild"))
+                    {
+                        useLettersNumbers.setText("Use with letters and numbers");
+                        useLettersNumbers.setForeground(Color.red);
+                        setVisible(true);
+                        repaint();
+                        revalidate();
+                    }
+                    if(exc.getMessage().equalsIgnoreCase("Vaild")){
+                        useLettersNumbers.setText("Good password");
+                        useLettersNumbers.setForeground(Color.green);
+                        setVisible(true);
+                        repaint();
+                        revalidate();
+                    }
+                    if(exc.getMessage().equalsIgnoreCase("Short Password")){
+                        useLettersNumbers.setText("Password is to short!");
+                        useLettersNumbers.setForeground(Color.red);
+                        setVisible(true);
+                        repaint();
+                        revalidate();
+                    }
+                }
+            }
+        });
         add(enterPassword);
         // for Jlabel - not var to pass
         JLabel confirmedPassword = new JLabel("Confirm Password");
@@ -111,40 +192,45 @@ public class SignUpScreen extends JFrame implements View {
         enterConfirmedPassword.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                FirstInput = new String(enterPassword.getPassword()); // for comparing passwords
+                firstPassInputForValidation = new String(enterPassword.getPassword()); // for comparing passwords
+                enterConfirmedPassword.setText("");
             }
-
             @Override
             public void focusLost(FocusEvent e) {
-                input = new String(enterConfirmedPassword.getPassword()); // for comparing passwords
-                System.out.println(input);
-                System.out.println(FirstInput);
+                secondPassInputForValidation = new String(enterConfirmedPassword.getPassword()); // for comparing passwords
                 try {
-                    if (!(FirstInput.equals(input)) && !(FirstInput.equalsIgnoreCase(""))) {
-                        System.out.println("not match throwing exception");
-                        throw new Exception("Bad password");
-                    } else if (FirstInput.equals(input) && !(FirstInput.equalsIgnoreCase(""))) {
-                        System.out.println("match throwing exception");
-                        throw new Exception("Passwords match");
+                    if(firstPassInputForValidation.length()>0
+                            && !(firstPassInputForValidation.equalsIgnoreCase("At least 8 characters"))) {
+                        if (!(firstPassInputForValidation.equals(secondPassInputForValidation))
+                                && !(firstPassInputForValidation.equalsIgnoreCase(""))) {
+                            throw new Exception("Passwords not match");
+                        } else if (firstPassInputForValidation.equals(secondPassInputForValidation)
+                                && !(firstPassInputForValidation.equalsIgnoreCase(""))) {
+                            throw new Exception("Passwords match");
+                        }
+                    }
+                    else{
+                        jPanelPasswordsCorrectness.removeAll();
+                        jPanelPasswordsCorrectness.setVisible(true);
+                        jPanelPasswordsCorrectness.repaint();
+                        jPanelPasswordsCorrectness.revalidate();
                     }
                 }
                 catch (Exception exc)
                 {
-                    if(exc.getMessage().equalsIgnoreCase("Bad password")){
-                        System.out.println("creating 'bad password' label");
-                        jPan.removeAll();
-                        jPan.add(WrongPassword);
-                        jPan.setVisible(true);
-                        jPan.repaint();
-                        jPan.revalidate();
+                    if(exc.getMessage().equalsIgnoreCase("Passwords not match")){
+                        jPanelPasswordsCorrectness.removeAll();
+                        jPanelPasswordsCorrectness.add(passwordsNotMatch);
+                        jPanelPasswordsCorrectness.setVisible(true);
+                        jPanelPasswordsCorrectness.repaint();
+                        jPanelPasswordsCorrectness.revalidate();
                     }
                     if(exc.getMessage().equalsIgnoreCase("Passwords match")){
-                        System.out.println("creating 'passwords match' label");
-                        jPan.removeAll();
-                        jPan.add(GoodPassword);
-                        jPan.setVisible(true);
-                        jPan.repaint();
-                        jPan.revalidate();
+                        jPanelPasswordsCorrectness.removeAll();
+                        jPanelPasswordsCorrectness.add(passwordsMatch);
+                        jPanelPasswordsCorrectness.setVisible(true);
+                        jPanelPasswordsCorrectness.repaint();
+                        jPanelPasswordsCorrectness.revalidate();
                     }
                 }
             }
@@ -152,20 +238,20 @@ public class SignUpScreen extends JFrame implements View {
         add(enterConfirmedPassword);
 
         // for Jlabel - not var to pass
-        JLabel useLettersNumbers = new JLabel("Use with letters and numbers");
+        useLettersNumbers = new JLabel("Use with letters and numbers");
         useLettersNumbers.setBounds(105, 190, 200, 100);
         useLettersNumbers.setFont(david12);
         add(useLettersNumbers);
 
-        WrongPassword = new JLabel("Bad password");
-        WrongPassword.setBounds(410, 240, 200, 15);
-        WrongPassword.setFont(david15);
-        WrongPassword.setForeground(Color.red);
+        passwordsNotMatch = new JLabel("Passwords not match");
+        passwordsNotMatch.setBounds(410, 240, 250, 10);
+        passwordsNotMatch.setFont(david15);
+        passwordsNotMatch.setForeground(Color.red);
 
-        GoodPassword = new JLabel("Passwords match");
-        GoodPassword.setBounds(410, 240, 200, 15);
-        GoodPassword.setFont(david15);
-        GoodPassword.setForeground(Color.green);
+        passwordsMatch = new JLabel("Passwords match");
+        passwordsMatch.setBounds(410, 240, 250, 10);
+        passwordsMatch.setFont(david15);
+        passwordsMatch.setForeground(Color.green);
         //-----------------------------------------------------------------------------------------//
         JButton done = new JButton("Done");
         done.setBounds(635, 670, 100, 30);//on clicking pass relevent values and return to main panel
@@ -175,7 +261,7 @@ public class SignUpScreen extends JFrame implements View {
                 setVisible(false);
                 SignUpController.getInstance().createUser(getSelection(), enterUserName.getText(),
                         enterPrivateName.getText(), enterLastName.getText(),
-                        FirstInput);
+                        firstPassInputForValidation);
                 //setDoneFlag();
                 JOptionPane.showMessageDialog(null, "Sign up successfully");
                 MainPanel v1 = new MainPanel();
