@@ -28,7 +28,7 @@ public class MyController {
     public void writeReview(String userName, String workerUserName)
     {
         ReviewScreen v = new ReviewScreen();
-        v.showScreen(userName,workerUserName);
+        v.showScreen(/*userName,workerUserName*/);
     }
 
     //called on click confirm from ReviewScreen
@@ -44,11 +44,12 @@ public class MyController {
         readWrite.UsersHM.get(workerUserName).setReview(review);
     }
 
-    public User getUserInfo(String userName)
+    public int getUserId(String userName)
     {
-       return WriterReader.load(userName);
+       return WriterReader.load(userName).getUserId();
     }
-
 }
+
+
 
 

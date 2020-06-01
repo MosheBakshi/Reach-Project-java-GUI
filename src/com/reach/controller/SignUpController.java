@@ -10,8 +10,7 @@ public class SignUpController {
     public static SignUpController getInstance(){return instance;}
 
     // User Creator API//
-    public User createUser(String choice, String userName,String PrivateName,String LastName, String Password){
-        User newOne = new CreateUser().createUser(choice,userName,PrivateName,LastName,Password);
-        return newOne;
-    }
+    //public void createUser(String choice, String userName,String PrivateName,String LastName, String Password){
+      //  new CreateUser().createUser(choice,userName,PrivateName,LastName,Password);
+   // }
 }

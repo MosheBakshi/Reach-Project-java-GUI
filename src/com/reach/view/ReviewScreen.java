@@ -14,7 +14,7 @@ public class ReviewScreen extends JFrame implements View {
     protected static JTextField Deadline;
     protected static JTextField Quality;
 
-    public void showScreen(String userName, String workerUserName) {
+    public void showScreen(/*String userName, String workerUserName*/) {
 
         setSize(550, 300);
         setLayout(null);
@@ -85,7 +85,7 @@ public class ReviewScreen extends JFrame implements View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String verbal = VerbalReview.toString();
-                int id = MyController.getInstance().getUserInfo(MainPanel.getEnterUserName().toString()).getUserId();
+                int id = MyController.getInstance().getUserId(MainPanel.getEnterUserName().toString());
                 double cost = (double) Integer.getInteger(Cost.toString());
                 double deadline = (double) Integer.getInteger(Deadline.toString());
                 double quality = (double) Integer.getInteger(Quality.toString());
@@ -104,9 +104,5 @@ public class ReviewScreen extends JFrame implements View {
     public static void main(String[] args) {
         View v1 = new ReviewScreen();
         v1.showScreen();
-    }
-
-    @Override
-    public void showScreen() {
     }
 }

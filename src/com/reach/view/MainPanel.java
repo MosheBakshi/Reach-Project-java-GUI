@@ -109,8 +109,8 @@ public class MainPanel extends JFrame implements View {
                     else if( MyController.getInstance().verifyUserNameAndPassword(enterUserName.getText(),new String(enterPassword.getPassword()))){
                         setVisible(false);
                         JOptionPane.showMessageDialog(null, "Log in successful");
-                        MainScreenLogIn mainScreenLogIn = new MainScreenLogIn(enterUserName.getText());
-                        mainScreenLogIn.showScreen();
+                        MainScreenOption mainScreenOption = new MainScreenOption(enterUserName.getText());
+                        mainScreenOption.showScreen();
                     }
                     else{//wrong password
                         throw new MyException("The user or password are wrong");

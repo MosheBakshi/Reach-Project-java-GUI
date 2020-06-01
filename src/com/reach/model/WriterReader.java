@@ -98,14 +98,6 @@ public class WriterReader implements Model{
         return null;
     }
 
-    @Override
-    public boolean equals(Object obj){
-        if(this == obj)
-            return true;
-        else
-            return false;
-    }
-
     public static boolean verify(String userName, String password) {
         User user = WriterReader.load(userName);
         if(user == null )
