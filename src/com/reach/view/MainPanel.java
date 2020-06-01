@@ -134,8 +134,6 @@ public class MainPanel extends JFrame implements View {
 
 
         setVisible(true);
-
-
     }
 
 }

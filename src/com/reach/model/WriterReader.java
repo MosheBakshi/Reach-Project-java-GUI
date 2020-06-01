@@ -108,6 +108,14 @@ public class WriterReader implements Model{
             return false;
     }
 
+    public static boolean checkFreeUserName(String userName){
+        User user = WriterReader.load(userName);
+        if(user != null){
+            return false;
+        }
+        return true;
+    }
+
     //on system close
     public void saveAll()
     {
