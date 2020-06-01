@@ -420,7 +420,7 @@ public class SignUpScreen extends JFrame implements View {
             public void actionPerformed(ActionEvent e) {
                 if(getDoneFlag()) {
                     setVisible(false);
-                    SignUpController.getInstance().createUser(getSelection(), enterUserName.getText(),
+                    Controller.createUser(getSelection(), enterUserName.getText(),
                             enterPrivateName.getText(), enterLastName.getText(),
                             firstPassInputForValidation);
                     JOptionPane.showMessageDialog(null, "Sign up successfully");
