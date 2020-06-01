@@ -1,8 +1,7 @@
 package com.reach.model;
 
-import java.util.Scanner;
+public class Review implements Model{
 
-public class Review {
     protected String review;
     protected int user_id;
     protected double rateCost;
@@ -25,7 +24,7 @@ public class Review {
         this.rateQuality = rateQuality;
     }
 
-    public void setReview(String review) {
+    public void setVerbalReview(String review) {
         this.review = review;
     }
 
@@ -49,7 +48,17 @@ public class Review {
         return review;
     }
 
-    public Review setReview(int user_id){
+    public Review(String review,int user_id,double cost,double deadline, double quality){
+        this.review=review;
+        this.rateCost=cost;
+        this.rateDeadline=deadline;
+        this.rateQuality=quality;
+        this.user_id=user_id;
+    }
+}
+
+
+/*public Review setReview(int user_id){
         double num;
         Review rev = new Review();
         Scanner n = new Scanner(System.in);
@@ -88,5 +97,4 @@ public class Review {
         rev.setRateCost(num);
 
         return rev;
-    }
-}
+    }*/

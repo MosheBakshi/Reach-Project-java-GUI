@@ -2,7 +2,7 @@ package com.reach.model;
 
 import java.util.ArrayList;
 
-public class Rating {
+public class Rating implements Model{
 
     protected double avgRate;
     protected double avgRateCost;
@@ -26,8 +26,8 @@ public class Rating {
         this.avgRateQuality = avgRateQuality;
     }
 
-    public void setReviews(ArrayList<Review> reviews) {
-        this.reviews = reviews;
+    public void setReview(Review reviews) {
+        this.reviews.add(reviews);
     }
 
     public ArrayList<Review> getReviews() {

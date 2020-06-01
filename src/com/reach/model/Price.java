@@ -1,6 +1,6 @@
 package com.reach.model;
 
-public class Price {
+public class Price implements Model{
 
     protected String jobType;
     protected double jobCost;

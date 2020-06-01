@@ -1,14 +1,30 @@
 package com.reach.model;
 
-import java.util.Scanner;
-
-public class Job {
+public class Job implements Model{
     protected int id;
     protected String description;
+    protected String customerUserName;
+    protected String workerUserName;
     protected String title;
     protected String date;
     protected String deadline;
     protected Price Price;
+
+    public String getWorkerUserName() {
+        return workerUserName;
+    }
+
+    public void setWorkerUserName(String workerUserName) {
+        this.workerUserName = workerUserName;
+    }
+
+    public void setCustomerUserName(String name) {
+        this.customerUserName = name;
+    }
+
+    public String getCustomerUserName() {
+        return customerUserName;
+    }
 
     public int getId() {
         return id;
@@ -50,15 +66,8 @@ public class Job {
         this.id = id;
     }
 
-    public void setPrice() {
-        Price = new Price();
-        Scanner userChoice = new Scanner(System.in);
-        String iNside;
-        double price;
-        iNside = userChoice.next();
-        Price.setJobType(iNside); // job type set
-        price = userChoice.nextDouble();
-        Price.setJobCost(price);
+    public void setPrice(Price price){
+        this.Price=price;
     }
 
     public void setTitle(String title) {

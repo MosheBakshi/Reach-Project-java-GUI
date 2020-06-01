@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.invoke.StringConcatException;
 
 
 public class MainPanel extends JFrame implements View {
@@ -24,6 +25,16 @@ public class MainPanel extends JFrame implements View {
     public static JPasswordField getEnterPassword() {
         return enterPassword;
     }
+
+
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj)
+            return true;
+        else
+            return false;
+    }
+
 
     @Override
     public void showScreen() {
@@ -56,15 +67,15 @@ public class MainPanel extends JFrame implements View {
         forgetPassword.setFont(david10);
         forgetPassword.addActionListener(new ButtonListener(this));
         forgetPassword.addActionListener(new ActionListener() {
-                                             @Override
-                                             public void actionPerformed(ActionEvent e) {
-                                                 setVisible(false);
-                                                 JOptionPane.showMessageDialog(null, "Set email adress:");
-                                                 MainPanel v1 = new MainPanel();
-                                                 v1.showScreen();
-                                             }
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 setVisible(false);
+                 JOptionPane.showMessageDialog(null, "Set email adress:");
+                 MainPanel v1 = new MainPanel();
+                 v1.showScreen();
+             }
 
-                                         });
+         });
         add(forgetPassword);
         enterPassword = new JPasswordField("");
         enterPassword.setBounds(108, 261, 150, 20);
@@ -77,13 +88,13 @@ public class MainPanel extends JFrame implements View {
         signUp.setBounds(150, 384, 110, 30);
         signUp.addActionListener(new ButtonListener(this));
         signUp.addActionListener(new ActionListener() {
-                                       @Override
-                                       public void actionPerformed(ActionEvent e){
-                                           setVisible(false);
-                                           SignUpScreen signUpScreen = new SignUpScreen();
-                                           signUpScreen.showScreen();
-                                       }
-                                       });
+            @Override
+            public void actionPerformed(ActionEvent e){
+                   setVisible(false);
+                   SignUpScreen signUpScreen = new SignUpScreen();
+                   signUpScreen.showScreen();
+            }
+            });
         add(signUp);
         logIn = new JButton("Log In");
         logIn.setBounds(157, 281, 100, 30);
@@ -92,26 +103,21 @@ public class MainPanel extends JFrame implements View {
             public void actionPerformed(ActionEvent e) {
                 String name;
                 try {
-                    if (enterUserName.getText().equals("")) {
-                        throw new Exception("err");
-                    }
-                    JOptionPane.showMessageDialog(null, "Log in successful");
-                    System.out.println(enterUserName.getText());
-                    System.out.println(enterPassword.getPassword());
-                    setVisible(false);
-                    boolean verify=MyController.getInstance().verifyUserNameAndPassword(enterUserName.getText(),new String(enterPassword.getPassword()));
-                    if(verify == true){
+                    if (enterUserName.getText().equals("") || enterPassword.getText().equals("")) {
+                        throw new MyException("One field is empty");
+                    }//checking for the user name write the right password
+                    else if( MyController.getInstance().verifyUserNameAndPassword(enterUserName.getText(),new String(enterPassword.getPassword()))){
+                        setVisible(false);
+                        JOptionPane.showMessageDialog(null, "Log in successful");
                         MainScreenLogIn mainScreenLogIn = new MainScreenLogIn(enterUserName.getText());
                         mainScreenLogIn.showScreen();
-                    }///// check for wrong in password (add if else)
-                    else{
-                        JOptionPane.showMessageDialog(null, "You are not a member");
                     }
-
-                } catch (Exception exc) {
-                    JOptionPane.showMessageDialog(null, "Error Username or Password");
+                    else{//wrong password
+                        throw new MyException("The user or password are wrong");
+                    }
+                } catch (MyException exc) {
+                    exc.print();
                 }
-
             }
         });
         add(logIn);

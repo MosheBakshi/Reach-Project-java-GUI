@@ -1,5 +1,5 @@
 package com.reach.model;
 
-public enum AreaType {
-    center,north,south,west;
+public enum AreaType implements Model{
+    center,north,south,west,east;
 }

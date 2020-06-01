@@ -1,16 +1,25 @@
 package com.reach.model;
 
-public class CreateUser {
+public class CreateUser implements  Model{
+    protected WriterReader scanner = new WriterReader();
+    protected User newOne;
     public CreateUser(){
     }
-    public User createUser(String choice,String userName){
+    public User createUser(String choice,String userName,String PrivateName, String LastName, String Password)
+    {
         switch (choice){
             case "Consumer":
-                return new Customer(UserType.customer,userName);
+                newOne = new Customer(UserType.customer,userName,PrivateName,LastName,Password);
+                scanner.save(newOne);
+                return newOne;
             case "Contractor":
-                return new Contractor(UserType.contractor,userName);
+                newOne = new Customer(UserType.contractor,userName,PrivateName,LastName,Password);
+                scanner.save(newOne);
+                return newOne;
             case "Freelancer":
-                return new Freelancer(UserType.freelancer,userName);
+                newOne = new Customer(UserType.freelancer,userName,PrivateName,LastName,Password);
+                scanner.save(newOne);
+                return newOne;
         }
         return null;
     }
