@@ -13,11 +13,11 @@ public class CreateUser implements  Model{
                 scanner.save(newOne);
                 return newOne;
             case "Contractor":
-                newOne = new Customer(UserType.contractor,userName,PrivateName,LastName,Password);
+                newOne = new Contractor(UserType.contractor,userName,PrivateName,LastName,Password);
                 scanner.save(newOne);
                 return newOne;
             case "Freelancer":
-                newOne = new Customer(UserType.freelancer,userName,PrivateName,LastName,Password);
+                newOne = new Freelancer(UserType.freelancer,userName,PrivateName,LastName,Password);
                 scanner.save(newOne);
                 return newOne;
         }
