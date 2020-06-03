@@ -38,6 +38,14 @@ public class MainScreenOption extends JFrame implements View{
         onGoingJobs.setBounds(345, 60, 125, 15);
         onGoingJobs.setBorderPainted(false);
         onGoingJobs.setFont(david12);
+        onGoingJobs.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                JobListScreen jobList = new JobListScreen();
+                jobList.showScreen();
+            }
+        });
         //forgetPassword.addActionListener(new ActionListener() {
           //  @Override
           //  public void actionPerformed(ActionEvent e) {
@@ -53,6 +61,14 @@ public class MainScreenOption extends JFrame implements View{
         jobHistory.setBounds(345, 100, 125, 15);
         jobHistory.setBorderPainted(false);
         jobHistory.setFont(david12);
+        jobHistory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                JobHistoryListScreen jobList = new JobHistoryListScreen();
+                jobList.showScreen();
+            }
+        });
         //forgetPassword.addActionListener(new ActionListener() {
         //  @Override
         //  public void actionPerformed(ActionEvent e) {

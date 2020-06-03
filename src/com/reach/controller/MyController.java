@@ -3,6 +3,8 @@ package com.reach.controller;
 import com.reach.model.*;
 import com.reach.view.ReviewScreen;
 
+import java.util.ArrayList;
+
 public class MyController {
 
     private static final MyController instance = new MyController();
@@ -48,6 +50,17 @@ public class MyController {
     {
        return WriterReader.load(userName).getUserId();
     }
+
+    public ArrayList<Job> getUserJobs(String userName)
+    {
+       return WriterReader.load(userName).getJobs();
+    }
+
+    public ArrayList<Job> getUserJobHistory(String userName)
+    {
+       return WriterReader.load(userName).getJobsHistory();
+    }
+
 }
 
 

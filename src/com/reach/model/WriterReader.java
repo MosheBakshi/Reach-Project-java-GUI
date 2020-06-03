@@ -3,17 +3,17 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class WriterReader implements Model{
     static int count = 0;
-    static File file = new File("MyObjects.txt");
+    private static final String filename = "myObjects.txt";
     public HashMap<String,User> UsersHM = new HashMap<>();
     //add if file exits
 
     static FileOutputStream f;
-
     static {
         try {
-            f = new FileOutputStream(file);
+            f = new FileOutputStream(filename);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -31,7 +31,7 @@ public class WriterReader implements Model{
     static FileInputStream fi;
     static {
         try {
-            fi = new FileInputStream(file);
+            fi = new FileInputStream(filename);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -49,7 +49,7 @@ public class WriterReader implements Model{
     public void save(User newUser) {
         User user1;
         try {
-            FileInputStream fi = new FileInputStream(file);
+            FileInputStream fi = new FileInputStream(filename);
             ObjectInputStream oi = new ObjectInputStream(fi);
             //check if user name exists
             while (fi.available()>4)
@@ -76,7 +76,7 @@ public class WriterReader implements Model{
     public static User load(String name){
         User user1;
         try {
-            FileInputStream fi = new FileInputStream(file);
+            FileInputStream fi = new FileInputStream(filename);
             ObjectInputStream oi = new ObjectInputStream(fi);
             // Read objects
             while (fi.available()>4)
@@ -116,7 +116,7 @@ public class WriterReader implements Model{
         return true;
     }
 
-    //on system close
+    /*//on system close
     public void saveAll()
     {
         User user1;
@@ -158,6 +158,7 @@ public class WriterReader implements Model{
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
-    }
+    }*/
 
 }
+

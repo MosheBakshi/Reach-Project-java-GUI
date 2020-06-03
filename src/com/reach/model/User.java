@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public abstract class User implements Serializable,Model {
 
     public User() {}
+
     protected String userName;
     protected String lastName;
     protected String firstName;
@@ -14,8 +15,8 @@ public abstract class User implements Serializable,Model {
     protected int userId;
     protected int userCell;
     protected String userCity;
-    protected ArrayList<Job> jobs;
-    protected ArrayList<Job> jobsHistory;
+    protected ArrayList<Job> jobs = null;
+    protected ArrayList<Job> jobsHistory = null;
     protected Rating rating;
     protected ArrayList<Review> review = new ArrayList<>();
 

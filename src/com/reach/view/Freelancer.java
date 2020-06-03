@@ -2,8 +2,6 @@ package com.reach.view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
 
 public class Freelancer extends JFrame implements View {
 
@@ -27,7 +25,5 @@ public class Freelancer extends JFrame implements View {
 
         setVisible(true);
     }
-
-
 
 }

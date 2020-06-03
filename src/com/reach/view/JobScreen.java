@@ -11,10 +11,6 @@ public class JobScreen extends JFrame implements View {
 
     protected String userName;
     protected String workerUsername;
-    protected JTextField description;
-    protected JTextField start;
-    protected JTextField end;
-    protected JTextField price;
 
     @Override
     public void showScreen()
@@ -26,7 +22,6 @@ public class JobScreen extends JFrame implements View {
 
         //Font
         Font david20 = new Font("David", Font.BOLD, 20);
-        Font david10 = new Font("forget a password", Font.PLAIN, 15);
 
         JLabel descriptionLabel = new JLabel("Description: ");
         descriptionLabel.setBounds(20, 20, 200, 50);
@@ -103,9 +98,9 @@ public class JobScreen extends JFrame implements View {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         View v1 = new JobScreen();
         v1.showScreen();
-    }
+    }*/
 
 }
