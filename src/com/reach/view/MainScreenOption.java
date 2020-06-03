@@ -1,13 +1,9 @@
 package com.reach.view;
 
-import com.reach.controller.ButtonListener;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
 
 public class MainScreenOption extends JFrame implements View{
 
@@ -89,7 +85,7 @@ public class MainScreenOption extends JFrame implements View{
           @Override
           public void actionPerformed(ActionEvent e) {
             setVisible(false);
-            MainScreenLogIn mainScreenLogIn = new MainScreenLogIn(username);
+            SearchScreen mainScreenLogIn = new SearchScreen(username);
             mainScreenLogIn.showScreen();
          }
         });

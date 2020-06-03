@@ -21,7 +21,6 @@ public abstract class User implements Serializable,Model {
     protected ArrayList<Review> review = new ArrayList<>();
 
     // Setters
-
     public void setPassword(String password) {
         Password = password;
     }

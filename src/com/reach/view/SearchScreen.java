@@ -5,14 +5,14 @@ import com.reach.controller.ButtonListener;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainScreenLogIn extends JFrame implements  View{
+public class SearchScreen extends JFrame implements  View{
 
     private String username;
-    private static JComboBox professional;
+    private static JComboBox profession;
     private static JComboBox areaBox;
 
 
-    public MainScreenLogIn(String userName){
+    public SearchScreen(String userName){
         this.username=userName;
     }
 
@@ -24,8 +24,8 @@ public class MainScreenLogIn extends JFrame implements  View{
         return (String) areaBox.getSelectedItem();
     }
 
-    public static String getProfessional() {
-        return (String) professional.getSelectedItem();
+    public static String getProfession() {
+        return (String) profession.getSelectedItem();
     }
 
     @Override
@@ -52,9 +52,9 @@ public class MainScreenLogIn extends JFrame implements  View{
         add(whatAreYouLookingFor);
 
         String[] optionBox = {"Profession","Electrician","Handyman","Technician"};
-        professional = new JComboBox(optionBox);
-        professional.setBounds(130, 240, 100, 20);
-        add(professional);
+        profession = new JComboBox(optionBox);
+        profession.setBounds(130, 240, 100, 20);
+        add(profession);
         String[] area = {"Area","center","north","south","west"};
         areaBox = new JComboBox(area);
         areaBox.setBounds(255, 240, 100, 20);

@@ -21,4 +21,16 @@ public class Contractor extends User implements  Model{
     public UserType getUserType() {
         return UserType.contractor;
     }
+
+    public String getField() {
+        return field;
+    }
+
+    public String getSubfield() {
+        return subfield;
+    }
+
+    public String getArea() {
+        return area;
+    }
 }

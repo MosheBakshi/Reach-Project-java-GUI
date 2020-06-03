@@ -16,7 +16,7 @@ public class ButtonListener implements ActionListener {
         this.mainScreen = mainPanel;
     }
 
-    public ButtonListener(MainScreenLogIn mainScreenLogIn) {
+    public ButtonListener(SearchScreen mainScreenLogIn) {
         this.mainScreen = mainScreenLogIn;
     }
 
@@ -40,8 +40,8 @@ public class ButtonListener implements ActionListener {
 
         if (name.equalsIgnoreCase("search")) {
             try {
-                String choosePro = MainScreenLogIn.getProfessional();
-                String chooseArea = MainScreenLogIn.getAreaBox();
+                String choosePro = SearchScreen.getProfession();
+                String chooseArea = SearchScreen.getAreaBox();
                 if ((choosePro.equals("Professional")) || (chooseArea.equals("Area"))) {
                     throw new Exception("err");
                 }

@@ -23,7 +23,8 @@ public class JobListScreen extends JFrame implements View
 
         if (jobList != null)
         {
-            for (int i = 0; i < jobList.size(); i++) {
+            for (int i = 0; i < jobList.size(); i++)
+            {
                 JLabel jobDescription = new JLabel("Description: " + jobList.get(i).getDescription());
                 jobDescription.setBounds(20, i * 50 + 100, 400, 30);
                 jobDescription.setFont(david20);

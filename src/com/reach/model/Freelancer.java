@@ -22,4 +22,15 @@ public class Freelancer extends User implements  Model{
         return UserType.freelancer;
     }
 
+    public String getField() {
+        return field;
+    }
+
+    public String getSubfield() {
+        return subfield;
+    }
+
+    public String getArea() {
+        return area;
+    }
 }

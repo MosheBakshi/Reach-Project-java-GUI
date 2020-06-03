@@ -4,6 +4,8 @@ import com.reach.model.*;
 import com.reach.view.ReviewScreen;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class MyController {
 
@@ -59,6 +61,22 @@ public class MyController {
     public ArrayList<Job> getUserJobHistory(String userName)
     {
        return WriterReader.load(userName).getJobsHistory();
+    }
+
+    public List<User> getResults(String prof,String area)
+    {
+        List<User> results = new ArrayList<>();
+        ArrayList<String> keys = new ArrayList<>(readWrite.UsersHM.keySet());
+        for(int i = 0; i< keys.size(); i++)
+        {
+            if((readWrite.UsersHM.get(keys.get(i)).getUserType()==UserType.contractor||
+                    readWrite.UsersHM.get(keys.get(i)).getUserType()==UserType.freelancer)&&
+                    (((Contractor)readWrite.UsersHM.get(keys.get(i))).getField().equals(prof))&&
+                    ((Contractor)readWrite.UsersHM.get(keys.get(i))).getArea().equals(area))
+
+                results.add(readWrite.UsersHM.get(keys.get(i)));
+        }
+        return results;
     }
 
 }
