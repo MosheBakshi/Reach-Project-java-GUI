@@ -103,7 +103,7 @@ public class MainPanel extends JFrame implements View {
             public void actionPerformed(ActionEvent e) {
                 String name;
                 try {
-                    if (enterUserName.getText().equals("") || enterPassword.getText().equals("")) {
+                    if (enterUserName.getText().equals("") || enterPassword.equals("")) {
                         throw new MyException("One field is empty");
                     }//checking for the user name write the right password
                     else if( MyController.getInstance().verifyUserNameAndPassword(enterUserName.getText(),new String(enterPassword.getPassword()))){

@@ -15,8 +15,8 @@ public abstract class User implements Serializable,Model {
     protected int userId;
     protected int userCell;
     protected String userCity;
-    protected ArrayList<Job> jobs = null;
-    protected ArrayList<Job> jobsHistory = null;
+    protected ArrayList<Job> jobs = new ArrayList<>();
+    protected ArrayList<Job> jobsHistory = new ArrayList<>();
     protected Rating rating;
     protected ArrayList<Review> review = new ArrayList<>();
 
@@ -131,8 +131,8 @@ public abstract class User implements Serializable,Model {
         return firstName;
     }
 
-    public Rating getRating() {
-        return rating;
+    public double getRating() {
+        return rating.avgRate;
     }
 
     public int getUserId() {

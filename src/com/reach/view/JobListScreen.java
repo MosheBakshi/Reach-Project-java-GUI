@@ -1,10 +1,8 @@
 package com.reach.view;
 
 import com.reach.controller.MyController;
-import com.reach.model.Job;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class JobListScreen extends JFrame implements View
 {
@@ -12,42 +10,52 @@ public class JobListScreen extends JFrame implements View
     @Override
     public void showScreen()
     {
-        ArrayList<Job> jobList = MyController.getInstance().getUserJobs(MainPanel.getEnterUserName().toString());
-        setSize(600, 600);
+        setSize(1000, 1000);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        JPanel main = new JPanel();
+        main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
+        main.setBounds(0,0,1000,1000);
+        add(main);
 
         //Font
         Font david20 = new Font("David", Font.BOLD, 20);
         Font david50 = new Font("David", Font.BOLD, 50);
 
-        if (jobList != null)
+        if (MyController.getInstance().getUserJobsSize(MainScreenOption.getUsername())>0)
         {
-            for (int i = 0; i < jobList.size(); i++)
+            int x = MyController.getInstance().getUserJobsSize(MainScreenOption.getUsername());
+            for(int i=0;i<x;i++)
             {
-                JLabel jobDescription = new JLabel("Description: " + jobList.get(i).getDescription());
+                String desc = MyController.getInstance().JobDescription(MainScreenOption.getUsername(),x);
+                JLabel jobDescription = new JLabel("Description: " + desc);
                 jobDescription.setBounds(20, i * 50 + 100, 400, 30);
                 jobDescription.setFont(david20);
-                add(jobDescription);
+                main.add(jobDescription);
 
-                JLabel jobID = new JLabel("Job id: " + jobList.get(i).getId());
+                int ID = MyController.getInstance().JobID(MainScreenOption.getUsername(),x);
+                JLabel jobID = new JLabel("Job id: " + ID);
                 jobID.setBounds(20, i * 50 + 150, 200, 30);
                 jobID.setFont(david20);
-                add(jobID);
+                main.add(jobID);
 
                 JButton goTo = new JButton("See job details");
                 goTo.setBounds(350, i * 50 + 150, 200, 30);
                 goTo.setFont(david20);
-                add(goTo);
+                main.add(goTo);
             }
         }
         else
         {
             JLabel empty = new JLabel("No jobs to display!");
-            empty.setBounds(250, 250, 100, 100);
+            empty.setBounds(500, 500, 100, 100);
             empty.setFont(david50);
-            add(empty);
+            main.add(empty);
         }
+        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setBounds(0,0,980,1000);
+        add(scroll);
         setVisible(true);
     }
 

@@ -7,10 +7,14 @@ import java.awt.event.ActionListener;
 
 public class MainScreenOption extends JFrame implements View{
 
-    private String username;
+    private static String username;
 
     public MainScreenOption(String text) {
         username=text;
+    }
+
+    public static String getUsername() {
+        return username;
     }
 
     @Override

@@ -10,45 +10,12 @@ public class WriterReader implements Model{
     public HashMap<String,User> UsersHM = new HashMap<>();
     //add if file exits
 
-    static FileOutputStream f;
-    static {
-        try {
-            f = new FileOutputStream(filename);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    static ObjectOutputStream o;
-    static {
-        try {
-            o = new ObjectOutputStream(f);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    static FileInputStream fi;
-    static {
-        try {
-            fi = new FileInputStream(filename);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    static ObjectInputStream oi;
-    static {
-        try {
-            oi = new ObjectInputStream(fi);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void save(User newUser) {
+    public void save(User newUser)
+    {
         User user1;
         try {
+            FileOutputStream f = new FileOutputStream(filename);
+            ObjectOutputStream o = new ObjectOutputStream(f);
             FileInputStream fi = new FileInputStream(filename);
             ObjectInputStream oi = new ObjectInputStream(fi);
             //check if user name exists
@@ -63,7 +30,7 @@ public class WriterReader implements Model{
             }
             newUser.setUserId(count++);
             o.writeObject(newUser);
-            System.out.println("Saved " + newUser.getUserName() +" "+ newUser.getUserType());
+            System.out.println("Saved " + newUser.getUserName() + " " + newUser.getUserType());
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
@@ -116,13 +83,14 @@ public class WriterReader implements Model{
         return true;
     }
 
-    /*//on system close
+    //on system close
     public void saveAll()
     {
         User user1;
         try {
-            FileInputStream fi = new FileInputStream(file);
-            ObjectInputStream oi = new ObjectInputStream(fi);
+            FileOutputStream f = new FileOutputStream(filename);
+            ObjectOutputStream o = new ObjectOutputStream(f);
+            FileInputStream fi = new FileInputStream(filename);
             ArrayList<String> keys = new ArrayList<>(UsersHM.keySet());
             int i = 0;
             while (i<keys.size())
@@ -143,7 +111,7 @@ public class WriterReader implements Model{
     {
         User user1;
         try {
-            FileInputStream fi = new FileInputStream(file);
+            FileInputStream fi = new FileInputStream(filename);
             ObjectInputStream oi = new ObjectInputStream(fi);
             while (fi.available()>4)
             {
@@ -158,7 +126,7 @@ public class WriterReader implements Model{
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
-    }*/
+    }
 
 }
 
