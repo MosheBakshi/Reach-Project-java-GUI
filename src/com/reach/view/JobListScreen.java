@@ -23,18 +23,18 @@ public class JobListScreen extends JFrame implements View
         Font david20 = new Font("David", Font.BOLD, 20);
         Font david50 = new Font("David", Font.BOLD, 50);
 
-        if (MyController.getInstance().getUserJobsSize(MainScreenOption.getUsername())>0)
+        if (MyController.getInstance().getUserJobsSize(Consumer.getUsername())>0)
         {
-            int x = MyController.getInstance().getUserJobsSize(MainScreenOption.getUsername());
+            int x = MyController.getInstance().getUserJobsSize(Consumer.getUsername());
             for(int i=0;i<x;i++)
             {
-                String desc = MyController.getInstance().JobDescription(MainScreenOption.getUsername(),x);
+                String desc = MyController.getInstance().JobDescription(Consumer.getUsername(),x);
                 JLabel jobDescription = new JLabel("Description: " + desc);
                 jobDescription.setBounds(20, i * 50 + 100, 400, 30);
                 jobDescription.setFont(david20);
                 main.add(jobDescription);
 
-                int ID = MyController.getInstance().JobID(MainScreenOption.getUsername(),x);
+                int ID = MyController.getInstance().JobID(Consumer.getUsername(),x);
                 JLabel jobID = new JLabel("Job id: " + ID);
                 jobID.setBounds(20, i * 50 + 150, 200, 30);
                 jobID.setFont(david20);
@@ -58,5 +58,4 @@ public class JobListScreen extends JFrame implements View
         add(scroll);
         setVisible(true);
     }
-
 }

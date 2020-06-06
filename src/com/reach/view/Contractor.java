@@ -7,17 +7,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Freelancer extends JFrame implements View {
+public class Contractor extends JFrame implements View {
 
     private String userName;
 
-    public Freelancer(String name){
+    public Contractor(String name){
         this.userName = name;
     }
 
     public String getUsername() {
         return userName;
     }
+
 
     @Override
     public void showScreen() {
@@ -30,11 +31,12 @@ public class Freelancer extends JFrame implements View {
         Font david16 = new Font("David", Font.BOLD, 16);
         Font david10 = new Font("forget a password", Font.PLAIN, 10);
 
+
         //Labels
-        JLabel freelancerReach = new JLabel("Freelancer Reach");
-        freelancerReach.setBounds(550, 15, 350, 20);
-        freelancerReach.setFont(david16);
-        add(freelancerReach);
+        JLabel contractorReach = new JLabel("Contractor Reach");
+        contractorReach.setBounds(550, 15, 350, 20);
+        contractorReach.setFont(david16);
+        add(contractorReach);
         JButton updateDetails = new JButton("Update Details");
         updateDetails.setBounds(185, 15, 140, 20);
         updateDetails.setFont(david16);
@@ -47,7 +49,7 @@ public class Freelancer extends JFrame implements View {
             }
         });
         add(updateDetails);
-        JLabel userName = new JLabel("User Name: " + getUsername());
+        JLabel userName = new JLabel("User Name: "+ getUsername());
         userName.setBounds(75, 125, 350, 100);
         userName.setFont(david16);
         add(userName);
@@ -129,7 +131,6 @@ public class Freelancer extends JFrame implements View {
         jobHistory.setFont(david16);
         add(jobHistory);
 
-
         //Bg
         ImageIcon background_image = new ImageIcon("cus_freeBG.png");
         Image img = background_image.getImage();
@@ -139,13 +140,12 @@ public class Freelancer extends JFrame implements View {
         background.setBounds(0, 0, 700, 600);
         add(background);
 
+
         setVisible(true);
     }
 
-
     public static void main(String[] args) {
-        Freelancer f = new Freelancer("orel");
-        f.showScreen();
+        Contractor c = new Contractor("Orel");
+        c.showScreen();
     }
-
 }

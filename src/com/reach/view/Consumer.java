@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainScreenOption extends JFrame implements View{
+public class Consumer extends JFrame implements View{
 
     private static String username;
 
-    public MainScreenOption(String text) {
+    public Consumer(String text) {
         username=text;
     }
 
@@ -46,16 +46,6 @@ public class MainScreenOption extends JFrame implements View{
                 jobList.showScreen();
             }
         });
-        //forgetPassword.addActionListener(new ActionListener() {
-          //  @Override
-          //  public void actionPerformed(ActionEvent e) {
-            //    setVisible(false);
-              //  JOptionPane.showMessageDialog(null, "Set email adress:");
-            //    MainPanel v1 = new MainPanel();
-             //   v1.showScreen();
-           // }
-
-        //});
         add(onGoingJobs);
         JButton jobHistory = new JButton("Job History");
         jobHistory.setBounds(345, 100, 125, 15);
@@ -69,22 +59,11 @@ public class MainScreenOption extends JFrame implements View{
                 jobList.showScreen();
             }
         });
-        //forgetPassword.addActionListener(new ActionListener() {
-        //  @Override
-        //  public void actionPerformed(ActionEvent e) {
-        //    setVisible(false);
-        //  JOptionPane.showMessageDialog(null, "Set email adress:");
-        //    MainPanel v1 = new MainPanel();
-        //   v1.showScreen();
-        // }
-
-        //});
         add(jobHistory);
         JButton Search = new JButton("Search");
         Search.setBounds(345, 140, 125, 15);
         Search.setBorderPainted(false);
         Search.setFont(david12);
-        //Search.setBackground;
         Search.addActionListener(new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
@@ -98,14 +77,14 @@ public class MainScreenOption extends JFrame implements View{
         personalDetails.setBounds(15, 185, 150, 15);
         personalDetails.setBorderPainted(false);
         personalDetails.setFont(david12);
-        //Search.addActionListener(new ActionListener() {
-        //    @Override
-        //    public void actionPerformed(ActionEvent e) {
-        //        setVisible(false);
-        //        MainScreenLogIn mainScreenLogIn = new MainScreenLogIn(username);
-        //        mainScreenLogIn.showScreen();
-        //    }
-        //});
+        personalDetails.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                PersonalDetails personalDetails = new PersonalDetails(username);
+                personalDetails.showScreen();
+            }
+        });
         add(personalDetails);
 
 
@@ -121,7 +100,7 @@ public class MainScreenOption extends JFrame implements View{
     }
 
     public static void main(String[] args) {
-        MainScreenOption v = new MainScreenOption("orel");
+        Consumer v = new Consumer("orel");
         v.showScreen();
     }
 }

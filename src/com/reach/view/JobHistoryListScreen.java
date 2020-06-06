@@ -23,18 +23,18 @@ public class JobHistoryListScreen extends JFrame implements View
         Font david20 = new Font("David", Font.BOLD, 20);
         Font david50 = new Font("David", Font.BOLD, 50);
 
-       if (MyController.getInstance().getUserJobHistorySize(MainScreenOption.getUsername())>0)
+       if (MyController.getInstance().getUserJobHistorySize(Consumer.getUsername())>0)
         {
-            int x = MyController.getInstance().getUserJobHistorySize(MainScreenOption.getUsername());
+            int x = MyController.getInstance().getUserJobHistorySize(Consumer.getUsername());
             for(int i=0;i<x;i++)
             {
-                String desc = MyController.getInstance().HistoryDescription(MainScreenOption.getUsername(),x);
+                String desc = MyController.getInstance().HistoryDescription(Consumer.getUsername(),x);
                 JLabel jobDescription = new JLabel("Description: " + desc);
                 jobDescription.setBounds(20, i * 50 + 100, 400, 30);
                 jobDescription.setFont(david20);
                 main.add(jobDescription);
 
-                int ID = MyController.getInstance().HistoryID(MainScreenOption.getUsername(),x);
+                int ID = MyController.getInstance().HistoryID(Consumer.getUsername(),x);
                 JLabel jobID = new JLabel("Job id: " + ID);
                 jobID.setBounds(20, i * 50 + 150, 200, 30);
                 jobID.setFont(david20);

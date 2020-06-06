@@ -7,17 +7,17 @@ import java.awt.*;
 
 public class SearchScreen extends JFrame implements  View{
 
-    private String username;
+    private String userName;
     private static JComboBox profession;
     private static JComboBox areaBox;
 
 
     public SearchScreen(String userName){
-        this.username=userName;
+        this.userName =userName;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
     public static String getAreaBox() {
@@ -42,7 +42,7 @@ public class SearchScreen extends JFrame implements  View{
 
 
         //Labels and Buttons
-        JLabel userName = new JLabel("Hello " + getUsername());
+        JLabel userName = new JLabel("Hello " + getUserName());
         userName.setBounds(265, 105, 400, 100);
         userName.setFont(david20);
         add(userName);

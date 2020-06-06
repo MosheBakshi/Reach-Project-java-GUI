@@ -1,4 +1,5 @@
 package com.reach.model;
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,9 +9,8 @@ public class WriterReader implements Model{
     static int count = 0;
     private static final String filename = "myObjects.txt";
     public HashMap<String,User> UsersHM = new HashMap<>();
-    //add if file exits
 
-    public void save(User newUser)
+    public static void save(User newUser)
     {
         User user1;
         try {
@@ -30,7 +30,7 @@ public class WriterReader implements Model{
             }
             newUser.setUserId(count++);
             o.writeObject(newUser);
-            System.out.println("Saved " + newUser.getUserName() + " " + newUser.getUserType());
+            //System.out.println("Saved " + newUser.getUserName() + " " + newUser.getUserType());
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
@@ -50,7 +50,7 @@ public class WriterReader implements Model{
             {
                 user1 = (User)oi.readObject();
                 if (user1.userName.equals(name)) {
-                    System.out.println("Loaded " + user1.getUserName());
+                    //System.out.println("Loaded " + user1.getUserName());
                     return user1;
                 }
             }
@@ -73,6 +73,91 @@ public class WriterReader implements Model{
             return true;
         else
             return false;
+    }
+
+    public static void setPhone(String name,String phone) {
+        User user = WriterReader.load(name);
+        user.setPhone(phone);
+        WriterReader.save(user);
+    }
+
+    public static void setCity(String userName, String city) {
+        User user = WriterReader.load(userName);
+        user.setUserCity(city);
+        WriterReader.save(user);
+    }
+
+    public static void setArea(String userName, String chooseArea) {
+        User user = WriterReader.load(userName);
+        if(user instanceof Contractor){
+            Contractor c = (Contractor) user;
+            c.setArea(chooseArea);
+        } else {
+            Freelancer f = (Freelancer) user;
+            f.setArea(chooseArea);
+        }
+        WriterReader.save(user);
+    }
+
+    public static String getArea(String userName) {
+        User user = WriterReader.load(userName);
+        if(user instanceof Contractor){
+            Contractor c = (Contractor) user;
+            return c.getArea();
+        } else {
+            Freelancer f = (Freelancer) user;
+            return f.getArea();
+        }
+    }
+
+    public static void setExperience(String userName, String experience) {
+        User user = WriterReader.load(userName);
+        if(user instanceof Contractor){
+            Contractor c = (Contractor) user;
+            c.setYearsOfExperience(experience);
+        } else {
+            Freelancer f = (Freelancer) user;
+            f.setYearsOfExperience(experience);
+        }
+        WriterReader.save(user);
+    }
+
+    public static String getExperience(String userName) {
+        User user = WriterReader.load(userName);
+        if(user instanceof Contractor){
+            Contractor c = (Contractor) user;
+            return c.getYearsOfExperience();
+        } else {
+            Freelancer f = (Freelancer) user;
+            return f.getYearsOfExperience();
+        }
+    }
+
+    public static String getPhone(String userName) {
+        User user = WriterReader.load(userName);
+        return user.getPhone();
+    }
+
+    public static String getCity(String userName) {
+        User user = WriterReader.load(userName);
+        return user.getUserCity();
+    }
+
+
+
+    public static UserType getUserType(String name){
+        User user = WriterReader.load(name);
+        return user.getUserType();
+    }
+
+    public static String getFirstName(String username) {
+        User user = WriterReader.load(username);
+        return user.getFirstName();
+    }
+
+    public static String getLastName(String username) {
+        User user = WriterReader.load(username);
+        return user.getLastName();
     }
 
     public static boolean checkFreeUserName(String userName){

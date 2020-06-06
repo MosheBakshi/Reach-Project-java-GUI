@@ -2,12 +2,12 @@ package com.reach.view;
 
 import com.reach.controller.ButtonListener;
 import com.reach.controller.MyController;
+import com.reach.model.UserType;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.invoke.StringConcatException;
 
 
 public class MainPanel extends JFrame implements View {
@@ -101,7 +101,6 @@ public class MainPanel extends JFrame implements View {
         logIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String name;
                 try {
                     if (enterUserName.getText().equals("") || enterPassword.equals("")) {
                         throw new MyException("One field is empty");
@@ -109,8 +108,18 @@ public class MainPanel extends JFrame implements View {
                     else if( MyController.getInstance().verifyUserNameAndPassword(enterUserName.getText(),new String(enterPassword.getPassword()))){
                         setVisible(false);
                         JOptionPane.showMessageDialog(null, "Log in successful");
-                        MainScreenOption mainScreenOption = new MainScreenOption(enterUserName.getText());
-                        mainScreenOption.showScreen();
+                        if(MyController.getInstance().getUserType(enterUserName.getText()).equals(UserType.customer)) {
+                            Consumer mainScreenOption = new Consumer(enterUserName.getText());
+                            mainScreenOption.showScreen();
+                        }
+                        else if (MyController.getInstance().getUserType(enterUserName.getText()).equals(UserType.freelancer)){
+                            Freelancer freelancer = new Freelancer(enterUserName.getText());
+                            freelancer.showScreen();
+                        }
+                        else{
+                            Contractor contractor = new Contractor(enterUserName.getText());
+                            contractor.showScreen();
+                        }
                     }
                     else{//wrong password
                         throw new MyException("The user or password are wrong");

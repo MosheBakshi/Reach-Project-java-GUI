@@ -3,15 +3,15 @@ package com.reach.controller;
 import com.reach.model.*;
 import com.reach.view.ReviewScreen;
 
+import javax.swing.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class MyController {
 
     private static final MyController instance = new MyController();
-    private CreateUser using = new CreateUser();
     private WriterReader readWrite = new WriterReader();
+
 
     //constructor for singelton
     private MyController(){}
@@ -41,12 +41,56 @@ public class MyController {
 
     //called to add review to list after review made
     public void publishReview(Review review, String workerUserName) {
-        readWrite.UsersHM.get(workerUserName).setReview(review);
+       // readWrite.UsersHM.get(workerUserName).setReview(review);
     }
 
     public int getUserId(String userName)
     {
         return WriterReader.load(userName).getUserId();
+    }
+
+    public UserType getUserType(String userName){
+        return WriterReader.getUserType(userName);
+    }
+
+    public String getFirstName(String username) {
+        return WriterReader.getFirstName(username);
+    }
+
+    public String getLastName(String username) {
+        return WriterReader.getLastName(username);
+    }
+
+    public String getPhone(String userName) {
+        return WriterReader.getPhone(userName);
+    }
+
+    public void setPhone(String userName ,String phone) {
+        WriterReader.setPhone(userName , phone);
+    }
+
+    public void setCity(String userName, String city) {
+        WriterReader.setCity(userName,city);
+    }
+
+    public String getCity(String username) {
+        return WriterReader.getCity(username);
+    }
+
+    public String getExperience(String username) {
+        return WriterReader.getExperience(username);
+    }
+
+    public String getArea(String username) {
+        return WriterReader.getArea(username);
+    }
+
+    public void setExperience(String userName, String experience) {
+        WriterReader.setExperience(userName,experience);
+    }
+
+    public void setArea(String userName, String chooseArea) {
+        WriterReader.setArea(userName,chooseArea);
     }
 
     public int getUserJobsSize(String userName) {
@@ -138,6 +182,7 @@ public class MyController {
         }
         return ((Contractor)results.get(i)).getRating();
     }
+
 }
 
 

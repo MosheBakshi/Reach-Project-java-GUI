@@ -4,7 +4,7 @@ public class Contractor extends User implements  Model{
 
     protected String field;
     protected String subfield;
-    protected int yearsOfexperience;
+    protected String yearsOfExperience;
     protected String area; // can be as the enum in the User file.
     protected String availability;
 
@@ -30,7 +30,22 @@ public class Contractor extends User implements  Model{
         return subfield;
     }
 
-    public String getArea() {
-        return area;
+
+
+    public String getYearsOfExperience() {
+        return yearsOfExperience;
     }
+
+    public void setYearsOfExperience(String yearsOfExperience) {
+        this.yearsOfExperience = yearsOfExperience;
+    }
+
+    public void setArea(String area){
+        this.area=area;
+    }
+
+    public String getArea() {
+        return this.area;
+    }
+
 }
