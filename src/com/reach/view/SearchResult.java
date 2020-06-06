@@ -1,16 +1,20 @@
 package com.reach.view;
 
 import com.reach.controller.MyController;
+import com.reach.model.UserType;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SearchResult extends JFrame implements  View {
-
+    String userName;
     String prof = SearchScreen.getProfession();
     String area = SearchScreen.getAreaBox();
-
+    public SearchResult(String un){
+        userName = un;
+    }
     @Override
     public void showScreen() {
 
@@ -20,7 +24,7 @@ public class SearchResult extends JFrame implements  View {
 
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
-        main.setBounds(0,0,1000,1000);
+        main.setBounds(0,0,900,900);
         add(main);
 
         //Font
@@ -70,8 +74,42 @@ public class SearchResult extends JFrame implements  View {
             main.add(empty);
         }
         JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.setBounds(0,0,980,1000);
+        scroll.setBounds(0,0,880,900);
         add(scroll);
+
+
+        JButton home = new JButton("Home");
+        home.setBounds(0, 900, 100, 30);
+        home.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    UserType userTypeReturned = MyController.getInstance().getUserType(userName);
+                    if(userTypeReturned == UserType.customer){throw new Exception("consumer");}
+                    else if(userTypeReturned == UserType.freelancer){throw new Exception("freelancer");}
+                    else if(userTypeReturned == UserType.contractor){throw new Exception("contractor");}
+                }
+                catch (Exception exc){
+                    if(exc.getMessage() == "consumer"){
+                        setVisible(false);
+                        Consumer v1 = new Consumer(userName);
+                        v1.showScreen();
+                    }
+                    else if(exc.getMessage() == "freelancer"){
+                        setVisible(false);
+                        Freelancer v1 = new Freelancer(userName);
+                        v1.showScreen();
+                    }
+                    else if(exc.getMessage() == "contractor"){
+                        setVisible(false);
+                        Contractor v1 = new Contractor(userName);
+                        v1.showScreen();
+                    }
+                }
+            }
+        });
+        add(home);
+
         setVisible(true);
     }
 }

@@ -1,6 +1,7 @@
 package com.reach.view;
 
 import com.reach.controller.SignUpController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +10,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 public class SignUpScreen extends JFrame implements View {
-
     protected static JLabel background;
     protected static JTextField enterUserName;
     protected static JTextField enterPrivateName;
@@ -29,9 +29,7 @@ public class SignUpScreen extends JFrame implements View {
     protected static boolean passwordsFlag = false;
     protected static boolean firstNameFlag = false;
     protected static boolean lastNameFlag = false;
-
     protected static SignUpController Controller = SignUpController.getInstance();
-
     public static JTextField getUsername(){
         return enterUserName;
     }
@@ -39,11 +37,9 @@ public class SignUpScreen extends JFrame implements View {
     public void setDoneFlag(boolean value){
         DoneFlag = value;
     }
-
     public boolean getDoneFlag(){
         return DoneFlag;
     }
-
     public boolean ValidPassDigitAndInteger(String Pass){
         char digit;
         boolean boolDigit = false;
@@ -147,13 +143,11 @@ public class SignUpScreen extends JFrame implements View {
             }
         });
         add(enterPrivateName);
-
         // for Jlabel - not var of the string
         JLabel lastName = new JLabel("Last Name");
         lastName.setBounds(308, 100, 100, 100);
         lastName.setFont(david15);
         add(lastName);
-
         // for JTextField - var to pass into controller
         enterLastName = new JTextField("");
         enterLastName.setBounds(385, 145, 150, 20);
@@ -343,13 +337,11 @@ public class SignUpScreen extends JFrame implements View {
             }
         });
         add(enterPassword);
-
         // for Jlabel - not var to pass
         JLabel confirmedPassword = new JLabel("Confirm Password");
         confirmedPassword.setBounds(260, 215, 130, 20);
         confirmedPassword.setFont(david15);
         add(confirmedPassword);
-
         // for JTextField - var to pass into controller
         enterConfirmedPassword = new JPasswordField("");
         enterConfirmedPassword.setBounds(385, 215, 150, 20);
@@ -420,6 +412,7 @@ public class SignUpScreen extends JFrame implements View {
         userNameValidationMsg.setBounds(230, 181, 150, 20);
         userNameValidationMsg.setFont(david12);
 
+        //-----------------------------------------------------------------------------------------//
         JButton done = new JButton("Done");
         done.setBounds(635, 670, 100, 30);//on clicking pass relevent values and return to main panel
         done.addActionListener(new ActionListener() {
@@ -441,6 +434,18 @@ public class SignUpScreen extends JFrame implements View {
         });
         add(done);
 
+        JButton home = new JButton("Home");
+        home.setBounds(0, 670, 100, 30);
+        home.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                MainPanel v1 = new MainPanel();
+                v1.showScreen();
+            }
+        });
+        add(home);
+//-----------------------------------------------------------------------------------------------------//
         // create radio buttons and labels
         JLabel tChoice = new JLabel("User type define:");
         tChoice.setBounds(15,250,400,50 );

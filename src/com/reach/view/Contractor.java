@@ -9,13 +9,13 @@ import java.awt.event.ActionListener;
 
 public class Contractor extends JFrame implements View {
 
-    private String userName;
+    private static String userName;
 
     public Contractor(String name){
         this.userName = name;
     }
 
-    public String getUsername() {
+    public static String getUsername() {
         return userName;
     }
 
@@ -23,7 +23,7 @@ public class Contractor extends JFrame implements View {
     @Override
     public void showScreen() {
 
-        setSize(700, 600);
+        setSize(750, 750);
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,7 +38,7 @@ public class Contractor extends JFrame implements View {
         contractorReach.setFont(david16);
         add(contractorReach);
         JButton updateDetails = new JButton("Update Details");
-        updateDetails.setBounds(185, 15, 140, 20);
+        updateDetails.setBounds(200, 15, 140, 20);
         updateDetails.setFont(david16);
         updateDetails.addActionListener(new ActionListener() {
             @Override
@@ -125,19 +125,35 @@ public class Contractor extends JFrame implements View {
         JButton onGoingJobs = new JButton("On-going Jobs");
         onGoingJobs.setBounds(380, 380, 140, 20);
         onGoingJobs.setFont(david16);
+        onGoingJobs.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                JobListScreen jobList = new JobListScreen(getUsername());
+                jobList.showScreen();
+            }
+        });
         add(onGoingJobs);
         JButton jobHistory = new JButton("Job History");
         jobHistory.setBounds(380, 450, 140, 20);
         jobHistory.setFont(david16);
+        jobHistory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                JobHistoryListScreen jobList = new JobHistoryListScreen(getUsername());
+                jobList.showScreen();
+            }
+        });
         add(jobHistory);
 
         //Bg
         ImageIcon background_image = new ImageIcon("cus_freeBG.png");
         Image img = background_image.getImage();
-        Image tmp_img = img.getScaledInstance(700, 600, Image.SCALE_SMOOTH);
+        Image tmp_img = img.getScaledInstance(750, 750, Image.SCALE_SMOOTH);
         background_image = new ImageIcon(tmp_img);
         JLabel background = new JLabel("", background_image, JLabel.CENTER);
-        background.setBounds(0, 0, 700, 600);
+        background.setBounds(0, 0, 750, 750);
         add(background);
 
 

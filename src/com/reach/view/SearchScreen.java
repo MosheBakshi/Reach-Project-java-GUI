@@ -1,15 +1,19 @@
 package com.reach.view;
 
 import com.reach.controller.ButtonListener;
+import com.reach.controller.MyController;
+import com.reach.model.UserType;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SearchScreen extends JFrame implements  View{
 
     private String userName;
     private static JComboBox profession;
     private static JComboBox areaBox;
-
 
     public SearchScreen(String userName){
         this.userName =userName;
@@ -30,7 +34,7 @@ public class SearchScreen extends JFrame implements  View{
     @Override
     public void showScreen() {
 
-        setSize(700, 600);
+        setSize(750, 750);
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,17 +63,58 @@ public class SearchScreen extends JFrame implements  View{
         add(areaBox);
         JButton search = new JButton("Search");
         search.setBounds(375, 240, 110, 20);
-        search.addActionListener(new ButtonListener(this));
+     //   search.addActionListener(new ButtonListener(this));
+        search.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SearchResult v1 = new SearchResult(getUserName());
+                v1.showScreen();
+            }
+        });
         add(search);
+
+        JButton home = new JButton("Home");
+        home.setBounds(0, 670, 100, 30);
+        home.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    UserType userTypeReturned = MyController.getInstance().getUserType(getUserName());
+                    if(userTypeReturned == UserType.customer){throw new Exception("consumer");}
+                    else if(userTypeReturned == UserType.freelancer){throw new Exception("freelancer");}
+                    else if(userTypeReturned == UserType.contractor){throw new Exception("contractor");}
+                }
+                catch (Exception exc){
+                    if(exc.getMessage() == "consumer"){
+                        setVisible(false);
+                        Consumer v1 = new Consumer(getUserName());
+                        v1.showScreen();
+                    }
+                    else if(exc.getMessage() == "freelancer"){
+                        setVisible(false);
+                        Freelancer v1 = new Freelancer(getUserName());
+                        v1.showScreen();
+                    }
+                    else if(exc.getMessage() == "contractor"){
+                        setVisible(false);
+                        Contractor v1 = new Contractor(getUserName());
+                        v1.showScreen();
+                    }
+                }
+            }
+        });
+        add(home);
+
 
         //Bg
         ImageIcon background_image = new ImageIcon("LogInBG.png");
         Image img = background_image.getImage();
-        Image tmp_img = img.getScaledInstance(700, 600, Image.SCALE_SMOOTH);
+        Image tmp_img = img.getScaledInstance(750, 750, Image.SCALE_SMOOTH);
         background_image = new ImageIcon(tmp_img);
         JLabel background = new JLabel("", background_image, JLabel.CENTER);
-        background.setBounds(0, 0, 700, 600);
+        background.setBounds(0, 0, 750, 750);
         add(background);
+
 
         setVisible(true);
     }

@@ -22,7 +22,7 @@ public class PersonalDetails extends JFrame implements View {
 
     @Override
     public void showScreen() {
-        setSize(700, 600);
+        setSize(750, 750);
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,7 +79,7 @@ public class PersonalDetails extends JFrame implements View {
         enterArea.setBounds(490, 172, 100, 20);
         add(enterArea);
         JButton done = new JButton("DONE");
-        done.setBounds(500, 500, 100, 20);
+        done.setBounds(635, 670, 100, 20);
         done.setFont(david16);
         done.addActionListener(new ActionListener() {
             @Override
@@ -128,6 +128,38 @@ public class PersonalDetails extends JFrame implements View {
             }
         });
         add(done);
+
+        JButton home = new JButton("Home");
+        home.setBounds(0, 670, 100, 30);
+        home.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    UserType userTypeReturned = MyController.getInstance().getUserType(userName);
+                    if(userTypeReturned == UserType.customer){throw new Exception("consumer");}
+                    else if(userTypeReturned == UserType.freelancer){throw new Exception("freelancer");}
+                    else if(userTypeReturned == UserType.contractor){throw new Exception("contractor");}
+                }
+                catch (Exception exc){
+                    if(exc.getMessage() == "consumer"){
+                        setVisible(false);
+                        Consumer v1 = new Consumer(userName);
+                        v1.showScreen();
+                    }
+                    else if(exc.getMessage() == "freelancer"){
+                        setVisible(false);
+                        Freelancer v1 = new Freelancer(userName);
+                        v1.showScreen();
+                    }
+                    else if(exc.getMessage() == "contractor"){
+                        setVisible(false);
+                        Contractor v1 = new Contractor(userName);
+                        v1.showScreen();
+                    }
+                }
+            }
+        });
+        add(home);
         setVisible(true);
     }
 

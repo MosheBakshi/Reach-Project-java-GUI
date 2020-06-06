@@ -9,6 +9,7 @@ public class Job implements Model{
     protected String date;
     protected String deadline;
     protected Price Price;
+    protected Boolean accepted = false;
 
     public String getWorkerUserName() {
         return workerUserName;
@@ -26,9 +27,15 @@ public class Job implements Model{
         return customerUserName;
     }
 
+    public void setAccepted(){
+        accepted = !accepted;
+    }
+
     public int getId() {
         return id;
     }
+
+    public Boolean getAccepted(){return accepted;}
 
     public String getDate() {
         return date;

@@ -8,10 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 
 public class MainPanel extends JFrame implements View {
-
     private static JTextField enterUserName;
     private static JPasswordField enterPassword;
     private JButton logIn;
@@ -39,7 +40,8 @@ public class MainPanel extends JFrame implements View {
     @Override
     public void showScreen() {
         //The Frame
-        setSize(700, 600);
+        setSize(750, 750);
+        setForeground(Color.white);
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +56,17 @@ public class MainPanel extends JFrame implements View {
         add(userName);
         enterUserName = new JTextField("");
         enterUserName.setBounds(108, 241, 150, 20);
+        enterUserName.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                enterUserName.setText("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+
+            }
+        });
         add(enterUserName);
         // go t
         JLabel password = new JLabel("password");
@@ -79,6 +92,17 @@ public class MainPanel extends JFrame implements View {
         add(forgetPassword);
         enterPassword = new JPasswordField("");
         enterPassword.setBounds(108, 261, 150, 20);
+        enterPassword.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                enterPassword.setText("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+
+            }
+        });
         add(enterPassword);
         JLabel notAMember = new JLabel("Not a member?");
         notAMember.setBounds(15, 350, 200, 100);
@@ -90,14 +114,17 @@ public class MainPanel extends JFrame implements View {
         signUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                   setVisible(false);
-                   SignUpScreen signUpScreen = new SignUpScreen();
-                   signUpScreen.showScreen();
+                enterUserName.setText("");
+                enterPassword.setText("");
+                setVisible(false);
+                SignUpScreen signUpScreen = new SignUpScreen();
+                signUpScreen.showScreen();
             }
             });
         add(signUp);
         logIn = new JButton("Log In");
         logIn.setBounds(157, 281, 100, 30);
+        logIn.addActionListener(new ButtonListener(this));
         logIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -135,10 +162,10 @@ public class MainPanel extends JFrame implements View {
         //Bg
         ImageIcon background_image = new ImageIcon("BgImg1.png");
         Image img = background_image.getImage();
-        Image tmp_img = img.getScaledInstance(700, 600, Image.SCALE_SMOOTH);
+        Image tmp_img = img.getScaledInstance(750, 750, Image.SCALE_SMOOTH);
         background_image = new ImageIcon(tmp_img);
         JLabel background = new JLabel("", background_image, JLabel.CENTER);
-        background.setBounds(0, 0, 700, 600);
+        background.setBounds(0, 0, 750, 750);
         add(background);
 
 

@@ -53,8 +53,8 @@ public class ButtonListener implements ActionListener {
 
                  */
 
-                SearchResult screenSearchResult = new SearchResult();
-                screenSearchResult.showScreen();
+            //    SearchResult screenSearchResult = new SearchResult();
+             //   screenSearchResult.showScreen();
 
             } catch (Exception exc) {
                 JOptionPane.showMessageDialog(null, "You have to choose area and professional");

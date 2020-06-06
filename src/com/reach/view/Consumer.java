@@ -20,7 +20,7 @@ public class Consumer extends JFrame implements View{
     @Override
     public void showScreen() {
 
-        setSize(500, 500);
+        setSize(750, 750);
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -31,37 +31,37 @@ public class Consumer extends JFrame implements View{
 
         //label and button
         JLabel contractor = new JLabel("Hello "+username);
-        contractor.setBounds(15, 120, 150, 100);
+        contractor.setBounds(15, 190, 150, 100);
         contractor.setFont(david12);
         add(contractor);
         JButton onGoingJobs = new JButton("On-Going Jobs");
-        onGoingJobs.setBounds(345, 60, 125, 15);
+        onGoingJobs.setBounds(550, 60, 125, 15);
         onGoingJobs.setBorderPainted(false);
         onGoingJobs.setFont(david12);
         onGoingJobs.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                JobListScreen jobList = new JobListScreen();
+                JobListScreen jobList = new JobListScreen(username);
                 jobList.showScreen();
             }
         });
         add(onGoingJobs);
         JButton jobHistory = new JButton("Job History");
-        jobHistory.setBounds(345, 100, 125, 15);
+        jobHistory.setBounds(550, 100, 125, 15);
         jobHistory.setBorderPainted(false);
         jobHistory.setFont(david12);
         jobHistory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                JobHistoryListScreen jobList = new JobHistoryListScreen();
+                JobHistoryListScreen jobList = new JobHistoryListScreen(getUsername());
                 jobList.showScreen();
             }
         });
         add(jobHistory);
         JButton Search = new JButton("Search");
-        Search.setBounds(345, 140, 125, 15);
+        Search.setBounds(550, 140, 125, 15);
         Search.setBorderPainted(false);
         Search.setFont(david12);
         Search.addActionListener(new ActionListener() {
@@ -74,7 +74,7 @@ public class Consumer extends JFrame implements View{
         });
         add(Search);
         JButton personalDetails = new JButton("Personal Details");
-        personalDetails.setBounds(15, 185, 150, 15);
+        personalDetails.setBounds(15, 270, 150, 15);
         personalDetails.setBorderPainted(false);
         personalDetails.setFont(david12);
         personalDetails.addActionListener(new ActionListener() {
@@ -91,10 +91,10 @@ public class Consumer extends JFrame implements View{
         //Bg
         ImageIcon background_image = new ImageIcon("profilePic.png");
         Image img = background_image.getImage();
-        Image tmp_img = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
+        Image tmp_img = img.getScaledInstance(750, 750, Image.SCALE_SMOOTH);
         background_image = new ImageIcon(tmp_img);
         JLabel background = new JLabel("", background_image, JLabel.CENTER);
-        background.setBounds(0, 0, 500, 500);
+        background.setBounds(0, 0, 750, 750);
         add(background);
         setVisible(true);
     }

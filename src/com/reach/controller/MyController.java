@@ -113,6 +113,13 @@ public class MyController {
         return WriterReader.UsersHM.get(userName).getJobs().get(i).getDescription();
     }
 
+    public Boolean JobAcceptance(String userName,int i){
+        return WriterReader.UsersHM.get(userName).getJobs().get(i).getAccepted();
+    }
+
+    public void JobSetAcceptance(String userName,int i){
+        WriterReader.UsersHM.get(userName).getJobs().get(i).setAccepted();
+    }
     public  int HistoryID(String userName, int i){
         return WriterReader.UsersHM.get(userName).getJobsHistory().get(i).getId();
     }
@@ -126,12 +133,18 @@ public class MyController {
         ArrayList<String> keys = new ArrayList<>(readWrite.UsersHM.keySet());
         for (String key : keys)
         {
-            if ((readWrite.UsersHM.get(key).getUserType() == UserType.contractor ||
-                    readWrite.UsersHM.get(key).getUserType() == UserType.freelancer) &&
-                    (((Contractor) readWrite.UsersHM.get(key)).getField().equals(prof)) &&
-                    ((Contractor) readWrite.UsersHM.get(key)).getArea().equals(area))
+            if (((readWrite.UsersHM.get(key).getUserType() == UserType.contractor &&
+                    (((Contractor) readWrite.UsersHM.get(key)).getField().equals(prof))) &&
+                    ((Contractor) readWrite.UsersHM.get(key)).getArea().equals(area))) {
 
                 results.add(readWrite.UsersHM.get(key));
+            }
+            else if((readWrite.UsersHM.get(key).getUserType() == UserType.freelancer) &&
+            (((Freelancer) readWrite.UsersHM.get(key)).getField().equals(prof)) &&
+            ((Freelancer) readWrite.UsersHM.get(key)).getArea().equals(area)){
+
+                results.add(readWrite.UsersHM.get(key));
+            }
         }
         if(results.size()>0)
             return results.size();
