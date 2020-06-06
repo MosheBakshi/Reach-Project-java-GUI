@@ -74,7 +74,6 @@ public class SearchResult extends JFrame implements  View {
         add(scroll);
         setVisible(true);
     }
-
 }
 
 

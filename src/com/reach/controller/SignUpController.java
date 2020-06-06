@@ -1,13 +1,18 @@
 package com.reach.controller;
 
 import com.reach.model.CreateUser;
-import com.reach.model.User;
+import com.reach.model.Model;
 import com.reach.model.WriterReader;
 
-public class SignUpController {
+public class SignUpController
+{
     private static final SignUpController instance = new SignUpController();
+
+    private static Model model;
+
     // SingleTone implementation //
     private SignUpController(){}
+
     public static SignUpController getInstance(){return instance;}
 
     // User Creator API//
@@ -16,7 +21,8 @@ public class SignUpController {
     }
 
     public boolean checkFreeUserName(String userName){
-        boolean answer =WriterReader.checkFreeUserName(userName);
+        boolean answer = WriterReader.checkFreeUserName(userName);
         return answer;
     }
+
 }

@@ -58,9 +58,4 @@ public class JobHistoryListScreen extends JFrame implements View
         add(scroll);
         setVisible(true);
     }
-
-    public static void main(String[] args) {
-        JobHistoryListScreen v = new JobHistoryListScreen();
-        v.showScreen();
-    }
 }

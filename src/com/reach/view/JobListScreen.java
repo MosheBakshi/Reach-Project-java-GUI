@@ -6,7 +6,6 @@ import java.awt.*;
 
 public class JobListScreen extends JFrame implements View
 {
-
     @Override
     public void showScreen()
     {

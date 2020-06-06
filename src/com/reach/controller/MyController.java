@@ -5,13 +5,13 @@ import com.reach.view.ReviewScreen;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MyController {
 
     private static final MyController instance = new MyController();
     private WriterReader readWrite = new WriterReader();
-
 
     //constructor for singelton
     private MyController(){}
@@ -41,12 +41,12 @@ public class MyController {
 
     //called to add review to list after review made
     public void publishReview(Review review, String workerUserName) {
-       // readWrite.UsersHM.get(workerUserName).setReview(review);
+        readWrite.UsersHM.get(workerUserName).setReview(review);
     }
 
     public int getUserId(String userName)
     {
-        return WriterReader.load(userName).getUserId();
+        return WriterReader.UsersHM.get(userName).getUserId();
     }
 
     public UserType getUserType(String userName){
@@ -93,32 +93,32 @@ public class MyController {
         WriterReader.setArea(userName,chooseArea);
     }
 
-    public int getUserJobsSize(String userName) {
-        if(WriterReader.load(userName).getJobs()!=null)
-            return WriterReader.load(userName).getJobs().size();
+    public int getUserJobsSize(String userName){
+        if(WriterReader.UsersHM.get(userName).getJobs()!=null)
+            return WriterReader.UsersHM.get(userName).getJobs().size();
         else return 0;
     }
 
     public int getUserJobHistorySize(String userName){
-        if(WriterReader.load(userName).getJobsHistory().isEmpty())
+        if(WriterReader.UsersHM.get(userName).getJobsHistory().isEmpty())
             return 0;
-        else return WriterReader.load(userName).getJobsHistory().size();
+        else return WriterReader.UsersHM.get(userName).getJobsHistory().size();
     }
 
     public  String HistoryDescription(String userName, int i){
-        return WriterReader.load(userName).getJobsHistory().get(i).getDescription();
+        return WriterReader.UsersHM.get(userName).getJobsHistory().get(i).getDescription();
     }
 
     public  String JobDescription(String userName, int i){
-        return WriterReader.load(userName).getJobs().get(i).getDescription();
+        return WriterReader.UsersHM.get(userName).getJobs().get(i).getDescription();
     }
 
     public  int HistoryID(String userName, int i){
-        return WriterReader.load(userName).getJobsHistory().get(i).getId();
+        return WriterReader.UsersHM.get(userName).getJobsHistory().get(i).getId();
     }
 
     public  int JobID(String userName, int i){
-        return WriterReader.load(userName).getJobs().get(i).getId();
+        return WriterReader.UsersHM.get(userName).getJobs().get(i).getId();
     }
 
     public int getResultsSize(String prof,String area){
@@ -182,7 +182,6 @@ public class MyController {
         }
         return ((Contractor)results.get(i)).getRating();
     }
-
 }
 
 

@@ -1,10 +1,11 @@
 package com.reach.model;
 
 public class CreateUser implements  Model{
+
     protected WriterReader scanner = new WriterReader();
     protected User newOne;
-    public CreateUser(){
-    }
+    public CreateUser(){}
+
     public User createUser(String choice,String userName,String PrivateName, String LastName, String Password)
     {
         switch (choice){
@@ -23,4 +24,5 @@ public class CreateUser implements  Model{
         }
         return null;
     }
+
 }

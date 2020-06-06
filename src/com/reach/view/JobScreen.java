@@ -1,7 +1,6 @@
 package com.reach.view;
 
 import com.reach.controller.MyController;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -90,17 +89,11 @@ public class JobScreen extends JFrame implements View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MyController.getInstance().writeReview(JobScreen.this.userName, workerUsername);
-                //close prev window
+                setVisible(false);
             }
         });
         add(writeReview);
 
         setVisible(true);
     }
-
-   /* public static void main(String[] args) {
-        View v1 = new JobScreen();
-        v1.showScreen();
-    }*/
-
 }

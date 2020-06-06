@@ -1,17 +1,16 @@
 package com.reach.model;
-import javax.swing.*;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 public class WriterReader implements Model{
     static int count = 0;
     private static final String filename = "myObjects.txt";
-    public HashMap<String,User> UsersHM = new HashMap<>();
+    public static HashMap<String,User> UsersHM = new HashMap<>();
+    //add if file exits
 
-    public static void save(User newUser)
-    {
+    public static void save(User newUser) {
         User user1;
         try {
             FileOutputStream f = new FileOutputStream(filename);
@@ -30,7 +29,9 @@ public class WriterReader implements Model{
             }
             newUser.setUserId(count++);
             o.writeObject(newUser);
-            //System.out.println("Saved " + newUser.getUserName() + " " + newUser.getUserType());
+            UsersHM.put(newUser.getUserName(),newUser);
+            saveAll();
+            System.out.println("Saved " + newUser.getUserName() + " " + newUser.getUserType());
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
@@ -50,7 +51,7 @@ public class WriterReader implements Model{
             {
                 user1 = (User)oi.readObject();
                 if (user1.userName.equals(name)) {
-                    //System.out.println("Loaded " + user1.getUserName());
+                    System.out.println("Loaded " + user1.getUserName());
                     return user1;
                 }
             }
@@ -66,7 +67,7 @@ public class WriterReader implements Model{
     }
 
     public static boolean verify(String userName, String password) {
-        User user = WriterReader.load(userName);
+        User user = WriterReader.UsersHM.get(userName);
         if(user == null )
             return false;
         else if(user.getPassword().equals(password))
@@ -76,19 +77,19 @@ public class WriterReader implements Model{
     }
 
     public static void setPhone(String name,String phone) {
-        User user = WriterReader.load(name);
+        User user = WriterReader.UsersHM.get(name);
         user.setPhone(phone);
         WriterReader.save(user);
     }
 
     public static void setCity(String userName, String city) {
-        User user = WriterReader.load(userName);
+        User user = WriterReader.UsersHM.get(userName);
         user.setUserCity(city);
         WriterReader.save(user);
     }
 
     public static void setArea(String userName, String chooseArea) {
-        User user = WriterReader.load(userName);
+        User user = WriterReader.UsersHM.get(userName);
         if(user instanceof Contractor){
             Contractor c = (Contractor) user;
             c.setArea(chooseArea);
@@ -100,7 +101,7 @@ public class WriterReader implements Model{
     }
 
     public static String getArea(String userName) {
-        User user = WriterReader.load(userName);
+        User user = WriterReader.UsersHM.get(userName);
         if(user instanceof Contractor){
             Contractor c = (Contractor) user;
             return c.getArea();
@@ -111,7 +112,7 @@ public class WriterReader implements Model{
     }
 
     public static void setExperience(String userName, String experience) {
-        User user = WriterReader.load(userName);
+        User user = WriterReader.UsersHM.get(userName);
         if(user instanceof Contractor){
             Contractor c = (Contractor) user;
             c.setYearsOfExperience(experience);
@@ -123,7 +124,7 @@ public class WriterReader implements Model{
     }
 
     public static String getExperience(String userName) {
-        User user = WriterReader.load(userName);
+        User user = WriterReader.UsersHM.get(userName);
         if(user instanceof Contractor){
             Contractor c = (Contractor) user;
             return c.getYearsOfExperience();
@@ -134,42 +135,41 @@ public class WriterReader implements Model{
     }
 
     public static String getPhone(String userName) {
-        User user = WriterReader.load(userName);
+        User user = WriterReader.UsersHM.get(userName);
         return user.getPhone();
     }
 
     public static String getCity(String userName) {
-        User user = WriterReader.load(userName);
+        User user = WriterReader.UsersHM.get(userName);
         return user.getUserCity();
     }
 
-
-
     public static UserType getUserType(String name){
-        User user = WriterReader.load(name);
+        User user = WriterReader.UsersHM.get(name);
         return user.getUserType();
     }
 
     public static String getFirstName(String username) {
-        User user = WriterReader.load(username);
+        User user = WriterReader.UsersHM.get(username);
         return user.getFirstName();
     }
 
     public static String getLastName(String username) {
-        User user = WriterReader.load(username);
+        User user = WriterReader.UsersHM.get(username);
         return user.getLastName();
     }
 
     public static boolean checkFreeUserName(String userName){
-        User user = WriterReader.load(userName);
+        /*User user = WriterReader.load(userName);
         if(user != null){
             return false;
         }
-        return true;
+        return true;*/
+        return !(UsersHM.containsKey(userName));
     }
 
     //on system close
-    public void saveAll()
+    public static void saveAll()
     {
         User user1;
         try {

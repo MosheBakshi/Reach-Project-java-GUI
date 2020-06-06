@@ -1,7 +1,6 @@
 package com.reach.view;
 
 import com.reach.controller.ButtonListener;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -40,7 +39,6 @@ public class SearchScreen extends JFrame implements  View{
         Font david20 = new Font("David", Font.BOLD, 20);
         Font david15 = new Font("forget a password", Font.PLAIN, 15);
 
-
         //Labels and Buttons
         JLabel userName = new JLabel("Hello " + getUserName());
         userName.setBounds(265, 105, 400, 100);
@@ -72,7 +70,6 @@ public class SearchScreen extends JFrame implements  View{
         JLabel background = new JLabel("", background_image, JLabel.CENTER);
         background.setBounds(0, 0, 700, 600);
         add(background);
-
 
         setVisible(true);
     }
