@@ -38,9 +38,9 @@ public class JobHistoryListScreen extends JFrame implements View
         }
         catch (Exception exc){
             if(exc.getMessage() == "customer"){
-                if (MyController.getInstance().getUserJobsSize(Consumer.getUsername())>0)
+                if (MyController.getInstance().getUserJobHistorySize(Consumer.getUsername())>0)
                 {
-                    int x = MyController.getInstance().getUserJobsSize(Consumer.getUsername());
+                    int x = MyController.getInstance().getUserJobHistorySize(Consumer.getUsername());
                     for(int i=0;i<x;i++)
                     {
                         String desc = MyController.getInstance().HistoryDescription(Consumer.getUsername(),x);
@@ -70,9 +70,9 @@ public class JobHistoryListScreen extends JFrame implements View
                 }
             }
             else if(exc.getMessage() == "freelancer"){
-                if (MyController.getInstance().getUserJobsSize(Freelancer.getUsername())>0)
+                if (MyController.getInstance().getUserJobHistorySize(Freelancer.getUsername())>0)
                 {
-                    int x = MyController.getInstance().getUserJobsSize(Freelancer.getUsername());
+                    int x = MyController.getInstance().getUserJobHistorySize(Freelancer.getUsername());
                     for(int i=0;i<x;i++)
                     {
                         String desc = MyController.getInstance().HistoryDescription(Freelancer.getUsername(),x);
@@ -102,9 +102,9 @@ public class JobHistoryListScreen extends JFrame implements View
                 }
             }
             else if(exc.getMessage() == "contractor"){
-                if (MyController.getInstance().getUserJobsSize(Contractor.getUsername())>0)
+                if (MyController.getInstance().getUserJobHistorySize(Contractor.getUsername())>0)
                 {
-                    int x = MyController.getInstance().getUserJobsSize(Contractor.getUsername());
+                    int x = MyController.getInstance().getUserJobHistorySize(Contractor.getUsername());
                     for(int i=0;i<x;i++)
                     {
                         String desc = MyController.getInstance().HistoryDescription(Contractor.getUsername(),x);
