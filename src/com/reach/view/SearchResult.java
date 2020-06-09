@@ -48,11 +48,11 @@ public class SearchResult extends JFrame implements  View {
                 subField.setFont(david20);
                 main.add(subField);
 
-                double rate = MyController.getInstance().getResultsRating(prof,area,i);
+               /* double rate = MyController.getInstance().getResultsRating(prof,area,i);
                 JLabel rating = new JLabel("Rating: " + rate);
                 rating.setBounds(20, i * 50 + 200, 200, 30);
                 rating.setFont(david20);
-                main.add(rating);
+                main.add(rating);*/
 
                 JButton go = new JButton("Pick");
                 go.setFont(david20);

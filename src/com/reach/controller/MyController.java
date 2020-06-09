@@ -185,10 +185,16 @@ public class MyController {
             else if(user.getUserType()==UserType.contractor && (((Contractor)user).getArea()) != null &&  ((Contractor)user).getArea().equals(area) && (((Contractor)user).getField()) != null &&  ((Contractor)user).getField().equals(prof))
                 results.add(WriterReader.UsersHM.get(key));
         }
-        return ((Contractor)results.get(i)).getSubfield();
+        if(results.get(i).getUserType()==UserType.contractor) {
+            return ((Contractor) results.get(i)).getSubfield();
+        }
+        else if (results.get(i).getUserType()==UserType.freelancer) {
+            return ((Freelancer) results.get(i)).getSubfield();
+        }
+        return null;
     }
 
-    public double getResultsRating(String prof, String area, int i) {
+  /*  public double getResultsRating(String prof, String area, int i) {
         List<User> results = new ArrayList<>();
         ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
         for (String key : keys)
@@ -199,8 +205,10 @@ public class MyController {
             else if(user.getUserType()==UserType.contractor && (((Contractor)user).getArea()) != null &&  ((Contractor)user).getArea().equals(area) && (((Contractor)user).getField()) != null &&  ((Contractor)user).getField().equals(prof))
                 results.add(WriterReader.UsersHM.get(key));
         }
-        return results.get(i).getRating();
-    }
+        if(results.get(i).getRating() == 0)
+            return 1;
+        else return results.get(i).getRating();
+    }*/
 
 }
 
