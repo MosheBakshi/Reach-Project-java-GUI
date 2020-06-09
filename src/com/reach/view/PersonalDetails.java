@@ -12,6 +12,7 @@ public class PersonalDetails extends JFrame implements View {
 
     private String userName;
 
+
     public PersonalDetails(String name){
         this.userName = name;
     }
@@ -54,9 +55,13 @@ public class PersonalDetails extends JFrame implements View {
         field.setBounds(75, 160, 100, 100);
         field.setFont(david16);
         add(field);
-        JTextField enterField = new JTextField("");
-        enterField.setBounds(145, 202, 100, 20);
+        String[] optionBox = {"Profession","Electrician","Handyman","Technician"};
+        JComboBox enterField = new JComboBox(optionBox);
+        enterField.setBounds(145, 200, 100, 20);
         add(enterField);
+        //JTextField enterField = new JTextField("");
+        //enterField.setBounds(145, 202, 100, 20);
+        //add(enterField);
         JLabel subField = new JLabel("Sub-field");
         subField.setBounds(75, 190, 100, 100);
         subField.setFont(david16);
@@ -93,6 +98,10 @@ public class PersonalDetails extends JFrame implements View {
                     MyController.getInstance().setExperience(userName,experience);
                     String chooseArea = enterArea.getText();
                     MyController.getInstance().setArea(userName,chooseArea);
+                    String enterF = (String)enterField.getSelectedItem();
+                    MyController.getInstance().setField(userName,enterF);
+                    String subfield = enterSubfield.getText();
+                    MyController.getInstance().setSubfield(userName, subfield);
 
 
                     setVisible(false);
@@ -108,6 +117,10 @@ public class PersonalDetails extends JFrame implements View {
                     MyController.getInstance().setExperience(userName,experience);
                     String chooseArea = enterArea.getText();
                     MyController.getInstance().setArea(userName,chooseArea);
+                    String enterF = (String)enterField.getSelectedItem();
+                    MyController.getInstance().setField(userName,enterF);
+                    String subfield = enterSubfield.getText();
+                    MyController.getInstance().setSubfield(userName, subfield);
 
 
                     setVisible(false);

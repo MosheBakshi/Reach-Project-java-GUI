@@ -84,14 +84,28 @@ public class Contractor extends JFrame implements View {
             city.setFont(david16);
             add(city);
         }
-        JLabel field = new JLabel("Field: ");
-        field.setBounds(450, 125, 100, 100);
-        field.setFont(david16);
-        add(field);
-        JLabel subField = new JLabel("Sub-field: ");
-        subField.setBounds(450, 155, 100, 100);
-        subField.setFont(david16);
-        add(subField);
+        if(MyController.getInstance().getField(getUsername())==null) {
+            JLabel field = new JLabel("Field: ");
+            field.setBounds(450, 125, 100, 100);
+            field.setFont(david16);
+            add(field);
+        }else{
+            JLabel field = new JLabel("Field: "+MyController.getInstance().getField(getUsername()));
+            field.setBounds(450, 125, 300, 100);
+            field.setFont(david16);
+            add(field);
+        }
+        if(MyController.getInstance().getSubfield(getUsername())==null) {
+            JLabel subField = new JLabel("Sub-field: ");
+            subField.setBounds(450, 155, 100, 100);
+            subField.setFont(david16);
+            add(subField);
+        }else{
+            JLabel subField = new JLabel("Sub-field: "+MyController.getInstance().getSubfield(getUsername()));
+            subField.setBounds(450, 155, 300, 100);
+            subField.setFont(david16);
+            add(subField);
+        }
         if(MyController.getInstance().getExperience(getUsername())==null) {
             JLabel experience = new JLabel("Experience: ");
             experience.setBounds(450, 185, 100, 100);

@@ -27,10 +27,12 @@ public class Contractor extends User implements  Model{
     }
 
     public String getSubfield() {
-        return subfield;
+        return this.subfield;
     }
 
-
+    public void setField(String enterF) {
+        this.field=enterF;
+    }
 
     public String getYearsOfExperience() {
         return yearsOfExperience;
@@ -48,4 +50,7 @@ public class Contractor extends User implements  Model{
         return this.area;
     }
 
+    public void setSubfield(String subfield) {
+        this.subfield=subfield;
+    }
 }
