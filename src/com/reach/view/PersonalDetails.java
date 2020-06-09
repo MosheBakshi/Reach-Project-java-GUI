@@ -59,9 +59,6 @@ public class PersonalDetails extends JFrame implements View {
         JComboBox enterField = new JComboBox(optionBox);
         enterField.setBounds(145, 200, 100, 20);
         add(enterField);
-        //JTextField enterField = new JTextField("");
-        //enterField.setBounds(145, 202, 100, 20);
-        //add(enterField);
         JLabel subField = new JLabel("Sub-field");
         subField.setBounds(75, 190, 100, 100);
         subField.setFont(david16);
@@ -80,7 +77,8 @@ public class PersonalDetails extends JFrame implements View {
         area.setBounds(400, 130, 100, 100);
         area.setFont(david16);
         add(area);
-        JTextField enterArea = new JTextField("");
+        String[] optionArea = {"Area","center","north","south","west","east"};
+        JComboBox enterArea = new JComboBox(optionArea);
         enterArea.setBounds(490, 172, 100, 20);
         add(enterArea);
         JButton done = new JButton("DONE");
@@ -96,7 +94,7 @@ public class PersonalDetails extends JFrame implements View {
                     MyController.getInstance().setCity(userName, city);
                     String experience = enterExperience.getText();
                     MyController.getInstance().setExperience(userName,experience);
-                    String chooseArea = enterArea.getText();
+                    String chooseArea = (String)enterArea.getSelectedItem();
                     MyController.getInstance().setArea(userName,chooseArea);
                     String enterF = (String)enterField.getSelectedItem();
                     MyController.getInstance().setField(userName,enterF);
@@ -115,7 +113,7 @@ public class PersonalDetails extends JFrame implements View {
                     MyController.getInstance().setCity(userName, city);
                     String experience = enterExperience.getText();
                     MyController.getInstance().setExperience(userName,experience);
-                    String chooseArea = enterArea.getText();
+                    String chooseArea = (String)enterArea.getSelectedItem();
                     MyController.getInstance().setArea(userName,chooseArea);
                     String enterF = (String)enterField.getSelectedItem();
                     MyController.getInstance().setField(userName,enterF);

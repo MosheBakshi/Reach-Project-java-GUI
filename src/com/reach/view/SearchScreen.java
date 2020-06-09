@@ -57,7 +57,7 @@ public class SearchScreen extends JFrame implements  View{
         profession = new JComboBox(optionBox);
         profession.setBounds(130, 240, 100, 20);
         add(profession);
-        String[] area = {"Area","center","north","south","west"};
+        String[] area = {"Area","center","north","south","west","east"};
         areaBox = new JComboBox(area);
         areaBox.setBounds(255, 240, 100, 20);
         add(areaBox);
