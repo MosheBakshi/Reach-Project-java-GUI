@@ -36,6 +36,15 @@ public class SearchResult extends JFrame implements  View {
             int x = MyController.getInstance().getResultsSize(prof,area);
             for (int i = 0; i < x; i++)
             {
+                JLabel number = new JLabel("Result number: " + i+1);
+                number.setFont(david20);
+                number.setBounds(20, i * 50 + 100, 200, 30);
+                main.add(number);
+
+                JLabel space = new JLabel("");
+                space.setBounds(10,10,10,10);
+                main.add(space);
+
                 String Name = MyController.getInstance().getResultsName(prof,area,i);
                 JLabel name = new JLabel("Name: " + Name);
                 name.setFont(david20);

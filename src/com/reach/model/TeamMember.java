@@ -31,6 +31,7 @@ public class TeamMember implements  Model{
     }
 
 }
+
 /* public TeamMember setMember(){
         TeamMember member = new TeamMember();
         Scanner n = new Scanner(System.in);

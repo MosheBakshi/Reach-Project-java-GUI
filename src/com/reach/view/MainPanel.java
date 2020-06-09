@@ -2,7 +2,6 @@ package com.reach.view;
 
 import com.reach.controller.MyController;
 import com.reach.model.UserType;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -155,7 +154,6 @@ public class MainPanel extends JFrame implements View {
         });
         add(logIn);
 
-
         //Bg
         ImageIcon background_image = new ImageIcon("BgImg1.png");
         Image img = background_image.getImage();
@@ -164,7 +162,6 @@ public class MainPanel extends JFrame implements View {
         JLabel background = new JLabel("", background_image, JLabel.CENTER);
         background.setBounds(0, 0, 750, 750);
         add(background);
-
 
         setVisible(true);
     }
