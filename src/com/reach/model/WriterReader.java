@@ -17,7 +17,6 @@ public class WriterReader implements Model{
             ObjectOutputStream o = new ObjectOutputStream(f);
             FileInputStream fi = new FileInputStream(filename);
             ObjectInputStream oi = new ObjectInputStream(fi);
-            //check if user name exists
             while (fi.available()>4)
             {
                 user1 = (User) oi.readObject();
@@ -123,6 +122,30 @@ public class WriterReader implements Model{
         WriterReader.save(user);
     }
 
+    public static void setField(String userName, String enterF) {
+        User user = WriterReader.UsersHM.get(userName);
+        if(user instanceof Contractor){
+            Contractor c = (Contractor) user;
+            c.setField(enterF);
+        } else {
+            Freelancer f = (Freelancer) user;
+            f.setField(enterF);
+        }
+        WriterReader.save(user);
+    }
+
+    public static void setSubfield(String userName, String subfield) {
+        User user = WriterReader.UsersHM.get(userName);
+        if(user instanceof Contractor){
+            Contractor c = (Contractor) user;
+            c.setSubfield(subfield);
+        } else {
+            Freelancer f = (Freelancer) user;
+            f.setSubfield(subfield);
+        }
+        WriterReader.save(user);
+    }
+
     public static String getExperience(String userName) {
         User user = WriterReader.UsersHM.get(userName);
         if(user instanceof Contractor){
@@ -131,6 +154,28 @@ public class WriterReader implements Model{
         } else {
             Freelancer f = (Freelancer) user;
             return f.getYearsOfExperience();
+        }
+    }
+
+    public static String getField(String userName) {
+        User user = WriterReader.UsersHM.get(userName);
+        if(user instanceof Contractor){
+            Contractor c = (Contractor) user;
+            return c.getField();
+        } else {
+            Freelancer f = (Freelancer) user;
+            return f.getField();
+        }
+    }
+
+    public static String getSubfield(String userName) {
+        User user = WriterReader.UsersHM.get(userName);
+        if(user instanceof Contractor){
+            Contractor c = (Contractor) user;
+            return c.getSubfield();
+        } else {
+            Freelancer f = (Freelancer) user;
+            return f.getSubfield();
         }
     }
 

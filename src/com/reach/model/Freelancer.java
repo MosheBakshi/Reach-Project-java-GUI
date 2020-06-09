@@ -23,11 +23,15 @@ public class Freelancer extends User implements  Model{
     }
 
     public String getField() {
-        return field;
+        return this.field;
     }
 
     public String getSubfield() {
-        return subfield;
+        return this.subfield;
+    }
+
+    public void setSubfield(String subfield) {
+        this.subfield=subfield;
     }
 
     public String getYearsOfExperience() {
@@ -44,5 +48,9 @@ public class Freelancer extends User implements  Model{
 
     public String getArea() {
         return this.area;
+    }
+
+    public void setField(String enterF) {
+        this.field=enterF;
     }
 }

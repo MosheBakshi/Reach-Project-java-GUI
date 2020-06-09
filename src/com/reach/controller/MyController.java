@@ -49,7 +49,7 @@ public class MyController {
         return WriterReader.UsersHM.get(userName).getUserId();
     }
 
-    public UserType getUserType(String userName){
+   public UserType getUserType(String userName){
         return WriterReader.getUserType(userName);
     }
 
@@ -87,6 +87,22 @@ public class MyController {
 
     public void setExperience(String userName, String experience) {
         WriterReader.setExperience(userName,experience);
+    }
+
+    public String  getField(String userName) {
+        return WriterReader.getField(userName);
+    }
+
+    public void setField(String userName, String enterF) {
+        WriterReader.setField(userName,enterF);
+    }
+
+    public void setSubfield(String userName, String subfield) {
+        WriterReader.setSubfield(userName,subfield);
+    }
+
+    public String getSubfield(String username) {
+        return WriterReader.getSubfield(username);
     }
 
     public void setArea(String userName, String chooseArea) {
@@ -195,6 +211,7 @@ public class MyController {
         }
         return ((Contractor)results.get(i)).getRating();
     }
+
 }
 
 
