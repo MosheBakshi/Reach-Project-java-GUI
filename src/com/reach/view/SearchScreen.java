@@ -1,6 +1,5 @@
 package com.reach.view;
 
-import com.reach.controller.ButtonListener;
 import com.reach.controller.MyController;
 import com.reach.model.UserType;
 
@@ -63,7 +62,6 @@ public class SearchScreen extends JFrame implements  View{
         add(areaBox);
         JButton search = new JButton("Search");
         search.setBounds(375, 240, 110, 20);
-     //   search.addActionListener(new ButtonListener(this));
         search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

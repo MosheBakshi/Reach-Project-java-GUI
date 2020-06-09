@@ -1,6 +1,5 @@
 package com.reach.view;
 
-import com.reach.controller.ButtonListener;
 import com.reach.controller.MyController;
 import com.reach.model.UserType;
 
@@ -78,7 +77,7 @@ public class MainPanel extends JFrame implements View {
         forgetPassword.setBackground(Color.white);
         forgetPassword.setBorderPainted(false);
         forgetPassword.setFont(david10);
-        forgetPassword.addActionListener(new ButtonListener(this));
+        //forgetPassword.addActionListener(new ButtonListener(this));
         forgetPassword.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
@@ -110,7 +109,6 @@ public class MainPanel extends JFrame implements View {
         add(notAMember);
         signUp = new JButton("Sign Up Here");
         signUp.setBounds(150, 384, 110, 30);
-        signUp.addActionListener(new ButtonListener(this));
         signUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -124,7 +122,6 @@ public class MainPanel extends JFrame implements View {
         add(signUp);
         logIn = new JButton("Log In");
         logIn.setBounds(157, 281, 100, 30);
-        logIn.addActionListener(new ButtonListener(this));
         logIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
