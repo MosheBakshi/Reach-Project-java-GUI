@@ -1,6 +1,7 @@
 package com.reach.controller;
 
 import com.reach.model.*;
+import com.reach.view.MainPanel;
 import com.reach.view.ReviewScreen;
 
 import javax.swing.*;
@@ -136,6 +137,7 @@ public class MyController {
     public void JobSetAcceptance(String userName,int i){
         WriterReader.UsersHM.get(userName).getJobs().get(i).setAccepted();
     }
+
     public  int HistoryID(String userName, int i){
         return WriterReader.UsersHM.get(userName).getJobsHistory().get(i).getId();
     }
@@ -145,72 +147,68 @@ public class MyController {
     }
 
     public int getResultsSize(String prof,String area){
-        List<User> results = new ArrayList<>();
-        ArrayList<String> keys = new ArrayList<>(readWrite.UsersHM.keySet());
+        int results=0;
+        ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
         for (String key : keys)
         {
-            if (((readWrite.UsersHM.get(key).getUserType() == UserType.contractor &&
-                    (((Contractor) readWrite.UsersHM.get(key)).getField().equals(prof))) &&
-                    ((Contractor) readWrite.UsersHM.get(key)).getArea().equals(area))) {
-
-                results.add(readWrite.UsersHM.get(key));
-            }
-            else if((readWrite.UsersHM.get(key).getUserType() == UserType.freelancer) &&
-            (((Freelancer) readWrite.UsersHM.get(key)).getField().equals(prof)) &&
-            ((Freelancer) readWrite.UsersHM.get(key)).getArea().equals(area)){
-
-                results.add(readWrite.UsersHM.get(key));
-            }
+            User user = WriterReader.UsersHM.get(key);
+           if(user.getUserType()==UserType.freelancer && (((Freelancer)user).getArea()) != null &&  ((Freelancer)user).getArea().equals(area) && (((Freelancer)user).getField()) != null &&  ((Freelancer)user).getField().equals(prof))
+               results++;
+           else if(user.getUserType()==UserType.contractor && (((Contractor)user).getArea()) != null &&  ((Contractor)user).getArea().equals(area) && (((Contractor)user).getField()) != null &&  ((Contractor)user).getField().equals(prof))
+               results++;
         }
-        if(results.size()>0)
-            return results.size();
-        else return 0;
+        return results;
     }
 
     public String getResultsName(String prof,String area,int i) {
         List<User> results = new ArrayList<>();
-        ArrayList<String> keys = new ArrayList<>(readWrite.UsersHM.keySet());
+        ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
         for (String key : keys)
         {
-            if ((readWrite.UsersHM.get(key).getUserType() == UserType.contractor ||
-                    readWrite.UsersHM.get(key).getUserType() == UserType.freelancer) &&
-                    (((Contractor) readWrite.UsersHM.get(key)).getField().equals(prof)) &&
-                    ((Contractor) readWrite.UsersHM.get(key)).getArea().equals(area))
-
-                results.add(readWrite.UsersHM.get(key));
+            User user = WriterReader.UsersHM.get(key);
+            if(user.getUserType()==UserType.freelancer && (((Freelancer)user).getArea()) != null &&  ((Freelancer)user).getArea().equals(area) && (((Freelancer)user).getField()) != null &&  ((Freelancer)user).getField().equals(prof))
+                results.add(WriterReader.UsersHM.get(key));
+            else if(user.getUserType()==UserType.contractor && (((Contractor)user).getArea()) != null &&  ((Contractor)user).getArea().equals(area) && (((Contractor)user).getField()) != null &&  ((Contractor)user).getField().equals(prof))
+                results.add(WriterReader.UsersHM.get(key));
         }
         return results.get(i).getFirstName();
     }
 
     public String getResultsSub(String prof, String area, int i) {
         List<User> results = new ArrayList<>();
-        ArrayList<String> keys = new ArrayList<>(readWrite.UsersHM.keySet());
+        ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
         for (String key : keys)
         {
-            if ((readWrite.UsersHM.get(key).getUserType() == UserType.contractor ||
-                    readWrite.UsersHM.get(key).getUserType() == UserType.freelancer) &&
-                    (((Contractor) readWrite.UsersHM.get(key)).getField().equals(prof)) &&
-                    ((Contractor) readWrite.UsersHM.get(key)).getArea().equals(area))
-
-                results.add(readWrite.UsersHM.get(key));
+            User user = WriterReader.UsersHM.get(key);
+            if(user.getUserType()==UserType.freelancer && (((Freelancer)user).getArea()) != null &&  ((Freelancer)user).getArea().equals(area) && (((Freelancer)user).getField()) != null &&  ((Freelancer)user).getField().equals(prof))
+                results.add(WriterReader.UsersHM.get(key));
+            else if(user.getUserType()==UserType.contractor && (((Contractor)user).getArea()) != null &&  ((Contractor)user).getArea().equals(area) && (((Contractor)user).getField()) != null &&  ((Contractor)user).getField().equals(prof))
+                results.add(WriterReader.UsersHM.get(key));
         }
-        return ((Contractor)results.get(i)).getSubfield();
+        if(results.get(i).getUserType()==UserType.contractor) {
+            return ((Contractor) results.get(i)).getSubfield();
+        }
+        else if (results.get(i).getUserType()==UserType.freelancer) {
+            return ((Freelancer) results.get(i)).getSubfield();
+        }
+        return null;
     }
 
-    public double getResultsRating(String prof, String area, int i) {
+  /*  public double getResultsRating(String prof, String area, int i) {
         List<User> results = new ArrayList<>();
-        ArrayList<String> keys = new ArrayList<>(readWrite.UsersHM.keySet());
+        ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
         for (String key : keys)
         {
-            if ((readWrite.UsersHM.get(key).getUserType() == UserType.contractor ||
-                    readWrite.UsersHM.get(key).getUserType() == UserType.freelancer) &&
-                    (((Contractor) readWrite.UsersHM.get(key)).getField().equals(prof)) &&
-                    ((Contractor) readWrite.UsersHM.get(key)).getArea().equals(area))
-
-                results.add(readWrite.UsersHM.get(key));
+            User user = WriterReader.UsersHM.get(key);
+            if(user.getUserType()==UserType.freelancer && (((Freelancer)user).getArea()) != null &&  ((Freelancer)user).getArea().equals(area) && (((Freelancer)user).getField()) != null &&  ((Freelancer)user).getField().equals(prof))
+                results.add(WriterReader.UsersHM.get(key));
+            else if(user.getUserType()==UserType.contractor && (((Contractor)user).getArea()) != null &&  ((Contractor)user).getArea().equals(area) && (((Contractor)user).getField()) != null &&  ((Contractor)user).getField().equals(prof))
+                results.add(WriterReader.UsersHM.get(key));
         }
-        return ((Contractor)results.get(i)).getRating();
-    }
+        if(results.get(i).getRating() == 0)
+            return 1;
+        else return results.get(i).getRating();
+    }*/
 
 }
 

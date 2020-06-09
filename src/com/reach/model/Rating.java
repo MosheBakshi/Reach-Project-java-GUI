@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Rating implements Model{
 
-    protected double avgRate;
-    protected double avgRateCost;
-    protected double avgRateDeadline;
-    protected double avgRateQuality;
+    protected double avgRate = 0;
+    protected double avgRateCost =0;
+    protected double avgRateDeadline=0;
+    protected double avgRateQuality=0;
     protected ArrayList<Review> reviews = new ArrayList<>();
 
     public void setAvgRate(double avgRate) {
@@ -50,7 +50,7 @@ public class Rating implements Model{
         return avgRateQuality;
     }
 
-    public void setAvgs() {
+    /*public void setAvgs() {
         double sumcost = 0, sumdeadline = 0, sumquality = 0;
         for (int i=0; i<this.reviews.size();i++)
         {
@@ -63,5 +63,5 @@ public class Rating implements Model{
         this.setAvgRateDeadline(sumdeadline / reviews.size());
         this.setAvgRateQuality(sumquality / reviews.size());
         this.setAvgRate((this.getAvgRateCost() + this.getAvgRateDeadline() + this.getAvgRateQuality()) / 3);
-    }
+    }*/
 }
