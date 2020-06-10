@@ -21,10 +21,17 @@ public class SearchResult extends JFrame implements  View {
         setSize(1000, 1000);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        ImageIcon background_image = new ImageIcon("search.jpg");
+        Image img = background_image.getImage();
+        Image tmp_img = img.getScaledInstance(690, 950, Image.SCALE_SMOOTH);
+        background_image = new ImageIcon(tmp_img);
+        JLabel background = new JLabel("", background_image, JLabel.CENTER);
+        background.setBounds(310, 0, 690, 950);
+        add(background);
 
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
-        main.setBounds(0,0,900,900);
+        main.setBounds(0,0,300,900);
         add(main);
 
         //Font
@@ -36,14 +43,10 @@ public class SearchResult extends JFrame implements  View {
             int x = MyController.getInstance().getResultsSize(prof,area);
             for (int i = 0; i < x; i++)
             {
-                JLabel number = new JLabel("Result number: " + i+1);
+                JLabel number = new JLabel("Result number: " + (i+1));
                 number.setFont(david20);
                 number.setBounds(20, i * 50 + 100, 200, 30);
                 main.add(number);
-
-                JLabel space = new JLabel("");
-                space.setBounds(10,10,10,10);
-                main.add(space);
 
                 String Name = MyController.getInstance().getResultsName(prof,area,i);
                 JLabel name = new JLabel("Name: " + Name);
@@ -73,6 +76,10 @@ public class SearchResult extends JFrame implements  View {
                     }
                 });
                 main.add(go);
+
+                JLabel space = new JLabel("\n");
+                space.setBounds(10,10,10,10);
+                main.add(space);
             }
         }
         else
@@ -83,9 +90,8 @@ public class SearchResult extends JFrame implements  View {
             main.add(empty);
         }
         JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.setBounds(0,0,880,900);
+        scroll.setBounds(0,0,280,900);
         add(scroll);
-
 
         JButton home = new JButton("Home");
         home.setBounds(0, 900, 100, 30);
