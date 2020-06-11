@@ -184,6 +184,7 @@ public class WriterReader implements Model{
         return user.getPhone();
     }
 
+
     public static String getCity(String userName) {
         User user = WriterReader.UsersHM.get(userName);
         return user.getUserCity();

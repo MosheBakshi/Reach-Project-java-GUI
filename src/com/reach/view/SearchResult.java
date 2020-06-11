@@ -12,8 +12,10 @@ public class SearchResult extends JFrame implements  View {
     String userName;
     String prof = SearchScreen.getProfession();
     String area = SearchScreen.getAreaBox();
-    public SearchResult(String un){
+    protected static JFrame parent;
+    public SearchResult(String un,JFrame newParent){
         userName = un;
+        parent = newParent;
     }
     @Override
     public void showScreen() {
@@ -21,6 +23,7 @@ public class SearchResult extends JFrame implements  View {
         setSize(1000, 1000);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        parent.setVisible(false);
         ImageIcon background_image = new ImageIcon("search.jpg");
         Image img = background_image.getImage();
         Image tmp_img = img.getScaledInstance(690, 950, Image.SCALE_SMOOTH);
@@ -72,7 +75,10 @@ public class SearchResult extends JFrame implements  View {
                 go.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-
+                        String watchedUser = MyController.getInstance().getResultsUserName(prof,area,go.getY()/50);
+                        JFrame parent = (JFrame)getRootPane().getParent();
+                        SearchPickScreen v1 = new SearchPickScreen(parent,userName,watchedUser);
+                        v1.showScreen();
                     }
                 });
                 main.add(go);
@@ -89,41 +95,20 @@ public class SearchResult extends JFrame implements  View {
             empty.setFont(david50);
             main.add(empty);
         }
-        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.setBounds(0,0,280,900);
-        add(scroll);
-
-        JButton home = new JButton("Home");
-        home.setBounds(0, 900, 100, 30);
-        home.addActionListener(new ActionListener() {
+        JButton back = new JButton("Back");
+        back.setBounds(0, 670, 100, 30);
+        back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    UserType userTypeReturned = MyController.getInstance().getUserType(userName);
-                    if(userTypeReturned == UserType.customer){throw new Exception("consumer");}
-                    else if(userTypeReturned == UserType.freelancer){throw new Exception("freelancer");}
-                    else if(userTypeReturned == UserType.contractor){throw new Exception("contractor");}
-                }
-                catch (Exception exc){
-                    if(exc.getMessage() == "consumer"){
-                        setVisible(false);
-                        Consumer v1 = new Consumer(userName);
-                        v1.showScreen();
-                    }
-                    else if(exc.getMessage() == "freelancer"){
-                        setVisible(false);
-                        Freelancer v1 = new Freelancer(userName);
-                        v1.showScreen();
-                    }
-                    else if(exc.getMessage() == "contractor"){
-                        setVisible(false);
-                        Contractor v1 = new Contractor(userName);
-                        v1.showScreen();
-                    }
-                }
+                parent.setVisible(true);
+                dispose();
             }
         });
-        add(home);
+        add(back,"FIRST");
+
+        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setBounds(0,0,280,550);
+        add(scroll);
 
         setVisible(true);
     }

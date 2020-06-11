@@ -11,6 +11,13 @@ public class Job implements Model{
     protected Price Price;
     protected Boolean accepted = false;
 
+    public Job(String CusUserName,String WorkUserName,String desc){
+        customerUserName = CusUserName;
+        workerUserName = WorkUserName;
+        description = desc;
+    }
+
+
     public String getWorkerUserName() {
         return workerUserName;
     }

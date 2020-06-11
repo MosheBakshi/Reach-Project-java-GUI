@@ -65,7 +65,9 @@ public class SearchScreen extends JFrame implements  View{
         search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SearchResult v1 = new SearchResult(getUserName());
+                setVisible(false);
+                JFrame parent = (JFrame)getRootPane().getParent();
+                SearchResult v1 = new SearchResult(getUserName(),parent);
                 v1.showScreen();
             }
         });

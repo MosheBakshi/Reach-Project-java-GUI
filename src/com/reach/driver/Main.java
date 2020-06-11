@@ -4,13 +4,18 @@ import com.reach.model.WriterReader;
 import com.reach.view.*;
 
 import javax.swing.*;
+import java.awt.*;
 
-public class Main {
+public class Main extends JFrame{
+    public static WriterReader initial = new WriterReader();
+    @Override
+    public int getDefaultCloseOperation() {
+        initial.saveAll();
+        return super.getDefaultCloseOperation();
+    }
 
     public static void main(String[] args) {
-        WriterReader initial = new WriterReader();
         initial.loadAll();
-        initial.saveAll();
         View v1 = new MainPanel();
         v1.showScreen();
     }

@@ -28,6 +28,9 @@ public class MyController {
             return false;
     }
 
+
+
+
     //called on click "Write review" from JobScreen
     public void writeReview(String userName, String workerUserName) {
         ReviewScreen v = new ReviewScreen();
@@ -138,6 +141,21 @@ public class MyController {
         WriterReader.UsersHM.get(userName).getJobs().get(i).setAccepted();
     }
 
+    public void setNewJob(String CustomerUserName,String WorkerUserName,String description){
+        WriterReader.UsersHM.get(WorkerUserName).addJob(WorkerUserName,CustomerUserName,description);
+    }
+
+    //After Fixing saving error of new jobs
+    public void acceptJob(String WorkerUserName , String CusUserName){
+        ArrayList<Job> list = WriterReader.UsersHM.get(WorkerUserName).getJobs();
+        for(Job job : list){
+            if(job.getCustomerUserName() == CusUserName){
+                job.setAccepted();
+                WriterReader.UsersHM.get(CusUserName).getJobs().add(job);
+            }
+        }
+    }
+
     public  int HistoryID(String userName, int i){
         return WriterReader.UsersHM.get(userName).getJobsHistory().get(i).getId();
     }
@@ -173,6 +191,30 @@ public class MyController {
         }
         return results.get(i).getFirstName();
     }
+
+    public String getResultsUserName(String prof,String area,int i) {
+        List<User> results = new ArrayList<>();
+        ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
+        for (String key : keys)
+        {
+            User user = WriterReader.UsersHM.get(key);
+            if(user.getUserType()==UserType.freelancer &&
+                    (((Freelancer)user).getArea()) != null &&
+                    ((Freelancer)user).getArea().equals(area) &&
+                    (((Freelancer)user).getField()) != null &&
+                    ((Freelancer)user).getField().equals(prof))
+                results.add(WriterReader.UsersHM.get(key));
+            else if(user.getUserType()==UserType.contractor &&
+                    (((Contractor)user).getArea()) != null &&
+                    ((Contractor)user).getArea().equals(area) &&
+                    (((Contractor)user).getField()) != null &&
+                    ((Contractor)user).getField().equals(prof))
+                results.add(WriterReader.UsersHM.get(key));
+        }
+        return results.get(i/2).getUserName();
+    }
+
+
 
     public String getResultsSub(String prof, String area, int i) {
         List<User> results = new ArrayList<>();

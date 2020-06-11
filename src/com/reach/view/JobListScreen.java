@@ -38,22 +38,24 @@ public class JobListScreen extends JFrame implements View
         }
         catch (Exception exc){
             if(exc.getMessage() == "customer"){
-                if (MyController.getInstance().getUserJobsSize(Consumer.getUsername())>0)
+                if (MyController.getInstance().getUserJobsSize(userName)>0)
                 {
-                    int x = MyController.getInstance().getUserJobsSize(Consumer.getUsername());
+                    int x = MyController.getInstance().getUserJobsSize(userName);
                     for(int i=0;i<x;i++)
                     {
-                        String desc = MyController.getInstance().JobDescription(Consumer.getUsername(),x);
+                        String desc = MyController.getInstance().JobDescription(userName,x);
                         JLabel jobDescription = new JLabel("Description: " + desc);
                         jobDescription.setBounds(20, i * 50 + 100, 400, 30);
                         jobDescription.setFont(david20);
                         main.add(jobDescription);
 
-                        int ID = MyController.getInstance().JobID(Consumer.getUsername(),x);
+/*
+                        int ID = MyController.getInstance().JobID(userName,x);
                         JLabel jobID = new JLabel("Job id: " + ID);
                         jobID.setBounds(20, i * 50 + 150, 200, 30);
                         jobID.setFont(david20);
                         main.add(jobID);
+*/
 
                         JButton goTo = new JButton("See job details");
                         goTo.setBounds(350, i * 50 + 150, 200, 30);
@@ -70,18 +72,18 @@ public class JobListScreen extends JFrame implements View
                 }
             }
             else if(exc.getMessage() == "freelancer"){
-                if (MyController.getInstance().getUserJobsSize(Freelancer.getUsername())>0)
+                if (MyController.getInstance().getUserJobsSize(userName)>0)
                 {
-                    int x = MyController.getInstance().getUserJobsSize(Freelancer.getUsername());
+                    int x = MyController.getInstance().getUserJobsSize(userName);
                     for(int i=0;i<x;i++)
                     {
-                        String desc = MyController.getInstance().JobDescription(Freelancer.getUsername(),x);
+                        String desc = MyController.getInstance().JobDescription(userName,x);
                         JLabel jobDescription = new JLabel("Description: " + desc);
                         jobDescription.setBounds(20, i * 50 + 100, 400, 30);
                         jobDescription.setFont(david20);
                         main.add(jobDescription);
 
-                        int ID = MyController.getInstance().JobID(Freelancer.getUsername(),x);
+                        int ID = MyController.getInstance().JobID(userName,x);
                         JLabel jobID = new JLabel("Job id: " + ID);
                         jobID.setBounds(20, i * 50 + 150, 200, 30);
                         jobID.setFont(david20);

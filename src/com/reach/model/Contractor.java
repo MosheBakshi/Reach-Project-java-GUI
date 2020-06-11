@@ -6,7 +6,6 @@ public class Contractor extends User implements  Model{
     protected String subfield;
     protected String yearsOfExperience;
     protected String area; // can be as the enum in the User file.
-    protected String availability;
 
     public Contractor(UserType choice, String userName, String PrivateName, String LastName, String Password) {
         this.userType = choice;

@@ -439,6 +439,7 @@ public class SignUpScreen extends JFrame implements View {
         home.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+         //       getRootPane().getParent().setVisible(true);
                 setVisible(false);
                 MainPanel v1 = new MainPanel();
                 v1.showScreen();

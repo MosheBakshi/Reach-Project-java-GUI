@@ -14,6 +14,13 @@ public class MainPanel extends JFrame implements View {
     private static JTextField enterUserName;
     private static JPasswordField enterPassword;
     private JButton logIn;
+
+/*    @Override
+    public int getDefaultCloseOperation() {
+        MyController.getInstance().
+        return super.getDefaultCloseOperation();
+    }*/
+
     private JButton signUp;
     private JButton forgetPassword;
 
@@ -113,9 +120,10 @@ public class MainPanel extends JFrame implements View {
             public void actionPerformed(ActionEvent e){
                 enterUserName.setText("");
                 enterPassword.setText("");
-                setVisible(false);
+          //      setVisible(false);
                 SignUpScreen signUpScreen = new SignUpScreen();
                 signUpScreen.showScreen();
+                dispose();
             }
             });
         add(signUp);

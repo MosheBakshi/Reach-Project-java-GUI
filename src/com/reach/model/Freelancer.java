@@ -6,7 +6,6 @@ public class Freelancer extends User implements  Model{
     protected String subfield;
     protected String yearsOfExperience;
     protected String area; // can be as the enum in the User file.
-    protected String availability;
 
     public Freelancer(UserType choice, String userName, String PrivateName, String LastName, String Password) {
         this.userType = choice;
@@ -53,4 +52,5 @@ public class Freelancer extends User implements  Model{
     public void setField(String enterF) {
         this.field=enterF;
     }
+
 }

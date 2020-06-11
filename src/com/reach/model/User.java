@@ -69,18 +69,12 @@ public abstract class User implements Serializable,Model {
         this.userType = userType;
     }
 
-    public void addJob(int id,String description,String title, String deadline, String date, Price price){
-        Job newOne = new Job();
-        newOne.setId(id); // for customer /// temporarlly its by customer id should be fixed to job id
-        newOne.setTitle(title); // job title
-        newOne.setDescription(description); // job description;
-        newOne.setDeadline(deadline); // job deadline XX/XX/XXXX
-        newOne.setDate(date); // job Start Date XX/XX/XXXX
-        newOne.setPrice(price); // set in the constructor of job.price
+    public void addJob(String WorkerUser,String CustomerUser,String description){
+        Job newOne = new Job(WorkerUser,CustomerUser,description);
         jobs.add(newOne);
     }
 
-    public void editJob(int id,String description,String title, String deadline, String date, Price price){
+/*    public void editJob(int id,String description,String title, String deadline, String date, Price price){
         Job index = new Job();
         for(int i = 0; i<this.jobs.size(); i++)
         {
@@ -98,21 +92,7 @@ public abstract class User implements Serializable,Model {
             }
         }
         //System.out.print("ID wasn't found");
-    }
-
-    public void closeJob(int id){
-        Job index = new Job();
-        for(int i = 0; i<this.jobs.size(); i++)
-        {
-            index = jobs.get(i);
-            if(id == index.getId())
-            {
-                jobsHistory.add(index);
-                jobs.remove(i);
-                break;
-            }
-        }
-    }
+    }*/
 
     // getters
     public ArrayList<Job> getJobs() {
@@ -162,4 +142,5 @@ public abstract class User implements Serializable,Model {
     public String getPassword() {
         return Password;
     }
+
 }
