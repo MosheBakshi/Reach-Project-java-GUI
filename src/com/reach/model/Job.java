@@ -1,6 +1,8 @@
 package com.reach.model;
 
-public class Job implements Model{
+import java.io.Serializable;
+
+public class Job implements Serializable,Model{
     protected int id;
     protected String description;
     protected String customerUserName;
@@ -57,7 +59,7 @@ public class Job implements Model{
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public String getTitle() {

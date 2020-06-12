@@ -15,6 +15,8 @@ public class JobListScreen extends JFrame implements View
     public JobListScreen(String userName){
         this.userName = userName;
     }
+
+
     @Override
     public void showScreen()
     {
@@ -43,14 +45,14 @@ public class JobListScreen extends JFrame implements View
                     int x = MyController.getInstance().getUserJobsSize(userName);
                     for(int i=0;i<x;i++)
                     {
-                        String desc = MyController.getInstance().JobDescription(userName,x);
+                        String desc = MyController.getInstance().JobDescription(userName,i);
                         JLabel jobDescription = new JLabel("Description: " + desc);
                         jobDescription.setBounds(20, i * 50 + 100, 400, 30);
                         jobDescription.setFont(david20);
                         main.add(jobDescription);
 
 /*
-                        int ID = MyController.getInstance().JobID(userName,x);
+                        int ID = MyController.getInstance().JobID(userName,i);
                         JLabel jobID = new JLabel("Job id: " + ID);
                         jobID.setBounds(20, i * 50 + 150, 200, 30);
                         jobID.setFont(david20);
@@ -77,13 +79,14 @@ public class JobListScreen extends JFrame implements View
                     int x = MyController.getInstance().getUserJobsSize(userName);
                     for(int i=0;i<x;i++)
                     {
-                        String desc = MyController.getInstance().JobDescription(userName,x);
+                        String desc = MyController.getInstance().JobDescription(userName,i);
+                        System.out.println(desc);
                         JLabel jobDescription = new JLabel("Description: " + desc);
                         jobDescription.setBounds(20, i * 50 + 100, 400, 30);
                         jobDescription.setFont(david20);
                         main.add(jobDescription);
 
-                        int ID = MyController.getInstance().JobID(userName,x);
+                        int ID = MyController.getInstance().JobID(userName,i);
                         JLabel jobID = new JLabel("Job id: " + ID);
                         jobID.setBounds(20, i * 50 + 150, 200, 30);
                         jobID.setFont(david20);
@@ -134,13 +137,13 @@ public class JobListScreen extends JFrame implements View
                     int x = MyController.getInstance().getUserJobsSize(Contractor.getUsername());
                     for(int i=0;i<x;i++)
                     {
-                        String desc = MyController.getInstance().JobDescription(Contractor.getUsername(),x);
+                        String desc = MyController.getInstance().JobDescription(Contractor.getUsername(),i);
                         JLabel jobDescription = new JLabel("Description: " + desc);
                         jobDescription.setBounds(20, i * 50 + 100, 400, 30);
                         jobDescription.setFont(david20);
                         main.add(jobDescription);
 
-                        int ID = MyController.getInstance().JobID(Contractor.getUsername(),x);
+                        int ID = MyController.getInstance().JobID(Contractor.getUsername(),i);
                         JLabel jobID = new JLabel("Job id: " + ID);
                         jobID.setBounds(20, i * 50 + 150, 200, 30);
                         jobID.setFont(david20);

@@ -27,8 +27,8 @@ public class WriterReader implements Model{
                 }
             }
             newUser.setUserId(count++);
-            o.writeObject(newUser);
             UsersHM.put(newUser.getUserName(),newUser);
+            //o.writeObject(newUser);
             saveAll();
             System.out.println("Saved " + newUser.getUserName() + " " + newUser.getUserType());
         } catch (FileNotFoundException e) {
@@ -37,6 +37,29 @@ public class WriterReader implements Model{
             System.out.println("Error initializing stream");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    //on system close
+    public static void saveAll()
+    {
+        User user1;
+        try {
+            FileOutputStream f = new FileOutputStream(filename);
+            ObjectOutputStream o = new ObjectOutputStream(f);
+            FileInputStream fi = new FileInputStream(filename);
+            ArrayList<String> keys = new ArrayList<>(UsersHM.keySet());
+            int i = 0;
+            while (i<keys.size())
+            {
+                user1 = UsersHM.get(keys.get(i++));
+                o.writeObject(user1);
+            }
+            System.out.println("File empty or user name not found");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("Error initializing stream");
         }
     }
 
@@ -119,6 +142,19 @@ public class WriterReader implements Model{
             Freelancer f = (Freelancer) user;
             f.setYearsOfExperience(experience);
         }
+        WriterReader.save(user);
+    }
+
+    public static void setNewJob(String customerUserName, String workerUserName, String description) {
+        User user = WriterReader.UsersHM.get(workerUserName);
+        if(user instanceof Contractor){
+            Contractor c = (Contractor) user;
+            c.addJob(workerUserName,customerUserName,description);
+        } else {
+            Freelancer f = (Freelancer) user;
+            f.addJob(workerUserName,customerUserName,description);
+        }
+
         WriterReader.save(user);
     }
 
@@ -214,30 +250,7 @@ public class WriterReader implements Model{
         return !(UsersHM.containsKey(userName));
     }
 
-    //on system close
-    public static void saveAll()
-    {
-        User user1;
-        try {
-            FileOutputStream f = new FileOutputStream(filename);
-            ObjectOutputStream o = new ObjectOutputStream(f);
-            FileInputStream fi = new FileInputStream(filename);
-            ArrayList<String> keys = new ArrayList<>(UsersHM.keySet());
-            int i = 0;
-            while (i<keys.size())
-            {
-                user1 = UsersHM.get(keys.get(i++));
-                o.writeObject(user1);
-            }
-            System.out.println("File empty or user name not found");
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch (IOException e) {
-            System.out.println("Error initializing stream");
-        }
-    }
-
-    //on system open
+     //on system open
     public void loadAll()
     {
         User user1;

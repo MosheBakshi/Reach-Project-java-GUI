@@ -1,12 +1,8 @@
 package com.reach.controller;
 
 import com.reach.model.*;
-import com.reach.view.MainPanel;
 import com.reach.view.ReviewScreen;
-
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class MyController {
@@ -93,6 +89,11 @@ public class MyController {
         WriterReader.setExperience(userName,experience);
     }
 
+    public void setNewJob(String CustomerUserName,String WorkerUserName,String description){
+        WriterReader.setNewJob(CustomerUserName,WorkerUserName,description);
+        //WriterReader.UsersHM.get(WorkerUserName)
+    }
+
     public String  getField(String userName) {
         return WriterReader.getField(userName);
     }
@@ -114,9 +115,11 @@ public class MyController {
     }
 
     public int getUserJobsSize(String userName){
-        if(WriterReader.UsersHM.get(userName).getJobs()!=null)
-            return WriterReader.UsersHM.get(userName).getJobs().size();
-        else return 0;
+        //if(WriterReader.UsersHM.get(userName).getJobs()!=null)
+          //  return WriterReader.UsersHM.get(userName).getJobs().size();
+        //else return 0;
+        User user = WriterReader.UsersHM.get(userName);
+        return user.getJobs().size();
     }
 
     public int getUserJobHistorySize(String userName){
@@ -139,10 +142,6 @@ public class MyController {
 
     public void JobSetAcceptance(String userName,int i){
         WriterReader.UsersHM.get(userName).getJobs().get(i).setAccepted();
-    }
-
-    public void setNewJob(String CustomerUserName,String WorkerUserName,String description){
-        WriterReader.UsersHM.get(WorkerUserName).addJob(WorkerUserName,CustomerUserName,description);
     }
 
     //After Fixing saving error of new jobs

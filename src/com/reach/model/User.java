@@ -70,7 +70,7 @@ public abstract class User implements Serializable,Model {
     }
 
     public void addJob(String WorkerUser,String CustomerUser,String description){
-        Job newOne = new Job(WorkerUser,CustomerUser,description);
+        Job newOne = new Job(CustomerUser,WorkerUser,description);
         jobs.add(newOne);
     }
 

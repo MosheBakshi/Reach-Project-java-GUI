@@ -16,6 +16,12 @@ public class CreateJobScreen extends JFrame implements View {
         userName = newUsername;
         watchedUserName = newWatchedUser;
     }
+
+    public CreateJobScreen(String oRel, String sdfsdf) {
+        userName = oRel;
+        watchedUserName = sdfsdf;
+    }
+
     @Override
     public void showScreen() {
         setSize(750, 400);
@@ -62,5 +68,10 @@ public class CreateJobScreen extends JFrame implements View {
 
 
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        CreateJobScreen c = new CreateJobScreen("ORel","sdfsdf");
+        c.showScreen();
     }
 }
