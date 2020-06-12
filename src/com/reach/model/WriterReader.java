@@ -10,6 +10,7 @@ public class WriterReader implements Model{
     public static HashMap<String,User> UsersHM = new HashMap<>();
     //add if file exits
 
+
     public static void save(User newUser) {
         User user1;
         try {
@@ -145,16 +146,61 @@ public class WriterReader implements Model{
         WriterReader.save(user);
     }
 
-    public static void setNewJob(String customerUserName, String workerUserName, String description) {
-        User user = WriterReader.UsersHM.get(workerUserName);
+    public static void JobSetAcceptance(String userName,int i){
+        User user = WriterReader.UsersHM.get(userName);
         if(user instanceof Contractor){
             Contractor c = (Contractor) user;
-            c.addJob(workerUserName,customerUserName,description);
+            c.getJobs().get(i).setAccepted();
+        } else {
+            Freelancer c = (Freelancer) user;
+            c.getJobs().get(i).setAccepted();
+        }
+        WriterReader.save(user);
+    }
+
+    public static void setNewJob(String customerUserName, String workerUserName, String description) {
+        User user = WriterReader.UsersHM.get(workerUserName);
+        int lastId;
+        ArrayList<Job> list = user.getJobs();
+        if(list.isEmpty()){lastId = 1;}
+        else{lastId = list.size()+1;}
+        if(user instanceof Contractor){
+            Contractor c = (Contractor) user;
+            c.addJob(workerUserName,customerUserName,description,lastId);
         } else {
             Freelancer f = (Freelancer) user;
-            f.addJob(workerUserName,customerUserName,description);
+            f.addJob(workerUserName,customerUserName,description,lastId);
         }
 
+        WriterReader.save(user);
+    }
+
+    public static void EditNewJob(String customerUserName, String workerUserName, String description,String startDate,String endDate,String price,int ID) {
+        User workerUser = WriterReader.UsersHM.get(workerUserName);
+        int i=0;
+        if(workerUser instanceof Contractor){
+            Contractor c = (Contractor) workerUser;
+            c.getJobs().get(ID-1).setDate(startDate);
+            c.getJobs().get(ID-1).setDeadline(endDate);
+            c.getJobs().get(ID-1).setPrice(new Price(price));
+        } else {
+            Freelancer f = (Freelancer) workerUser;
+            f.getJobs().get(ID-1).setDate(startDate);
+            f.getJobs().get(ID-1).setDeadline(endDate);
+            f.getJobs().get(ID-1).setPrice(new Price(price));
+
+        }
+        WriterReader.save(workerUser);
+    }
+
+    public static void setNewJobForCustomer(String customerUserName,Job toAdd) {
+        User user = WriterReader.UsersHM.get(customerUserName);
+        ArrayList<Job> list = user.getJobs();
+        int lastId;
+        if(list.isEmpty()){lastId = 1;}
+        else{lastId = list.size()+1;}
+        Customer f = (Customer) user;
+        f.addJob(toAdd,lastId);
         WriterReader.save(user);
     }
 
@@ -242,11 +288,6 @@ public class WriterReader implements Model{
     }
 
     public static boolean checkFreeUserName(String userName){
-        /*User user = WriterReader.load(userName);
-        if(user != null){
-            return false;
-        }
-        return true;*/
         return !(UsersHM.containsKey(userName));
     }
 

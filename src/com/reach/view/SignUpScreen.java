@@ -300,16 +300,16 @@ public class SignUpScreen extends JFrame implements View {
             public void focusLost(FocusEvent e) {
                 firstPassInputForValidation = new String(enterPassword.getPassword());
                 if(firstPassInputForValidation.length()==0){
-                    enterPassword.setText("At least 8 characters");
+                    enterPassword.setText("At least 6 characters");
                     enterPassword.setEchoChar((char) 0);
                     enterPassword.setForeground(Color.gray);
                 }
                 try {
                     if (!ValidPassDigitAndInteger(firstPassInputForValidation)) { throw new Exception("Not vaild"); }
                     else if(ValidPassDigitAndInteger(firstPassInputForValidation) &&
-                            (firstPassInputForValidation.length()>7 || firstPassInputForValidation.length() == 0)
+                            (firstPassInputForValidation.length()>5 || firstPassInputForValidation.length() == 0)
                             ) { throw new Exception(("Vaild")); }
-                    else if(firstPassInputForValidation.length() <8 &&
+                    else if(firstPassInputForValidation.length() <6 &&
                             firstPassInputForValidation.length() > 0){throw new Exception("Short Password");}
                 }
                 catch (Exception exc)
@@ -358,7 +358,7 @@ public class SignUpScreen extends JFrame implements View {
                 secondPassInputForValidation = new String(enterConfirmedPassword.getPassword()); // for comparing passwords
                 try {
                     if(firstPassInputForValidation.length()>0
-                            && !(firstPassInputForValidation.equalsIgnoreCase("At least 8 characters"))) {
+                            && !(firstPassInputForValidation.equalsIgnoreCase("At least 6 characters"))) {
                         if (!(firstPassInputForValidation.equals(secondPassInputForValidation))
                                 && !(firstPassInputForValidation.equalsIgnoreCase(""))) {
                             throw new Exception("Passwords not match");

@@ -8,15 +8,28 @@ public class Job implements Serializable,Model{
     protected String customerUserName;
     protected String workerUserName;
     protected String title;
-    protected String date;
-    protected String deadline;
-    protected Price Price;
+    protected String date; //
+    protected String deadline; //
+    protected Price Price; //
     protected Boolean accepted = false;
 
-    public Job(String CusUserName,String WorkUserName,String desc){
+    public Job(String CusUserName,String WorkUserName,String desc,int lastId){
         customerUserName = CusUserName;
         workerUserName = WorkUserName;
         description = desc;
+        id = lastId;
+    }
+
+    public Job(Job toAdd,int lastId) {
+        id = lastId;
+        description = toAdd.getDescription();
+        customerUserName = toAdd.getCustomerUserName();
+        workerUserName = toAdd.getWorkerUserName();
+        title = toAdd.getTitle();
+        date = toAdd.getDate(); //
+        deadline = toAdd.getDeadline(); //
+        Price = toAdd.getPrice(); //
+        accepted = toAdd.getAccepted();
     }
 
 
@@ -24,20 +37,12 @@ public class Job implements Serializable,Model{
         return workerUserName;
     }
 
-    public void setWorkerUserName(String workerUserName) {
-        this.workerUserName = workerUserName;
-    }
-
-    public void setCustomerUserName(String name) {
-        this.customerUserName = name;
-    }
-
     public String getCustomerUserName() {
         return customerUserName;
     }
 
     public void setAccepted(){
-        accepted = !accepted;
+        accepted = true;
     }
 
     public int getId() {
@@ -72,14 +77,6 @@ public class Job implements Serializable,Model{
 
     public void setDeadline(String deadline) {
         this.deadline = deadline;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setPrice(Price price){

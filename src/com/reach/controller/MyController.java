@@ -137,22 +137,27 @@ public class MyController {
     }
 
     public Boolean JobAcceptance(String userName,int i){
-        return WriterReader.UsersHM.get(userName).getJobs().get(i).getAccepted();
+        User user = WriterReader.UsersHM.get(userName);
+        ArrayList<Job> list = user.getJobs();
+        Boolean answer = list.get(i-1).getAccepted();
+        return answer;
     }
 
     public void JobSetAcceptance(String userName,int i){
-        WriterReader.UsersHM.get(userName).getJobs().get(i).setAccepted();
+        WriterReader.JobSetAcceptance(userName,i-1);
     }
 
     //After Fixing saving error of new jobs
-    public void acceptJob(String WorkerUserName , String CusUserName){
+    public void acceptJob(String WorkerUserName , String CusUserName,int ID){
         ArrayList<Job> list = WriterReader.UsersHM.get(WorkerUserName).getJobs();
-        for(Job job : list){
-            if(job.getCustomerUserName() == CusUserName){
-                job.setAccepted();
-                WriterReader.UsersHM.get(CusUserName).getJobs().add(job);
-            }
-        }
+        Job job = list.get(ID-1);
+        job.setAccepted();
+        WriterReader.UsersHM.get(WorkerUserName).getJobs().get(ID-1).setAccepted();
+        WriterReader.setNewJobForCustomer(CusUserName,job);
+    }
+
+    public String getJobFromWorker(String userName,int i){
+       return WriterReader.UsersHM.get(userName).getJobs().get(i-1).getCustomerUserName();
     }
 
     public  int HistoryID(String userName, int i){
@@ -160,9 +165,23 @@ public class MyController {
     }
 
     public  int JobID(String userName, int i){
-        return WriterReader.UsersHM.get(userName).getJobs().get(i).getId();
+        ArrayList<Job> list = WriterReader.UsersHM.get(userName).getJobs();
+        Job job = list.get(i);
+        int x = job.getId();
+        return x;
     }
 
+    public Job getJob(String userName,int ID){
+        return WriterReader.UsersHM.get(userName).getJobs().get(ID-1);
+    }
+
+    public void EditNewJob(String customerUserName, String workerUserName,
+                           String startDate,String endDate,String price,int ID) {
+        WriterReader.EditNewJob(customerUserName,workerUserName,
+                                getJob(workerUserName,ID).getDescription(),
+                                startDate,endDate,price,ID);
+
+    }
     public int getResultsSize(String prof,String area){
         int results=0;
         ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());

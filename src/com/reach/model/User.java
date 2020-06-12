@@ -69,38 +69,33 @@ public abstract class User implements Serializable,Model {
         this.userType = userType;
     }
 
-    public void addJob(String WorkerUser,String CustomerUser,String description){
-        Job newOne = new Job(CustomerUser,WorkerUser,description);
+    public void addJob(String WorkerUser,String CustomerUser,String description,int lastId){
+        Job newOne = new Job(CustomerUser,WorkerUser,description,lastId);
         jobs.add(newOne);
     }
 
-/*    public void editJob(int id,String description,String title, String deadline, String date, Price price){
-        Job index = new Job();
-        for(int i = 0; i<this.jobs.size(); i++)
-        {
-            index = jobs.get(i);
-            if(id == index.getId())
-            {
-                index.setId(id); // for customer /// temporarlly its by customer id should be fixed to job id
-                index.setTitle(title); // job title
-                index.setDescription(description); // job description;
-                index.setDeadline(deadline); // job deadline XX/XX/XXXX
-                index.setDate(date); // job Start Date XX/XX/XXXX
-                index.setPrice(price); // set in the constructor of job.price
-                jobs.set(i,index);
-                break;
-            }
-        }
-        //System.out.print("ID wasn't found");
+    public void addJob(Job toAdd,int lastId){
+        Job newOne = new Job(toAdd,lastId);
+        jobs.add(newOne);
+    }
+
+ /*   public void EditJob(String workerUserName, String customerUserName, String description,
+                       String startDate, String endDate, String price,int ID){
+        ArrayList<Job> list = WriterReader.UsersHM.get(workerUserName).getJobs();
+        list.get(ID).setDate(startDate);
+        jobs.get(ID).setDate(startDate);
+        System.out.println(jobs.get(ID).getDate());
+        list.get(ID).setDeadline(endDate);
+        jobs.get(ID).setDeadline(endDate);
+        System.out.println(jobs.get(ID).getDeadline());
+        list.get(ID).setPrice(new Price(price));
+        jobs.get(ID).setPrice(new Price(price));
+        System.out.println(jobs.get(ID).getPrice().getJobCost());
     }*/
 
     // getters
     public ArrayList<Job> getJobs() {
         return jobs;
-    }
-
-    public ArrayList<Review> getReview() {
-        return review;
     }
 
     public ArrayList<Job> getJobsHistory() {
@@ -109,10 +104,6 @@ public abstract class User implements Serializable,Model {
 
     public String getFirstName() {
         return firstName;
-    }
-
-    public double getRating() {
-        return rating.avgRate;
     }
 
     public int getUserId() {
