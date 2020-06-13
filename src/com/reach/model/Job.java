@@ -1,18 +1,54 @@
 package com.reach.model;
 
-import java.util.Scanner;
+import java.io.Serializable;
 
-public class Job {
+public class Job implements Serializable,Model{
     protected int id;
     protected String description;
+    protected String customerUserName;
+    protected String workerUserName;
     protected String title;
     protected String date;
     protected String deadline;
     protected Price Price;
+    protected Boolean accepted = false;
+
+    public Job(String CusUserName,String WorkUserName,String desc,int lastId){
+        customerUserName = CusUserName;
+        workerUserName = WorkUserName;
+        description = desc;
+        id = lastId;
+    }
+
+    public Job(Job toAdd,int lastId) {
+        id = lastId;
+        description = toAdd.getDescription();
+        customerUserName = toAdd.getCustomerUserName();
+        workerUserName = toAdd.getWorkerUserName();
+        title = toAdd.getTitle();
+        date = toAdd.getDate(); //
+        deadline = toAdd.getDeadline(); //
+        Price = toAdd.getPrice(); //
+        accepted = toAdd.getAccepted();
+    }
+
+    public String getWorkerUserName() {
+        return workerUserName;
+    }
+
+    public String getCustomerUserName() {
+        return customerUserName;
+    }
+
+    public void setAccepted(){
+        accepted = true;
+    }
 
     public int getId() {
         return id;
     }
+
+    public Boolean getAccepted(){return accepted;}
 
     public String getDate() {
         return date;
@@ -27,7 +63,7 @@ public class Job {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public String getTitle() {
@@ -42,26 +78,11 @@ public class Job {
         this.deadline = deadline;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPrice(Price price){
+        this.Price=price;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setPrice() {
-        Price = new Price();
-        Scanner userChoice = new Scanner(System.in);
-        String iNside;
-        double price;
-        iNside = userChoice.next();
-        Price.setJobType(iNside); // job type set
-        price = userChoice.nextDouble();
-        Price.setJobCost(price);
-    }
-
-    public void setTitle(String title) {
+    /*public void setTitle(String title) {
         this.title = title;
-    }
+    }*/
 }

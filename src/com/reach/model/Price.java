@@ -1,20 +1,18 @@
 package com.reach.model;
 
-public class Price {
+import java.io.Serializable;
 
-    protected String jobType;
+public class Price implements Serializable,Model{
+
     protected double jobCost;
 
-    public void setJobType(String jobType) {
-        this.jobType = jobType;
+    public Price(String price) {
+        Double toChange = null;
+        setJobCost(toChange.parseDouble(price));
     }
 
     public void setJobCost(double jobCost) {
         this.jobCost = jobCost;
-    }
-
-    public String getJobType() {
-        return jobType;
     }
 
     public double getJobCost() {
