@@ -24,9 +24,6 @@ public class MyController {
             return false;
     }
 
-
-
-
     //called on click "Write review" from JobScreen
     public void writeReview(String userName, String workerUserName) {
         ReviewScreen v = new ReviewScreen();
@@ -49,7 +46,7 @@ public class MyController {
         return WriterReader.UsersHM.get(userName).getUserId();
     }
 
-   public UserType getUserType(String userName){
+    public UserType getUserType(String userName){
         return WriterReader.getUserType(userName);
     }
 
@@ -213,8 +210,6 @@ public class MyController {
         return results.get(i/2).getUserName();
     }
 
-
-
     public String getResultsSub(String prof, String area, int i) {
         List<User> results = new ArrayList<>();
         ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
@@ -234,22 +229,6 @@ public class MyController {
         }
         return null;
     }
-
-  /*  public double getResultsRating(String prof, String area, int i) {
-        List<User> results = new ArrayList<>();
-        ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
-        for (String key : keys)
-        {
-            User user = WriterReader.UsersHM.get(key);
-            if(user.getUserType()==UserType.freelancer && (((Freelancer)user).getArea()) != null &&  ((Freelancer)user).getArea().equals(area) && (((Freelancer)user).getField()) != null &&  ((Freelancer)user).getField().equals(prof))
-                results.add(WriterReader.UsersHM.get(key));
-            else if(user.getUserType()==UserType.contractor && (((Contractor)user).getArea()) != null &&  ((Contractor)user).getArea().equals(area) && (((Contractor)user).getField()) != null &&  ((Contractor)user).getField().equals(prof))
-                results.add(WriterReader.UsersHM.get(key));
-        }
-        if(results.get(i).getRating() == 0)
-            return 1;
-        else return results.get(i).getRating();
-    }*/
 
 }
 

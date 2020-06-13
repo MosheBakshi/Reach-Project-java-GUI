@@ -9,7 +9,6 @@ public class Freelancer extends User implements  Model{
 
     public Freelancer(UserType choice, String userName, String PrivateName, String LastName, String Password) {
         this.userType = choice;
-        System.out.println(" constructor called ! user type: " + this.userType);
         setUserName(userName);
         setFirstName(PrivateName);
         setLastName(LastName);

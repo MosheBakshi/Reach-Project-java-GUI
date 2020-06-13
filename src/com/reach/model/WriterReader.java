@@ -22,7 +22,7 @@ public class WriterReader implements Model{
                 user1 = (User) oi.readObject();
                 if (user1.userName.equals(newUser.userName))
                 {
-                    System.out.println("User name exists.");
+                    //System.out.println("User name exists.");
                     return;
                 }
             }
@@ -30,7 +30,7 @@ public class WriterReader implements Model{
             UsersHM.put(newUser.getUserName(),newUser);
             //o.writeObject(newUser);
             saveAll();
-            System.out.println("Saved " + newUser.getUserName() + " " + newUser.getUserType());
+            //System.out.println("Saved " + newUser.getUserName() + " " + newUser.getUserType());
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
@@ -55,7 +55,7 @@ public class WriterReader implements Model{
                 user1 = UsersHM.get(keys.get(i++));
                 o.writeObject(user1);
             }
-            System.out.println("File empty or user name not found");
+            //System.out.println("File empty or user name not found");
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
@@ -73,11 +73,11 @@ public class WriterReader implements Model{
             {
                 user1 = (User)oi.readObject();
                 if (user1.userName.equals(name)) {
-                    System.out.println("Loaded " + user1.getUserName());
+                    //System.out.println("Loaded " + user1.getUserName());
                     return user1;
                 }
             }
-            System.out.println("File empty or user name not found");
+            //System.out.println("File empty or user name not found");
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
