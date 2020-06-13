@@ -25,6 +25,14 @@ public class MyController {
         return WriterReader.UsersHM.get(userName).getUserId();
     }*/
 
+    public String getUserPayment(String userName){
+        return WriterReader.getUserPayment(userName);
+    }
+
+    public void setUserPayment(String userName, String payment){
+        WriterReader.setUserPayment(userName , payment);
+    }
+
     public UserType getUserType(String userName){
         return WriterReader.getUserType(userName);
     }

@@ -20,7 +20,6 @@ public class JobListScreen extends JFrame implements View
         setSize(750, 750);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
         main.setBounds(0,0,600,600);
@@ -167,8 +166,8 @@ public class JobListScreen extends JFrame implements View
         });
         add(home);
 
-        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.setBounds(0,0,600,600);
+        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setBounds(0,0,580,600);
         add(scroll);
 
         setVisible(true);

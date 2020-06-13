@@ -17,6 +17,7 @@ public abstract class User implements Serializable,Model {
     protected String userCity;
     protected ArrayList<Job> jobs = new ArrayList<>();
     protected ArrayList<Job> jobsHistory = new ArrayList<>();
+    protected String payment;
 
     // Setters
     public void setPassword(String password) {
@@ -108,6 +109,14 @@ public abstract class User implements Serializable,Model {
 
     public String getPassword() {
         return Password;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public String getPayment() {
+        return payment;
     }
 
 }

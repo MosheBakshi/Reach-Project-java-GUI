@@ -125,12 +125,17 @@ public class Contractor extends JFrame implements View {
             area.setBounds(450, 215, 150, 100);
             area.setFont(david16);
             add(area);
+        }if(MyController.getInstance().getUserPayment(getUsername())==null) {
+            JLabel area = new JLabel("Accepted payment: ");
+            area.setBounds(450, 245, 300, 100);
+            area.setFont(david16);
+            add(area);
+        }else{
+            JLabel area = new JLabel("Accepted payment: "+MyController.getInstance().getUserPayment(getUsername()));
+            area.setBounds(450, 245, 350, 100);
+            area.setFont(david16);
+            add(area);
         }
-
-        JLabel availability = new JLabel("Availability: ");
-        availability.setBounds(450, 245, 100, 100);
-        availability.setFont(david16);
-        add(availability);
 
         JButton onGoingJobs = new JButton("On-going Jobs");
         onGoingJobs.setBounds(380, 380, 140, 20);

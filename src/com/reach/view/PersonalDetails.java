@@ -67,14 +67,24 @@ public class PersonalDetails extends JFrame implements View {
         JTextField enterExperience = new JTextField("");
         enterExperience.setBounds(490, 142, 100, 20);
         add(enterExperience);
-        JLabel area = new JLabel("area");
+        JLabel area = new JLabel("Area: ");
         area.setBounds(400, 130, 100, 100);
         area.setFont(david16);
         add(area);
-        String[] optionArea = {"Area","center","north","south","west","east"};
+        String[] optionArea = {"Area","Center","North","South","West","East"};
         JComboBox enterArea = new JComboBox(optionArea);
         enterArea.setBounds(490, 172, 100, 20);
         add(enterArea);
+
+        JLabel payment = new JLabel("Payment: ");
+        payment.setBounds(400,160,100,100);
+        payment.setFont(david16);
+        add(payment);
+        String [] paymentoptions = {"Credit","Cash","Check"};
+        JComboBox payments = new JComboBox(paymentoptions);
+        payments.setBounds(490,202,100,20);
+        add(payments);
+
         JButton done = new JButton("DONE");
         done.setBounds(635, 670, 100, 20);
         done.setFont(david16);
@@ -85,6 +95,8 @@ public class PersonalDetails extends JFrame implements View {
                 if(type.equals("contractor")) {
                     String phone = enterPhone.getText();
                     MyController.getInstance().setPhone(userName, phone);
+                    String payment = (String)payments.getSelectedItem();
+                    MyController.getInstance().setUserPayment(userName,payment);
                     String city = enterCity.getText();
                     MyController.getInstance().setCity(userName, city);
                     String experience = enterExperience.getText();
@@ -103,6 +115,8 @@ public class PersonalDetails extends JFrame implements View {
                     String phone = enterPhone.getText();
                     MyController.getInstance().setPhone(userName, phone);
                     String city = enterCity.getText();
+                    String payment = (String)payments.getSelectedItem();
+                    MyController.getInstance().setUserPayment(userName,payment);
                     MyController.getInstance().setCity(userName, city);
                     String experience = enterExperience.getText();
                     MyController.getInstance().setExperience(userName,experience);

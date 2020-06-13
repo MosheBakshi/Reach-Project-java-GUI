@@ -52,4 +52,6 @@ public class Freelancer extends User implements  Model{
     public void setField(String enterF) {
         this.field=enterF;
     }
+
+
 }

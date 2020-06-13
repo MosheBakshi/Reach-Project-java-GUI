@@ -287,6 +287,17 @@ public class WriterReader implements Model{
         return !(UsersHM.containsKey(userName));
     }
 
+    public static String getUserPayment(String userName) {
+        User user = WriterReader.UsersHM.get(userName);
+        return user.getPayment();
+    }
+
+    public static void setUserPayment(String userName, String payment) {
+        User user = WriterReader.UsersHM.get(userName);
+        user.setPayment(payment);
+        WriterReader.save(user);
+    }
+
     //on system open
     public void loadAll()
     {

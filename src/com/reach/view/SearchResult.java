@@ -97,7 +97,7 @@ public class SearchResult extends JFrame implements  View {
         });
         add(back,"FIRST");
 
-        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setBounds(0,0,280,550);
         add(scroll);
 

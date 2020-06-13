@@ -16,7 +16,7 @@ public class JobHistoryListScreen extends JFrame implements View
     @Override
     public void showScreen()
     {
-        setSize(1000, 1000);
+        setSize(750, 750);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         //Font
@@ -24,7 +24,7 @@ public class JobHistoryListScreen extends JFrame implements View
         Font david50 = new Font("David", Font.BOLD, 50);
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
-        main.setBounds(0,0,1000,1000);
+        main.setBounds(0,0,600,600);
         add(main);
 
         userType = MyController.getInstance().getUserType(userName).toString();
@@ -164,8 +164,8 @@ public class JobHistoryListScreen extends JFrame implements View
         });
         add(home);
 
-        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.setBounds(0,0,980,1000);
+        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setBounds(0,0,580,600);
         add(scroll);
 
         setVisible(true);
