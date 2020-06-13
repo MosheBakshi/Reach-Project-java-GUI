@@ -9,7 +9,6 @@ public class Contractor extends User implements  Model{
 
     public Contractor(UserType choice, String userName, String PrivateName, String LastName, String Password) {
         this.userType = choice;
-        System.out.println(" constructor called ! user type: " + this.userType);
         setUserName(userName);
         setFirstName(PrivateName);
         setLastName(LastName);
