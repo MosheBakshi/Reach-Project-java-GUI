@@ -24,5 +24,4 @@ public class CreateUser implements  Model{
         }
         return null;
     }
-
 }

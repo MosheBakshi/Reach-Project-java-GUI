@@ -1,14 +1,10 @@
 package com.reach.view;
 
 import com.reach.controller.MyController;
-import com.reach.model.UserType;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 public class SearchPickScreen extends JFrame implements View {
     protected static String userName;
@@ -19,17 +15,16 @@ public class SearchPickScreen extends JFrame implements View {
         userName = newUsername;
         watchedUserName = newWatchedUser;
     }
+
     @Override
     public void showScreen() {
-        //The Frame
+
         setSize(750, 400);
         setForeground(Color.white);
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-     //   parent.setVisible(false);
         //Font
         Font david20 = new Font("David", Font.BOLD, 20);
-        Font david10 = new Font("forget a password", Font.PLAIN, 10);
 
         //Labels and Buttons
         JLabel fullName = new JLabel("Full name:");
@@ -123,7 +118,6 @@ public class SearchPickScreen extends JFrame implements View {
             }
         });
         add(createJob);
-
 
         JButton back = new JButton("Back");
         back.setBounds(0, 320, 100, 30);

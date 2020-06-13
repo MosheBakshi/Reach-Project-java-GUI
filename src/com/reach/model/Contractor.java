@@ -5,7 +5,7 @@ public class Contractor extends User implements  Model{
     protected String field;
     protected String subfield;
     protected String yearsOfExperience;
-    protected String area; // can be as the enum in the User file.
+    protected String area;
 
     public Contractor(UserType choice, String userName, String PrivateName, String LastName, String Password) {
         this.userType = choice;
@@ -15,7 +15,7 @@ public class Contractor extends User implements  Model{
         setLastName(LastName);
         setPassword(Password);
     }
-
+    //Getters & Setters
     @Override
     public UserType getUserType() {
         return UserType.contractor;

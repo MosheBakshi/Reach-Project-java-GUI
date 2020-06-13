@@ -1,9 +1,6 @@
 package com.reach.view;
 
-
 import com.reach.controller.MyController;
-import com.reach.model.User;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,6 +23,7 @@ public class JobEditScreen extends JFrame implements View {
         ID = jobID;
     }
 
+    //Verify price text is valid and contains only numbers
     public boolean ValidPrice(String price){
         char digit;
         boolean boolDigit = false;
@@ -48,14 +46,12 @@ public class JobEditScreen extends JFrame implements View {
         return false;
     }
 
-
     @Override
     public void showScreen() {
         setSize(700, 400);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         parent.setVisible(false);
-
         //Font
         Font david20 = new Font("David", Font.BOLD, 17);
 
@@ -87,7 +83,6 @@ public class JobEditScreen extends JFrame implements View {
             }
         });
         add(UserEnterStartDate);
-
 
         JLabel EndDateLabel = new JLabel("End date:");
         EndDateLabel.setFont(david20);
@@ -166,7 +161,6 @@ public class JobEditScreen extends JFrame implements View {
         });
         add(UserEnterPrice);
 
-
         JButton done = new JButton("Done");
         done.setBounds(550,300,100,30);
         done.addActionListener(new ActionListener() {
@@ -188,6 +182,7 @@ public class JobEditScreen extends JFrame implements View {
             }
         });
         add(done);
+
         JButton back = new JButton("Back");
         back.setBounds(0, 300, 100, 30);
         back.addActionListener(new ActionListener() {

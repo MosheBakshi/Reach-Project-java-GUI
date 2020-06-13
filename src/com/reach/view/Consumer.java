@@ -8,11 +8,9 @@ import java.awt.event.ActionListener;
 public class Consumer extends JFrame implements View{
 
     private static String username;
-
     public Consumer(String text) {
         username=text;
     }
-
     public static String getUsername() {
         return username;
     }
@@ -23,17 +21,15 @@ public class Consumer extends JFrame implements View{
         setSize(750, 750);
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         //Font
-        Font david20 = new Font("David", Font.BOLD, 20);
         Font david12 = new Font("forget a password", Font.BOLD, 12);
 
-
-        //label and button
+        //labels and buttons
         JLabel contractor = new JLabel("Hello "+username);
         contractor.setBounds(15, 190, 150, 100);
         contractor.setFont(david12);
         add(contractor);
+
         JButton onGoingJobs = new JButton("On-Going Jobs");
         onGoingJobs.setBounds(550, 60, 125, 15);
         onGoingJobs.setBorderPainted(false);
@@ -47,6 +43,7 @@ public class Consumer extends JFrame implements View{
             }
         });
         add(onGoingJobs);
+
         JButton jobHistory = new JButton("Job History");
         jobHistory.setBounds(550, 100, 125, 15);
         jobHistory.setBorderPainted(false);
@@ -60,6 +57,7 @@ public class Consumer extends JFrame implements View{
             }
         });
         add(jobHistory);
+
         JButton Search = new JButton("Search");
         Search.setBounds(550, 140, 125, 15);
         Search.setBorderPainted(false);
@@ -73,6 +71,7 @@ public class Consumer extends JFrame implements View{
          }
         });
         add(Search);
+
         JButton personalDetails = new JButton("Personal Details");
         personalDetails.setBounds(15, 270, 150, 15);
         personalDetails.setBorderPainted(false);
@@ -87,7 +86,6 @@ public class Consumer extends JFrame implements View{
         });
         add(personalDetails);
 
-
         //Bg
         ImageIcon background_image = new ImageIcon("profilePic.png");
         Image img = background_image.getImage();
@@ -97,10 +95,5 @@ public class Consumer extends JFrame implements View{
         background.setBounds(0, 0, 750, 750);
         add(background);
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        Consumer v = new Consumer("orel");
-        v.showScreen();
     }
 }

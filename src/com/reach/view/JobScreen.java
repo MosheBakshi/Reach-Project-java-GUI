@@ -11,7 +11,6 @@ public class JobScreen extends JFrame implements View {
     protected String userName;
     protected static JFrame parent;
     protected static int jobID;
-    //------- LABELS --------- //
     protected static JLabel price = new JLabel();
     protected static JLabel end = new JLabel();
     protected static JLabel start = new JLabel();
@@ -49,13 +48,11 @@ public class JobScreen extends JFrame implements View {
         setSize(700, 700);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         //Font
         Font david20 = new Font("David", Font.BOLD, 17);
 
-
         JLabel userNameLable = new JLabel("Customer name: ");
-        userNameLable.setBounds(20, 20, 130, 50);
+        userNameLable.setBounds(20, 20, 200, 50);
         userNameLable.setFont(david20);
         add(userNameLable);
 
@@ -64,7 +61,7 @@ public class JobScreen extends JFrame implements View {
         add(userNameLabel);
 
         JLabel workerUserNameLable = new JLabel("Contractor / Freelancer name: ");
-        workerUserNameLable.setBounds(20, 70, 230, 50);
+        workerUserNameLable.setBounds(20, 70, 330, 50);
         workerUserNameLable.setFont(david20);
         add(workerUserNameLable);
 
@@ -108,10 +105,9 @@ public class JobScreen extends JFrame implements View {
         description.setFont(david20);
         add(description);
 
-        //button
         if(MyController.getInstance().getUserType(userName).toString() != "customer") {
             JButton edit = new JButton("Edit details");
-            edit.setBounds(530, 550, 150, 30); //on clicking pass relevant values and return to main panel
+            edit.setBounds(530, 550, 150, 30);
             edit.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -122,6 +118,7 @@ public class JobScreen extends JFrame implements View {
             });
             add(edit);
         }
+
         JButton back = new JButton("Back");
         back.setBounds(0, 550, 100, 30);
         back.addActionListener(new ActionListener() {
@@ -131,8 +128,8 @@ public class JobScreen extends JFrame implements View {
                 dispose();
             }
         });
-
         add(back);
+
         setVisible(true);
     }
 }

@@ -1,7 +1,6 @@
 package com.reach.view;
 
 import com.reach.controller.MyController;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,22 +16,16 @@ public class CreateJobScreen extends JFrame implements View {
         watchedUserName = newWatchedUser;
     }
 
-    public CreateJobScreen(String oRel, String sdfsdf) {
-        userName = oRel;
-        watchedUserName = sdfsdf;
-    }
-
     @Override
     public void showScreen() {
         setSize(750, 400);
         setForeground(Color.white);
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //   parent.setVisible(false);
         //Font
         Font david20 = new Font("David", Font.BOLD, 20);
-        Font david10 = new Font("forget a password", Font.PLAIN, 10);
 
+        //Labels and buttons
         JLabel descriptionLabel = new JLabel("Description:");
         descriptionLabel.setFont(david20);
         descriptionLabel.setBounds(10,10,120,30);
@@ -66,12 +59,6 @@ public class CreateJobScreen extends JFrame implements View {
         });
         add(back);
 
-
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        CreateJobScreen c = new CreateJobScreen("ORel","sdfsdf");
-        c.showScreen();
     }
 }

@@ -1,8 +1,6 @@
 package com.reach.view;
 
 import com.reach.controller.MyController;
-import com.reach.model.UserType;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -79,23 +77,23 @@ public class SearchScreen extends JFrame implements  View{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    UserType userTypeReturned = MyController.getInstance().getUserType(getUserName());
-                    if(userTypeReturned == UserType.customer){throw new Exception("consumer");}
-                    else if(userTypeReturned == UserType.freelancer){throw new Exception("freelancer");}
-                    else if(userTypeReturned == UserType.contractor){throw new Exception("contractor");}
+                    String userTypeReturned = MyController.getInstance().getUserType(getUserName()).toString();
+                    if(userTypeReturned.equals("customer")){throw new Exception("consumer");}
+                    else if(userTypeReturned.equals("freelancer")){throw new Exception("freelancer");}
+                    else if(userTypeReturned.equals("contractor")){throw new Exception("contractor");}
                 }
                 catch (Exception exc){
-                    if(exc.getMessage() == "consumer"){
+                    if(exc.getMessage().equals("consumer")){
                         setVisible(false);
                         Consumer v1 = new Consumer(getUserName());
                         v1.showScreen();
                     }
-                    else if(exc.getMessage() == "freelancer"){
+                    else if(exc.getMessage().equals("freelancer")){
                         setVisible(false);
                         Freelancer v1 = new Freelancer(getUserName());
                         v1.showScreen();
                     }
-                    else if(exc.getMessage() == "contractor"){
+                    else if(exc.getMessage().equals("contractor")){
                         setVisible(false);
                         Contractor v1 = new Contractor(getUserName());
                         v1.showScreen();
@@ -104,7 +102,6 @@ public class SearchScreen extends JFrame implements  View{
             }
         });
         add(home);
-
 
         //Bg
         ImageIcon background_image = new ImageIcon("LogInBG.png");
@@ -115,8 +112,6 @@ public class SearchScreen extends JFrame implements  View{
         background.setBounds(0, 0, 750, 750);
         add(background);
 
-
         setVisible(true);
     }
-
 }

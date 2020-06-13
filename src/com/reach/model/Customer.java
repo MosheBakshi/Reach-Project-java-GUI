@@ -12,7 +12,6 @@ public class Customer extends User implements Model{
         setLastName(LastName);
         setPassword(Password);
     }
-
     @Override
     public UserType getUserType() {
         return UserType.customer;

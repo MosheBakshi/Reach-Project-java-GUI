@@ -17,16 +17,10 @@ public abstract class User implements Serializable,Model {
     protected String userCity;
     protected ArrayList<Job> jobs = new ArrayList<>();
     protected ArrayList<Job> jobsHistory = new ArrayList<>();
-    protected Rating rating;
-    protected ArrayList<Review> review = new ArrayList<>();
 
     // Setters
     public void setPassword(String password) {
         Password = password;
-    }
-
-    public void setReview(Review review) {
-        this.review.add(review);
     }
 
     public void setUserName(String userName) {
@@ -47,10 +41,6 @@ public abstract class User implements Serializable,Model {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public void setRating(Rating rating) {
-        this.rating = rating;
     }
 
     public void setPhone(String phone) {
@@ -78,20 +68,6 @@ public abstract class User implements Serializable,Model {
         Job newOne = new Job(toAdd,lastId);
         jobs.add(newOne);
     }
-
- /*   public void EditJob(String workerUserName, String customerUserName, String description,
-                       String startDate, String endDate, String price,int ID){
-        ArrayList<Job> list = WriterReader.UsersHM.get(workerUserName).getJobs();
-        list.get(ID).setDate(startDate);
-        jobs.get(ID).setDate(startDate);
-        System.out.println(jobs.get(ID).getDate());
-        list.get(ID).setDeadline(endDate);
-        jobs.get(ID).setDeadline(endDate);
-        System.out.println(jobs.get(ID).getDeadline());
-        list.get(ID).setPrice(new Price(price));
-        jobs.get(ID).setPrice(new Price(price));
-        System.out.println(jobs.get(ID).getPrice().getJobCost());
-    }*/
 
     // getters
     public ArrayList<Job> getJobs() {

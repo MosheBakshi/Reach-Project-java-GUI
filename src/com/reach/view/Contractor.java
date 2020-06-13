@@ -1,7 +1,6 @@
 package com.reach.view;
 
 import com.reach.controller.MyController;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,15 +9,12 @@ import java.awt.event.ActionListener;
 public class Contractor extends JFrame implements View {
 
     private static String userName;
-
     public Contractor(String name){
         this.userName = name;
     }
-
     public static String getUsername() {
         return userName;
     }
-
 
     @Override
     public void showScreen() {
@@ -26,17 +22,15 @@ public class Contractor extends JFrame implements View {
         setSize(750, 750);
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         //Font
         Font david16 = new Font("David", Font.BOLD, 16);
-        Font david10 = new Font("forget a password", Font.PLAIN, 10);
 
-
-        //Labels
+        //Labels and buttons
         JLabel contractorReach = new JLabel("Contractor Reach");
         contractorReach.setBounds(550, 15, 350, 20);
         contractorReach.setFont(david16);
         add(contractorReach);
+
         JButton updateDetails = new JButton("Update Details");
         updateDetails.setBounds(200, 15, 140, 20);
         updateDetails.setFont(david16);
@@ -49,18 +43,22 @@ public class Contractor extends JFrame implements View {
             }
         });
         add(updateDetails);
+
         JLabel userName = new JLabel("User Name: "+ getUsername());
         userName.setBounds(75, 125, 350, 100);
         userName.setFont(david16);
         add(userName);
+
         JLabel firstName = new JLabel("First Name: "+ MyController.getInstance().getFirstName(getUsername()));
         firstName.setBounds(75, 155, 350, 100);
         firstName.setFont(david16);
         add(firstName);
+
         JLabel lastName = new JLabel("Last Name: "+ MyController.getInstance().getLastName(getUsername()));
         lastName.setBounds(75, 185, 350, 100);
         lastName.setFont(david16);
         add(lastName);
+
         if(MyController.getInstance().getPhone(getUsername())==null) {
             JLabel phone = new JLabel("Phone: ");
             phone.setBounds(75, 215, 100, 100);
@@ -128,14 +126,12 @@ public class Contractor extends JFrame implements View {
             area.setFont(david16);
             add(area);
         }
+
         JLabel availability = new JLabel("Availability: ");
         availability.setBounds(450, 245, 100, 100);
         availability.setFont(david16);
         add(availability);
-        JLabel rating = new JLabel("Rating: ");
-        rating.setBounds(105, 368, 100, 100);
-        rating.setFont(david16);
-        add(rating);
+
         JButton onGoingJobs = new JButton("On-going Jobs");
         onGoingJobs.setBounds(380, 380, 140, 20);
         onGoingJobs.setFont(david16);
@@ -148,6 +144,7 @@ public class Contractor extends JFrame implements View {
             }
         });
         add(onGoingJobs);
+
         JButton jobHistory = new JButton("Job History");
         jobHistory.setBounds(380, 450, 140, 20);
         jobHistory.setFont(david16);
@@ -170,12 +167,6 @@ public class Contractor extends JFrame implements View {
         background.setBounds(0, 0, 750, 750);
         add(background);
 
-
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        Contractor c = new Contractor("Orel");
-        c.showScreen();
     }
 }

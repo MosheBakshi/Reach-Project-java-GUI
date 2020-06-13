@@ -1,8 +1,6 @@
 package com.reach.view;
 
 import com.reach.controller.MyController;
-import com.reach.model.UserType;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +15,7 @@ public class SearchResult extends JFrame implements  View {
         userName = un;
         parent = newParent;
     }
+
     @Override
     public void showScreen() {
 
@@ -31,15 +30,13 @@ public class SearchResult extends JFrame implements  View {
         JLabel background = new JLabel("", background_image, JLabel.CENTER);
         background.setBounds(310, 0, 690, 950);
         add(background);
-
+        //Font
+        Font david20 = new Font("David", Font.BOLD, 20);
+        Font david50 = new Font("forget a password", Font.PLAIN, 50);
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
         main.setBounds(0,0,300,900);
         add(main);
-
-        //Font
-        Font david20 = new Font("David", Font.BOLD, 20);
-        Font david50 = new Font("forget a password", Font.PLAIN, 50);
 
         if (MyController.getInstance().getResultsSize(prof,area)>0)
         {
@@ -62,12 +59,6 @@ public class SearchResult extends JFrame implements  View {
                 subField.setBounds(20, i * 50 + 150, 200, 30);
                 subField.setFont(david20);
                 main.add(subField);
-
-               /* double rate = MyController.getInstance().getResultsRating(prof,area,i);
-                JLabel rating = new JLabel("Rating: " + rate);
-                rating.setBounds(20, i * 50 + 200, 200, 30);
-                rating.setFont(david20);
-                main.add(rating);*/
 
                 JButton go = new JButton("Pick");
                 go.setFont(david20);

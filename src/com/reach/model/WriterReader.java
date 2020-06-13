@@ -8,8 +8,6 @@ public class WriterReader implements Model{
     static int count = 0;
     private static final String filename = "myObjects.txt";
     public static HashMap<String,User> UsersHM = new HashMap<>();
-    //add if file exits
-
 
     public static void save(User newUser) {
         User user1;
@@ -56,7 +54,6 @@ public class WriterReader implements Model{
                 user1 = UsersHM.get(keys.get(i++));
                 o.writeObject(user1);
             }
-            System.out.println("File empty or user name not found");
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
@@ -266,7 +263,6 @@ public class WriterReader implements Model{
         return user.getPhone();
     }
 
-
     public static String getCity(String userName) {
         User user = WriterReader.UsersHM.get(userName);
         return user.getUserCity();
@@ -291,7 +287,7 @@ public class WriterReader implements Model{
         return !(UsersHM.containsKey(userName));
     }
 
-     //on system open
+    //on system open
     public void loadAll()
     {
         User user1;
@@ -303,7 +299,6 @@ public class WriterReader implements Model{
                 user1 = (User)oi.readObject();
                 UsersHM.put(user1.userName,user1);
             }
-            System.out.println("File empty or user name not found");
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
@@ -312,6 +307,5 @@ public class WriterReader implements Model{
             ex.printStackTrace();
         }
     }
-
 }
 

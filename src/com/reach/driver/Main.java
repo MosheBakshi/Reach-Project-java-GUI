@@ -3,8 +3,6 @@ package com.reach.driver;
 import com.reach.model.WriterReader;
 import com.reach.view.*;
 
-import javax.swing.*;
-import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,8 +1,6 @@
 package com.reach.view;
 
 import com.reach.controller.MyController;
-import com.reach.model.UserType;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,12 +9,9 @@ import java.awt.event.ActionListener;
 public class PersonalDetails extends JFrame implements View {
 
     private String userName;
-
-
     public PersonalDetails(String name){
         this.userName = name;
     }
-
     public String getUsername() {
         return userName;
     }
@@ -30,7 +25,6 @@ public class PersonalDetails extends JFrame implements View {
         //Font
         Font david20 = new Font("David", Font.PLAIN, 35);
         Font david16 = new Font("forget a password", Font.BOLD, 16);
-
 
         //label and button
         JLabel tellUsAboutYourself = new JLabel("Tell us about yourself ");
@@ -87,7 +81,8 @@ public class PersonalDetails extends JFrame implements View {
         done.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(MyController.getInstance().getUserType(getUsername()).equals(UserType.contractor)) {
+                String type = MyController.getInstance().getUserType(getUsername()).toString();
+                if(type.equals("contractor")) {
                     String phone = enterPhone.getText();
                     MyController.getInstance().setPhone(userName, phone);
                     String city = enterCity.getText();
@@ -100,13 +95,11 @@ public class PersonalDetails extends JFrame implements View {
                     MyController.getInstance().setField(userName,enterF);
                     String subfield = enterSubfield.getText();
                     MyController.getInstance().setSubfield(userName, subfield);
-
-
                     setVisible(false);
                     Contractor contractor = new Contractor(userName);
                     contractor.showScreen();
                 }
-                else if(MyController.getInstance().getUserType(getUsername()).equals(UserType.freelancer)){
+                else if(type.equals("freelancer")){
                     String phone = enterPhone.getText();
                     MyController.getInstance().setPhone(userName, phone);
                     String city = enterCity.getText();
@@ -119,23 +112,16 @@ public class PersonalDetails extends JFrame implements View {
                     MyController.getInstance().setField(userName,enterF);
                     String subfield = enterSubfield.getText();
                     MyController.getInstance().setSubfield(userName, subfield);
-
 
                     setVisible(false);
                     Freelancer freelancer = new Freelancer(userName);
                     freelancer.showScreen();
                 }
                 else{
-
-
-
                     setVisible(false);
                     Consumer consumer = new Consumer(userName);
                     consumer.showScreen();
                 }
-
-
-
             }
         });
         add(done);
@@ -146,23 +132,23 @@ public class PersonalDetails extends JFrame implements View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    UserType userTypeReturned = MyController.getInstance().getUserType(userName);
-                    if(userTypeReturned == UserType.customer){throw new Exception("consumer");}
-                    else if(userTypeReturned == UserType.freelancer){throw new Exception("freelancer");}
-                    else if(userTypeReturned == UserType.contractor){throw new Exception("contractor");}
+                    String userTypeReturned = MyController.getInstance().getUserType(userName).toString();
+                    if(userTypeReturned.equals("customer")){throw new Exception("consumer");}
+                    else if(userTypeReturned.equals("freelancer")){throw new Exception("freelancer");}
+                    else if(userTypeReturned.equals("contractor")){throw new Exception("contractor");}
                 }
                 catch (Exception exc){
-                    if(exc.getMessage() == "consumer"){
+                    if(exc.getMessage().equals("consumer")){
                         setVisible(false);
                         Consumer v1 = new Consumer(userName);
                         v1.showScreen();
                     }
-                    else if(exc.getMessage() == "freelancer"){
+                    else if(exc.getMessage().equals("freelancer")){
                         setVisible(false);
                         Freelancer v1 = new Freelancer(userName);
                         v1.showScreen();
                     }
-                    else if(exc.getMessage() == "contractor"){
+                    else if(exc.getMessage().equals("contractor")){
                         setVisible(false);
                         Contractor v1 = new Contractor(userName);
                         v1.showScreen();
@@ -173,10 +159,4 @@ public class PersonalDetails extends JFrame implements View {
         add(home);
         setVisible(true);
     }
-
-    public static void main(String[] args) {
-        PersonalDetails p = new PersonalDetails("orel");
-        p.showScreen();
-    }
-
 }

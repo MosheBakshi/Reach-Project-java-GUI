@@ -1,22 +1,18 @@
 package com.reach.controller;
 
 import com.reach.model.*;
-import com.reach.view.ReviewScreen;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyController {
 
     private static final MyController instance = new MyController();
-    private WriterReader readWrite = new WriterReader();
-
-    //constructor for singelton
+    //private Model model;
+    //constructor for singleton
     private MyController(){}
-
-    //Method for return the instance of singelton
+    //Method to return the instance of the singleton
     public static MyController getInstance(){return instance;}
-
-    //Method for verify the user name and password
+    //Method to verify the user name and password
     public boolean verifyUserNameAndPassword(String userName,String password) {
         if(WriterReader.verify(userName,password))
             return true;
@@ -24,32 +20,12 @@ public class MyController {
             return false;
     }
 
-
-
-
-    //called on click "Write review" from JobScreen
-    public void writeReview(String userName, String workerUserName) {
-        ReviewScreen v = new ReviewScreen();
-        v.showScreen(/*userName,workerUserName*/);
-    }
-
-    //called on click confirm from ReviewScreen
-    public static void createReview(String userName, int id, double cost, double deadline, double quality) {
-        Review newReview = new Review(userName,id,cost,deadline,quality);
-        //call publishReview
-    }
-
-    //called to add review to list after review made
-    public void publishReview(Review review, String workerUserName) {
-        readWrite.UsersHM.get(workerUserName).setReview(review);
-    }
-
-    public int getUserId(String userName)
+    /*public int getUserId(String userName)
     {
         return WriterReader.UsersHM.get(userName).getUserId();
-    }
+    }*/
 
-   public UserType getUserType(String userName){
+    public UserType getUserType(String userName){
         return WriterReader.getUserType(userName);
     }
 
@@ -94,7 +70,7 @@ public class MyController {
         //WriterReader.UsersHM.get(WorkerUserName)
     }
 
-    public String  getField(String userName) {
+    public String getField(String userName) {
         return WriterReader.getField(userName);
     }
 
@@ -114,28 +90,29 @@ public class MyController {
         WriterReader.setArea(userName,chooseArea);
     }
 
+    //Get user's job list siaze by user name
     public int getUserJobsSize(String userName){
-        //if(WriterReader.UsersHM.get(userName).getJobs()!=null)
-          //  return WriterReader.UsersHM.get(userName).getJobs().size();
-        //else return 0;
         User user = WriterReader.UsersHM.get(userName);
         return user.getJobs().size();
     }
 
+    //Get user's history jobs list size by user name
     public int getUserJobHistorySize(String userName){
-        if(WriterReader.UsersHM.get(userName).getJobsHistory().isEmpty())
-            return 0;
-        else return WriterReader.UsersHM.get(userName).getJobsHistory().size();
+        User user = WriterReader.UsersHM.get(userName);
+        return user.getJobsHistory().size();
     }
 
+    //Get job's description from history jobs list by user name and index
     public  String HistoryDescription(String userName, int i){
         return WriterReader.UsersHM.get(userName).getJobsHistory().get(i).getDescription();
     }
 
+    //Get job's description from jobs list by user name and index
     public  String JobDescription(String userName, int i){
         return WriterReader.UsersHM.get(userName).getJobs().get(i).getDescription();
     }
 
+    //Get job accaptence status from jobs list by user name and index
     public Boolean JobAcceptance(String userName,int i){
         User user = WriterReader.UsersHM.get(userName);
         ArrayList<Job> list = user.getJobs();
@@ -147,7 +124,7 @@ public class MyController {
         WriterReader.JobSetAcceptance(userName,i-1);
     }
 
-    //After Fixing saving error of new jobs
+    //Declare job accepted in jobs list and update accaptence status for the job
     public void acceptJob(String WorkerUserName , String CusUserName,int ID){
         ArrayList<Job> list = WriterReader.UsersHM.get(WorkerUserName).getJobs();
         Job job = list.get(ID-1);
@@ -156,15 +133,18 @@ public class MyController {
         WriterReader.setNewJobForCustomer(CusUserName,job);
     }
 
+    //Get customer user name from a specipic job in a wrokers job list by user name and index
     public String getJobFromWorker(String userName,int i){
-       return WriterReader.UsersHM.get(userName).getJobs().get(i-1).getCustomerUserName();
+        return WriterReader.UsersHM.get(userName).getJobs().get(i-1).getCustomerUserName();
     }
 
-    public  int HistoryID(String userName, int i){
+    //Get job id from history jobs list by user name and index
+    public int HistoryID(String userName, int i){
         return WriterReader.UsersHM.get(userName).getJobsHistory().get(i).getId();
     }
 
-    public  int JobID(String userName, int i){
+    //Get job id from jobs list by user name and index
+    public int JobID(String userName, int i){
         ArrayList<Job> list = WriterReader.UsersHM.get(userName).getJobs();
         Job job = list.get(i);
         int x = job.getId();
@@ -175,27 +155,30 @@ public class MyController {
         return WriterReader.UsersHM.get(userName).getJobs().get(ID-1);
     }
 
-    public void EditNewJob(String customerUserName, String workerUserName,
-                           String startDate,String endDate,String price,int ID) {
+    //Edit job detais
+    public void EditNewJob(String customerUserName, String workerUserName, String startDate,String endDate,String price,int ID) {
         WriterReader.EditNewJob(customerUserName,workerUserName,
-                                getJob(workerUserName,ID).getDescription(),
-                                startDate,endDate,price,ID);
+                getJob(workerUserName,ID).getDescription(),
+                startDate,endDate,price,ID);
 
     }
+
+    //Get size of matching search results list
     public int getResultsSize(String prof,String area){
         int results=0;
         ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
         for (String key : keys)
         {
             User user = WriterReader.UsersHM.get(key);
-           if(user.getUserType()==UserType.freelancer && (((Freelancer)user).getArea()) != null &&  ((Freelancer)user).getArea().equals(area) && (((Freelancer)user).getField()) != null &&  ((Freelancer)user).getField().equals(prof))
-               results++;
-           else if(user.getUserType()==UserType.contractor && (((Contractor)user).getArea()) != null &&  ((Contractor)user).getArea().equals(area) && (((Contractor)user).getField()) != null &&  ((Contractor)user).getField().equals(prof))
-               results++;
+            if(user.getUserType()==UserType.freelancer && (((Freelancer)user).getArea()) != null &&  ((Freelancer)user).getArea().equals(area) && (((Freelancer)user).getField()) != null &&  ((Freelancer)user).getField().equals(prof))
+                results++;
+            else if(user.getUserType()==UserType.contractor && (((Contractor)user).getArea()) != null &&  ((Contractor)user).getArea().equals(area) && (((Contractor)user).getField()) != null &&  ((Contractor)user).getField().equals(prof))
+                results++;
         }
         return results;
     }
 
+    //Get results name by filters and index in list
     public String getResultsName(String prof,String area,int i) {
         List<User> results = new ArrayList<>();
         ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
@@ -210,6 +193,7 @@ public class MyController {
         return results.get(i).getFirstName();
     }
 
+    //Get results user name by filters and index in list
     public String getResultsUserName(String prof,String area,int i) {
         List<User> results = new ArrayList<>();
         ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
@@ -232,8 +216,7 @@ public class MyController {
         return results.get(i/2).getUserName();
     }
 
-
-
+    //Get resluts sub-field by filters and index in list
     public String getResultsSub(String prof, String area, int i) {
         List<User> results = new ArrayList<>();
         ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
@@ -253,22 +236,6 @@ public class MyController {
         }
         return null;
     }
-
-  /*  public double getResultsRating(String prof, String area, int i) {
-        List<User> results = new ArrayList<>();
-        ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
-        for (String key : keys)
-        {
-            User user = WriterReader.UsersHM.get(key);
-            if(user.getUserType()==UserType.freelancer && (((Freelancer)user).getArea()) != null &&  ((Freelancer)user).getArea().equals(area) && (((Freelancer)user).getField()) != null &&  ((Freelancer)user).getField().equals(prof))
-                results.add(WriterReader.UsersHM.get(key));
-            else if(user.getUserType()==UserType.contractor && (((Contractor)user).getArea()) != null &&  ((Contractor)user).getArea().equals(area) && (((Contractor)user).getField()) != null &&  ((Contractor)user).getField().equals(prof))
-                results.add(WriterReader.UsersHM.get(key));
-        }
-        if(results.get(i).getRating() == 0)
-            return 1;
-        else return results.get(i).getRating();
-    }*/
 
 }
 

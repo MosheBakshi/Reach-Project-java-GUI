@@ -1,7 +1,6 @@
 package com.reach.view;
 
 import com.reach.controller.SignUpController;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -33,7 +32,6 @@ public class SignUpScreen extends JFrame implements View {
     public static JTextField getUsername(){
         return enterUserName;
     }
-
     public void setDoneFlag(boolean value){
         DoneFlag = value;
     }
@@ -69,7 +67,6 @@ public class SignUpScreen extends JFrame implements View {
         Font david30 = new Font("David", Font.BOLD, 30);
         Font david15 = new Font("forget a password", Font.PLAIN, 15);
         Font david12 = new Font("forget a password",Font.ITALIC,12);
-        Font david25 = new Font("David", Font.BOLD, 25);
 
         JPanel panelForConfirmPassValidation = new JPanel();
         panelForConfirmPassValidation.setBounds(383, 226, 160, 35);
@@ -80,13 +77,13 @@ public class SignUpScreen extends JFrame implements View {
         panelForUserNameValidation.setBounds(260, 181, 150, 20);
         panelForUserNameValidation.setBackground(new Color(0,0,0,0));
         add(panelForUserNameValidation);
-        //Label ang Buttons
 
         JLabel create_reach_account = new JLabel("Create REACH account");
         create_reach_account.setBounds(15, 10, 450, 100);
         create_reach_account.setFont(david30);
         add(create_reach_account);
-        // for JLabel - not the var of the string
+
+        //JLabel
         JLabel firstName = new JLabel("First Name");
         firstName.setBounds(15, 100, 100, 100);
         firstName.setFont(david15);
@@ -104,7 +101,7 @@ public class SignUpScreen extends JFrame implements View {
         lastNameStar.setForeground(Color.red);
         add(lastNameStar);
 
-        // for JTextField - var to pass into controller
+        //JTextField
         enterPrivateName = new JTextField("");
         enterPrivateName.setBounds(108, 145, 150, 20);
         enterPrivateName.addFocusListener(new FocusListener() {
@@ -125,13 +122,13 @@ public class SignUpScreen extends JFrame implements View {
                     }
                 }
                 catch (Exception exc){
-                    if(exc.getMessage() == "Not empty"){
+                    if(exc.getMessage().equals("Not empty")){
                         firstNameFlag = true;
                         firstNameStar.setText("√");
                         firstNameStar.setFont(david15);
                         firstNameStar.setForeground(Color.green);
                     }
-                    if(exc.getMessage() == "Empty"){
+                    if(exc.getMessage().equals("Empty")){
                         firstNameFlag = false;
                         firstNameStar.setText("*");
                         firstNameStar.setFont(david12);
@@ -143,12 +140,14 @@ public class SignUpScreen extends JFrame implements View {
             }
         });
         add(enterPrivateName);
-        // for Jlabel - not var of the string
+
+        //Jlabel
         JLabel lastName = new JLabel("Last Name");
         lastName.setBounds(308, 100, 100, 100);
         lastName.setFont(david15);
         add(lastName);
-        // for JTextField - var to pass into controller
+
+        //JTextField
         enterLastName = new JTextField("");
         enterLastName.setBounds(385, 145, 150, 20);
         enterLastName.addFocusListener(new FocusListener() {
@@ -169,13 +168,13 @@ public class SignUpScreen extends JFrame implements View {
                     }
                 }
                 catch (Exception exc){
-                    if(exc.getMessage() == "Empty"){
+                    if(exc.getMessage().equals("Empty")){
                         lastNameFlag = false;
                         lastNameStar.setText("*");
                         lastNameStar.setFont(david12);
                         lastNameStar.setForeground(Color.red);
                     }
-                    if(exc.getMessage() == "Not empty") {
+                    if(exc.getMessage().equals("Not empty")) {
                         lastNameFlag = true;
                         lastNameStar.setText("√");
                         lastNameStar.setFont(david15);
@@ -189,13 +188,13 @@ public class SignUpScreen extends JFrame implements View {
         });
         add(enterLastName);
 
-        // for Jlabel - not var to pass
+        //Jlabel
         JLabel userName = new JLabel("User Name");
         userName.setBounds(15, 140, 100, 100);
         userName.setFont(david15);
         add(userName);
 
-        // for JTextField - var to pass into controller
+        //JTextField
         enterUserName = new JTextField("");
         enterUserName.setBounds(108, 181, 150, 20);
         enterUserName.addFocusListener(new FocusListener() {
@@ -216,11 +215,11 @@ public class SignUpScreen extends JFrame implements View {
                     throw new Exception("V");
                 }
                 else if(!(Controller.checkFreeUserName(checkFreeUserName)) && !(checkFreeUserName.equals(""))){
-                    throw new Exception("Username already exist");
+                    throw new Exception("Username already exists");
                 }
             }
             catch (Exception exc){
-                if(exc.getMessage() == "Illegal"){
+                if(exc.getMessage().equals("Illegal")){
                     panelForUserNameValidation.removeAll();
                     userNameValidationMsg.setText("Illegal username");
                     userNameValidationMsg.setFont(david12);
@@ -232,7 +231,7 @@ public class SignUpScreen extends JFrame implements View {
                     panelForUserNameValidation.revalidate();
                     userNameFlag=false;
                 }
-                if(exc.getMessage() == "V"){
+                if(exc.getMessage().equals("V")){
                     panelForUserNameValidation.removeAll();
                     userNameValidationMsg.setText("√");
                     userNameValidationMsg.setFont(david15);
@@ -245,9 +244,9 @@ public class SignUpScreen extends JFrame implements View {
                     panelForUserNameValidation.revalidate();
                     userNameFlag = true;
                 }
-                if(exc.getMessage() == "Username already exist"){
+                if(exc.getMessage().equals("Username already exists")){
                     panelForUserNameValidation.removeAll();
-                    userNameValidationMsg.setText("Username already exist");
+                    userNameValidationMsg.setText("Username already exists");
                     userNameValidationMsg.setFont(david12);
                     userNameValidationMsg.setForeground(Color.red);
                     panelForUserNameValidation.setBounds(250,181, 150, 20);
@@ -264,22 +263,23 @@ public class SignUpScreen extends JFrame implements View {
         });
         add(enterUserName);
 
-        // for Jlabel - not var to pass
+        //Jlabel
         JLabel password = new JLabel("Password");
         password.setBounds(15, 174, 100, 100);
         password.setFont(david15);
         add(password);
-        // for JTextField - var to pass into controller
+
+        //JTextField
         enterPassword = new JPasswordField("");
-        enterPassword.setText("At least 8 characters");
+        enterPassword.setText("At least 6 characters");
         enterPassword.setEchoChar((char) 0);
         enterPassword.setForeground(Color.gray);
         enterPassword.setBounds(108, 215, 150, 20);
         enterPassword.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                firstPassInputForValidation = new String();
-                useLettersNumbers.setText("Use with letters and numbers");
+                firstPassInputForValidation = "";
+                useLettersNumbers.setText("Use letters and numbers");
                 useLettersNumbers.setForeground(Color.black);
                 setVisible(true);
                 repaint();
@@ -305,24 +305,24 @@ public class SignUpScreen extends JFrame implements View {
                     enterPassword.setForeground(Color.gray);
                 }
                 try {
-                    if (!ValidPassDigitAndInteger(firstPassInputForValidation)) { throw new Exception("Not vaild"); }
+                    if (!ValidPassDigitAndInteger(firstPassInputForValidation)) { throw new Exception("Not valid"); }
                     else if(ValidPassDigitAndInteger(firstPassInputForValidation) &&
                             (firstPassInputForValidation.length()>5 || firstPassInputForValidation.length() == 0)
-                            ) { throw new Exception(("Vaild")); }
+                            ) { throw new Exception(("Valid")); }
                     else if(firstPassInputForValidation.length() <6 &&
                             firstPassInputForValidation.length() > 0){throw new Exception("Short Password");}
                 }
                 catch (Exception exc)
                 {
-                    if(exc.getMessage().equalsIgnoreCase("Not vaild"))
+                    if(exc.getMessage().equalsIgnoreCase("Not valid"))
                     {
-                        useLettersNumbers.setText("Use with letters and numbers");
+                        useLettersNumbers.setText("Use letters and numbers");
                         useLettersNumbers.setForeground(Color.red);
                         setVisible(true);
                         repaint();
                         revalidate();
                     }
-                    if(exc.getMessage().equalsIgnoreCase("Vaild")){
+                    if(exc.getMessage().equalsIgnoreCase("Valid")){
                         useLettersNumbers.setText("Good password");
                         useLettersNumbers.setForeground(Color.green);
                         setVisible(true);
@@ -330,19 +330,21 @@ public class SignUpScreen extends JFrame implements View {
                         revalidate();
                     }
                     if(exc.getMessage().equalsIgnoreCase("Short Password")){
-                        useLettersNumbers.setText("Password is to short!");
+                        useLettersNumbers.setText("Password is too short!");
                         useLettersNumbers.setForeground(Color.red);
                     }
                 }
             }
         });
         add(enterPassword);
-        // for Jlabel - not var to pass
+
+        //Jlabel
         JLabel confirmedPassword = new JLabel("Confirm Password");
         confirmedPassword.setBounds(260, 215, 130, 20);
         confirmedPassword.setFont(david15);
         add(confirmedPassword);
-        // for JTextField - var to pass into controller
+
+        //JTextField
         enterConfirmedPassword = new JPasswordField("");
         enterConfirmedPassword.setBounds(385, 215, 150, 20);
         enterConfirmedPassword.addFocusListener(new FocusListener() {
@@ -361,7 +363,7 @@ public class SignUpScreen extends JFrame implements View {
                             && !(firstPassInputForValidation.equalsIgnoreCase("At least 6 characters"))) {
                         if (!(firstPassInputForValidation.equals(secondPassInputForValidation))
                                 && !(firstPassInputForValidation.equalsIgnoreCase(""))) {
-                            throw new Exception("Passwords not match");
+                            throw new Exception("Passwords do not match");
                         } else if (firstPassInputForValidation.equals(secondPassInputForValidation)
                                 && !(firstPassInputForValidation.equalsIgnoreCase(""))) {
                             throw new Exception("Passwords match");
@@ -370,8 +372,8 @@ public class SignUpScreen extends JFrame implements View {
                 }
                 catch (Exception exc)
                 {
-                    if(exc.getMessage().equalsIgnoreCase("Passwords not match")){
-                        passwordsMatchMsg.setText("Passwords not match");
+                    if(exc.getMessage().equalsIgnoreCase("Passwords do not match")){
+                        passwordsMatchMsg.setText("Passwords do not match");
                         passwordsMatchMsg.setForeground(Color.red);
                         passwordsMatchMsg.setBounds(230, 190, 150, 20);
                         panelForConfirmPassValidation.add(passwordsMatchMsg);
@@ -397,8 +399,8 @@ public class SignUpScreen extends JFrame implements View {
         });
         add(enterConfirmedPassword);
 
-        // for Jlabel - not var to pass
-        useLettersNumbers = new JLabel("Use with letters and numbers");
+        //Jlabel
+        useLettersNumbers = new JLabel("Use letters and numbers");
         useLettersNumbers.setBounds(106, 190, 160, 100);
         useLettersNumbers.setFont(david12);
         add(useLettersNumbers);
@@ -412,9 +414,8 @@ public class SignUpScreen extends JFrame implements View {
         userNameValidationMsg.setBounds(230, 181, 150, 20);
         userNameValidationMsg.setFont(david12);
 
-        //-----------------------------------------------------------------------------------------//
         JButton done = new JButton("Done");
-        done.setBounds(635, 670, 100, 30);//on clicking pass relevent values and return to main panel
+        done.setBounds(635, 670, 100, 30);
         done.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -439,14 +440,13 @@ public class SignUpScreen extends JFrame implements View {
         home.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-         //       getRootPane().getParent().setVisible(true);
                 setVisible(false);
                 MainPanel v1 = new MainPanel();
                 v1.showScreen();
             }
         });
         add(home);
-//-----------------------------------------------------------------------------------------------------//
+
         // create radio buttons and labels
         JLabel tChoice = new JLabel("User type define:");
         tChoice.setBounds(15,250,400,50 );
@@ -489,9 +489,7 @@ public class SignUpScreen extends JFrame implements View {
         add(background);
 
         setVisible(true);
-
     }
-
     public String getSelection() {
         return group.getSelection().getActionCommand();
     }

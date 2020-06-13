@@ -8,9 +8,9 @@ public class Job implements Serializable,Model{
     protected String customerUserName;
     protected String workerUserName;
     protected String title;
-    protected String date; //
-    protected String deadline; //
-    protected Price Price; //
+    protected String date;
+    protected String deadline;
+    protected Price Price;
     protected Boolean accepted = false;
 
     public Job(String CusUserName,String WorkUserName,String desc,int lastId){
@@ -31,7 +31,6 @@ public class Job implements Serializable,Model{
         Price = toAdd.getPrice(); //
         accepted = toAdd.getAccepted();
     }
-
 
     public String getWorkerUserName() {
         return workerUserName;
@@ -83,7 +82,7 @@ public class Job implements Serializable,Model{
         this.Price=price;
     }
 
-    public void setTitle(String title) {
+    /*public void setTitle(String title) {
         this.title = title;
-    }
+    }*/
 }

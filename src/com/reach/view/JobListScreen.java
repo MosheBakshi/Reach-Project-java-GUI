@@ -1,8 +1,6 @@
 package com.reach.view;
 
 import com.reach.controller.MyController;
-import com.reach.model.Job;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +14,6 @@ public class JobListScreen extends JFrame implements View
         this.userName = userName;
     }
 
-
     @Override
     public void showScreen()
     {
@@ -28,12 +25,12 @@ public class JobListScreen extends JFrame implements View
         main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
         main.setBounds(0,0,600,600);
         add(main);
-
         //Font
         Font david20 = new Font("David", Font.BOLD, 20);
         Font david50 = new Font("David", Font.BOLD, 50);
+
         userType = MyController.getInstance().getUserType(userName).toString();
-            if(userType == "customer") {
+            if(userType.equals("customer")) {
                 if (MyController.getInstance().getUserJobsSize(userName) > 0) {
                     int x = MyController.getInstance().getUserJobsSize(userName);
                     for (int i = 0; i < x; i++) {
@@ -65,7 +62,7 @@ public class JobListScreen extends JFrame implements View
                     main.add(empty);
                 }
             }
-            else if(userType == "freelancer" || userType == "contractor") {
+            else if(userType.equals("freelancer") || userType.equals("contractor")) {
                 if (MyController.getInstance().getUserJobsSize(userName) > 0) {
                     int x = MyController.getInstance().getUserJobsSize(userName);
                     for (int i = 0; i < x; i++) {
@@ -81,7 +78,6 @@ public class JobListScreen extends JFrame implements View
                         jobID.setBounds(20, i * 50 + 150, 200, 30);
                         jobID.setFont(david20);
                         main.add(jobID);
-
 
                         if (MyController.getInstance().JobAcceptance(userName, ID)) {
                             JLabel accept = new JLabel("Job accepted");
@@ -146,22 +142,22 @@ public class JobListScreen extends JFrame implements View
             public void actionPerformed(ActionEvent e) {
                 try {
                     String userTypeReturned = MyController.getInstance().getUserType(userName).toString();
-                    if(userTypeReturned == "customer"){throw new Exception("consumer");}
-                    else if(userTypeReturned == "freelancer"){throw new Exception("freelancer");}
-                    else if(userTypeReturned == "contractor"){throw new Exception("contractor");}
+                    if(userTypeReturned.equals("customer")){throw new Exception("consumer");}
+                    else if(userTypeReturned.equals("freelancer")){throw new Exception("freelancer");}
+                    else if(userTypeReturned.equals("contractor")){throw new Exception("contractor");}
                 }
                 catch (Exception exc){
-                    if(exc.getMessage() == "consumer"){
+                    if(exc.getMessage().equals("consumer")){
                         setVisible(false);
                         Consumer v1 = new Consumer(userName);
                         v1.showScreen();
                     }
-                    else if(exc.getMessage() == "freelancer"){
+                    else if(exc.getMessage().equals("freelancer")){
                         setVisible(false);
                         Freelancer v1 = new Freelancer(userName);
                         v1.showScreen();
                     }
-                    else if(exc.getMessage() == "contractor"){
+                    else if(exc.getMessage().equals("contractor")){
                         setVisible(false);
                         Contractor v1 = new Contractor(userName);
                         v1.showScreen();
@@ -170,9 +166,11 @@ public class JobListScreen extends JFrame implements View
             }
         });
         add(home);
+
         JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setBounds(0,0,600,600);
         add(scroll);
+
         setVisible(true);
     }
 }
