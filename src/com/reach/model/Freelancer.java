@@ -4,9 +4,8 @@ public class Freelancer extends User implements  Model{
 
     protected String field;
     protected String subfield;
-    protected int yearsOfexperience;
-    protected String area; // can be as the enum in the User file.
-    protected String availability;
+    protected String yearsOfExperience;
+    protected String area;
 
     public Freelancer(UserType choice, String userName, String PrivateName, String LastName, String Password) {
         this.userType = choice;
@@ -22,4 +21,35 @@ public class Freelancer extends User implements  Model{
         return UserType.freelancer;
     }
 
+    public String getField() {
+        return this.field;
+    }
+
+    public String getSubfield() {
+        return this.subfield;
+    }
+
+    public void setSubfield(String subfield) {
+        this.subfield=subfield;
+    }
+
+    public String getYearsOfExperience() {
+        return yearsOfExperience;
+    }
+
+    public void setYearsOfExperience(String yearsOfExperience) {
+        this.yearsOfExperience = yearsOfExperience;
+    }
+
+    public void setArea(String area){
+        this.area=area;
+    }
+
+    public String getArea() {
+        return this.area;
+    }
+
+    public void setField(String enterF) {
+        this.field=enterF;
+    }
 }
