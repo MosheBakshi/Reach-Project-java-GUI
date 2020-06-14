@@ -35,7 +35,7 @@ public class SearchResult extends JFrame implements  View {
         Font david50 = new Font("forget a password", Font.PLAIN, 50);
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
-        main.setBounds(0,0,300,900);
+        main.setBounds(0,0,320,900);
         add(main);
 
         if (MyController.getInstance().getResultsSize(prof,area)>0)
@@ -60,9 +60,15 @@ public class SearchResult extends JFrame implements  View {
                 subField.setFont(david20);
                 main.add(subField);
 
+                String payment = MyController.getInstance().getResultPayment(prof,area,i);
+                JLabel pay = new JLabel("Accepted payment: " +payment);
+                pay.setBounds(20, i * 50 + 200, 200, 30);
+                pay.setFont(david20);
+                main.add(pay);
+
                 JButton go = new JButton("Pick");
                 go.setFont(david20);
-                go.setBounds(400, i * 50 + 200, 200, 30);
+                go.setBounds(400, i * 50 + 250, 200, 30);
                 go.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -97,8 +103,8 @@ public class SearchResult extends JFrame implements  View {
         });
         add(back,"FIRST");
 
-        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.setBounds(0,0,280,550);
+        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll.setBounds(0,0,300,550);
         add(scroll);
 
         setVisible(true);

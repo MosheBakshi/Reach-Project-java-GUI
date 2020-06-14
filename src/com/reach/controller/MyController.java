@@ -25,7 +25,7 @@ public class MyController {
         return WriterReader.UsersHM.get(userName).getUserId();
     }*/
 
-    public String getUserPayment(String userName){
+    public String getResultPayment(String userName){
         return WriterReader.getUserPayment(userName);
     }
 
@@ -245,6 +245,19 @@ public class MyController {
         return null;
     }
 
+    public String getResultPayment(String prof, String area, int i) {
+        List<User> results = new ArrayList<>();
+        ArrayList<String> keys = new ArrayList<>(WriterReader.UsersHM.keySet());
+        for (String key : keys)
+        {
+            User user = WriterReader.UsersHM.get(key);
+            if(user.getUserType()==UserType.freelancer && (((Freelancer)user).getArea()) != null &&  ((Freelancer)user).getArea().equals(area) && (((Freelancer)user).getField()) != null &&  ((Freelancer)user).getField().equals(prof))
+                results.add(WriterReader.UsersHM.get(key));
+            else if(user.getUserType()==UserType.contractor && (((Contractor)user).getArea()) != null &&  ((Contractor)user).getArea().equals(area) && (((Contractor)user).getField()) != null &&  ((Contractor)user).getField().equals(prof))
+                results.add(WriterReader.UsersHM.get(key));
+        }
+        return results.get(i).getPayment();
+    }
 }
 
 
