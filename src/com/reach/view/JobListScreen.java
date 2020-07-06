@@ -17,13 +17,19 @@ public class JobListScreen extends JFrame implements View
     @Override
     public void showScreen()
     {
-        setSize(750, 750);
+        setSize(950, 750);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+        ImageIcon background_image = new ImageIcon("joblist.png");
+        Image img = background_image.getImage();
+        Image tmp_img = img.getScaledInstance(300, 600, Image.SCALE_SMOOTH);
+        background_image = new ImageIcon(tmp_img);
+        JLabel background = new JLabel("", background_image, JLabel.CENTER);
+        background.setBounds(610, 0, 300, 600);
+        add(background);
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
-        main.setBounds(0,0,600,600);
+        main.setBounds(0,0,600,650);
         add(main);
         //Font
         Font david20 = new Font("David", Font.BOLD, 20);
@@ -167,8 +173,8 @@ public class JobListScreen extends JFrame implements View
         });
         add(home);
 
-        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.setBounds(0,0,600,600);
+        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setBounds(0,0,580,650);
         add(scroll);
 
         setVisible(true);

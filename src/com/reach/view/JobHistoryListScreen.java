@@ -16,15 +16,22 @@ public class JobHistoryListScreen extends JFrame implements View
     @Override
     public void showScreen()
     {
-        setSize(1000, 1000);
+        setSize(1000, 750);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        ImageIcon background_image = new ImageIcon("jobhistory.jpg");
+        Image img = background_image.getImage();
+        Image tmp_img = img.getScaledInstance(350, 700, Image.SCALE_SMOOTH);
+        background_image = new ImageIcon(tmp_img);
+        JLabel background = new JLabel("", background_image, JLabel.CENTER);
+        background.setBounds(610, 0, 350, 700);
+        add(background);
         //Font
         Font david20 = new Font("David", Font.BOLD, 20);
         Font david50 = new Font("David", Font.BOLD, 50);
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
-        main.setBounds(0,0,1000,1000);
+        main.setBounds(0,0,600,650);
         add(main);
 
         userType = MyController.getInstance().getUserType(userName).toString();
@@ -164,8 +171,8 @@ public class JobHistoryListScreen extends JFrame implements View
         });
         add(home);
 
-        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.setBounds(0,0,980,1000);
+        JScrollPane scroll = new JScrollPane(main,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setBounds(0,0,580,650);
         add(scroll);
 
         setVisible(true);
