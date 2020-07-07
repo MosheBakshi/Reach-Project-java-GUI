@@ -11,7 +11,7 @@ public class JobListScreen extends JFrame implements View
     protected static String userName;
     protected String userType;
     public JobListScreen(String userName){
-        this.userName = userName;
+        JobListScreen.userName = userName;
     }
 
     @Override

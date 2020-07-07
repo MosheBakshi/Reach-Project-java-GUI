@@ -10,7 +10,7 @@ public class Contractor extends JFrame implements View {
 
     private static String userName;
     public Contractor(String name){
-        this.userName = name;
+        userName = name;
     }
     public static String getUsername() {
         return userName;

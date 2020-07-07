@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class SearchScreen extends JFrame implements  View{
 
-    private String userName;
+    private final String userName;
     private static JComboBox profession;
     private static JComboBox areaBox;
 

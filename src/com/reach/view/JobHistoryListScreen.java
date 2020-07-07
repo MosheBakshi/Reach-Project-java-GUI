@@ -11,7 +11,7 @@ public class JobHistoryListScreen extends JFrame implements View
     protected static String userName;
     protected String userType;
     public JobHistoryListScreen(String userName){
-        this.userName = userName;
+        JobHistoryListScreen.userName = userName;
     }
     @Override
     public void showScreen()

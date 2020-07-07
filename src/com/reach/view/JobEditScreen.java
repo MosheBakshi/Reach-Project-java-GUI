@@ -106,7 +106,7 @@ public class JobEditScreen extends JFrame implements View {
 
             @Override
             public void focusLost(FocusEvent e) {
-                if(UserEnterEndDate.getText() == ""){
+                if(UserEnterEndDate.getText().equals("")){
                     UserEnterEndDate.setText("XX/XX/XXXX");
                 }
             }
@@ -137,7 +137,7 @@ public class JobEditScreen extends JFrame implements View {
 
             @Override
             public void focusLost(FocusEvent e) {
-                if(UserEnterPrice.getText() == ""){
+                if(UserEnterPrice.getText().equals("")){
                     if(MyController.getInstance().getJob(userName,ID).getPrice() != null &&
                             MyController.getInstance().getJob(userName,ID).getPrice().getJobCost() != 0){
                         UserEnterPrice.setText(""+MyController.getInstance().getJob(userName,ID).getPrice().getJobCost());

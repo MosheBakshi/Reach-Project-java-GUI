@@ -7,7 +7,7 @@ import java.util.List;
 public class MyController {
 
     private static final MyController instance = new MyController();
-    //private Model model;
+
     //constructor for singleton
     private MyController(){}
     //Method to return the instance of the singleton
@@ -238,7 +238,3 @@ public class MyController {
     }
 
 }
-
-
-
-

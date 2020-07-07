@@ -105,7 +105,7 @@ public class JobScreen extends JFrame implements View {
         description.setFont(david20);
         add(description);
 
-        if(MyController.getInstance().getUserType(userName).toString() != "customer") {
+        if(!MyController.getInstance().getUserType(userName).toString().equals("customer")) {
             JButton edit = new JButton("Edit details");
             edit.setBounds(530, 550, 150, 30);
             edit.addActionListener(new ActionListener() {

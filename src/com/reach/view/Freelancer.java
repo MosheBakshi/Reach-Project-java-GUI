@@ -11,7 +11,7 @@ public class Freelancer extends JFrame implements View {
     private static String userName;
 
     public Freelancer(String name){
-        this.userName = name;
+        userName = name;
     }
 
     public static String getUsername() {
